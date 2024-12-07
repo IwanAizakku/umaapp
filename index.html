@@ -3,144 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>
-                Homepage
-            </title>
-            <style> /* CSS - Button shape, style, margin are set here*/
-                    /* General Reset */
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                    }
-
-                    body {
-                        font-family: Arial, sans-serif;
-                        background-color: #D8BFD8;
-                        color: #333;
-                    }
-
-                    /* Header Styling */
-                    header {
-                        background-color: #87CEEB;
-                        padding: 10px 20px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                    }
-
-                    .logo {
-                        width: 50px;
-                        height: 50px;
-                        background-color: white;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 50%;
-                    }
-
-                    .search-bar {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                    }
-
-                    .search-bar input[type="text"] {
-                        padding: 5px;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                    }
-
-                    .header-buttons {
-                        display: flex;
-                        gap: 10px;
-                    }
-
-                    .header-buttons button {
-                        background-color: #4682B4;
-                        color: white;
-                        border: none;
-                        padding: 5px 10px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                    }
-
-                    .header-buttons button:hover {
-                        background-color: #4169E1; 
-                    }
-
-                    /* Main Content */
-                    main {
-                        text-align: center;
-                        padding: 50px;
-                    }
-                    
-                    .start-here{
-                        margin-top: 50px; /* Space between the heading and "Start here" */
-                        margin-bottom: 10px; /* Space between "Start here" and categories */
-                        font-size: 1.5rem; 
-                        color: #333; 
-                    }
-
-                    .categories {
-                        display: flex;
-                        justify-content: center;
-                        gap: 40px;
-                        margin-top: 20px;
-                    }
-            
-                    .category {
-                        width: 150px;
-                        height: 150px;
-                        background-color: white;
-                        font-size: 1.4rem;
-                        color: #333;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 1px solid #ccc;
-                        border-radius: 10px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-                        position: relative; /* Needed for the overlay effect */
-                        overflow: hidden; /* Ensures the overlay stays within the box */
-                    }
-                    
-                    /* Add a dark overlay on hover */
-                    .category:hover::before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.4); /* Dark overlay (40% opacity) */
-                        transition: background 0.3s ease; /* Smooth fade-in effect */
-                    }
-
-                    .category:hover {
-                        color: white;
-                    }
-
-                    /* Background Images for Each Box */
-                    .category:nth-child(1) {
-                        background-image: url('Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-                        background-size: cover;
-                    }
-                    .category:nth-child(2) {
-                        background-image: url('Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-                        background-size: cover;
-                    }
-                    .category:nth-child(3) {
-                        background-image: url('Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-                        background-size: cover;
-                    }
-                    .category:nth-child(4) {
-                        background-image: url('Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-                        background-size: cover;
-                    }
-            </style>
+        <title>UMA Homepage</title>
+        <link rel="stylesheet" href="CSS/styles.css">
     </head>
 
     <!--header-->
@@ -149,7 +13,7 @@
             <label for="search">Search:</label>
             <input type="text" id="search" placeholder="Search...">
         </div>
-        <div class="logo">Logo</div>
+        <a href="../index.html" img src="" alt="Logo" class="logo">Logo</a>
         <div class="header-buttons">
             <button>Login / Register</button>
             <button>Cart</button>
@@ -161,10 +25,10 @@
         <h1>Welcome to Unimas Order Management App (UMA)</h1>
         <p class="start-here">Start here</p>
         <div class="categories">
-            <a href="http://www.google.com" target="_blank" class="category" title="View Categories">Category</a>
-            <a href="http://www.google.com" target="_blank" class="category" title="View Categories">Shops</a>
-            <a href="http://www.google.com" target="_blank" class="category" title="View Categories">Services</a>
-            <a href="http://www.google.com" target="_blank" class="category" title="View Categories">Trending</a>
+            <a href="../index.html" target="_blank" class="category" title="View Categories">Category</a>
+            <a href="../index.html" target="_blank" class="category" title="View Categories">Shops</a>
+            <a href="../index.html" target="_blank" class="category" title="View Categories">Services</a>
+            <a href="../index.html" target="_blank" class="category" title="View Categories">Trending</a>
         </div>
     </main>
 </html>

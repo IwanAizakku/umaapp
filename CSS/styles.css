@@ -1,0 +1,192 @@
+/* CSS - Button shape, style, margin are set here*/
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D8BFD8;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    background-color: #87CEEB;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-only-header{
+    display: flex; /* Flexbox for centering */
+    padding: 10px 20px;
+    justify-content: center; /* Horizontally center the logo */
+    align-items: center; /* Vertically center the logo */
+    padding: 10px 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-buttons button {
+    background-color: #4682B4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.header-buttons button:hover {
+    background-color: #4169E1; 
+}
+
+/* Main Content */
+main {
+    text-align: center;
+    padding: 50px;
+}
+
+.start-here{
+    margin-top: 50px; /* Space between the heading and "Start here" */
+    margin-bottom: 10px; /* Space between "Start here" and categories */
+    font-size: 1.5rem; 
+    color: #333; 
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.category {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    font-size: 1.4rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    position: relative; /* Needed for the overlay effect */
+    overflow: hidden; /* Ensures the overlay stays within the box */
+}
+
+/* Add a dark overlay on hover */
+.category:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay (40% opacity) */
+    transition: background 0.3s ease; /* Smooth fade-in effect */
+}
+
+.category:hover {
+    color: white;
+}
+
+/* Background Images for Each Box */
+.category:nth-child(1) {
+    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
+    background-size: cover;
+}
+.category:nth-child(2) {
+    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
+    background-size: cover;
+}
+.category:nth-child(3) {
+    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
+    background-size: cover;
+}
+.category:nth-child(4) {
+    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
+    background-size: cover;
+}
+
+/* Login box */
+.login-section {
+    width: 400px;
+    height: 180px;
+    margin-top: 50px;
+    margin-left: 50px;
+    background-color: #87CEEB;
+    display: flex;
+    flex-direction: column;     /* Stack items vertically in the box section */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative; /* Needed for the overlay effect */
+    overflow: hidden; /* Ensures the overlay stays within the box */
+}
+
+.username-bar {
+    display: flex;
+    justify-content: left;
+    font-size: 1.1rem;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.password-bar{
+    display: flex;
+    justify-content: left;
+    font-size: 1.1rem;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.username-bar input[type="text"] {
+    display: block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.password-bar input[type="password"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
