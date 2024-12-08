@@ -1,2 +1,2 @@
-# umaapp.github.io
-A website of the Unimas Order Management App (UMA) (Prototype)
+# Unimas Order Management App
+A (Prototype) website of the Unimas Order Management App
