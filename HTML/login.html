@@ -15,18 +15,33 @@
     <!-- Main Content -->
     <main>
         <h1>Welcome</h1>
-        <div class="login-section">
-            <h2>Login for existing users</h2>
-            <div class="username-bar"> 
-                <label for="username">Username:</label>
-                <input type="text" id="username"  placeholder="Username">
+        <div class="form">
+            <div class="form-login-section">
+                <h2>Login for existing users</h2>
+                <div class="username-bar"> 
+                    <label for="username">Username:</label>
+                    <input type="text" id="username"  placeholder="Username">
+                </div>
+                <div class="password-bar"> 
+                    <label for="username">Password:</label>
+                    <input type="password" id="password"  placeholder="Password">
+                </div>
+                <div class="header-buttons">
+                    <button>Login</button>
+                </div>
             </div>
-            <div class="password-bar"> 
-                <label for="username">Password:</label>
-                <input type="password" id="password"  placeholder="Password">
-            </div>
-            <div class="header-buttons">
-                <button>Login</button>
+            <div class="form-register-section">
+                <h2>Register for new users</h2>
+                <div class="choice-bar">
+                    <label for="User-type">Type</label>
+  			        <select name="User-type" id="User-type">
+                        <option value="Individual">Individual</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+                <div class="confirm-buttons">
+                    <button>Continue registration</button>
+                </div>
             </div>
         </div>
     </main>

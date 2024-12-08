@@ -143,8 +143,16 @@ main {
     background-size: cover;
 }
 
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+
 /* Login box */
-.login-section {
+.form-login-section, .form-register-section {
     width: 400px;
     height: 180px;
     margin-top: 50px;
@@ -171,7 +179,7 @@ main {
     margin-bottom: 10px;
 }
 
-.password-bar{
+.password-bar {
     align-items: center;
     display: flex;
     justify-content: left;
@@ -192,4 +200,46 @@ main {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+
+/* Multiple options bar */
+.choice-bar {
+    align-items: center;
+    display: flex;
+    justify-content: left;
+    font-size: 1.1rem;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.choice-bar select {
+    display: block;
+    padding: 5px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Buttons */
+.confirm-buttons {
+    display: block;
+    gap: 10px;
+}
+.confirm-buttons button {
+    display: block;
+    gap: 10px;
+    background-color: #00bd48;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.confirm-buttons button:hover {
+    background-color: #41e171; 
 }
