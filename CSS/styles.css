@@ -85,13 +85,16 @@ main {
 }
 
 .categories {
-    display: flex;
+    display: flex; /* Enable Flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
     justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
+    gap: 20px;
+    padding: 10px;
 }
 
 .category {
+    flex: 1 1 calc(20% - 20px); /* Dynamic width: 20% minus gap */
+    max-width: 150px; /* Set maximum width */
     width: 150px;
     height: 150px;
     background-color: white;
@@ -125,7 +128,7 @@ main {
     color: white;
 }
 
-/* Background Images for Each Box */
+/* Background Images for Each Box (test image)
 .category:nth-child(1) {
     background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
     background-size: cover;
@@ -141,7 +144,39 @@ main {
 .category:nth-child(4) {
     background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
     background-size: cover;
+} */
+
+/* Make transparent box to seperate section of category */
+.section-wrapper {
+    max-width: 90%; /* Limit the section to 90% of the viewport */
+    margin: 50px auto; /* Center it and add spacing around */
+    background-color: rgba(255, 255, 255, 0.5); 
+    padding: 30px; /* Higher = Squeezes the contents more inside it */
+    border: 2px solid #ccc; 
+    border-radius: 10px; 
+    width: 90%; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
+
+/* For tablets (width below 768px) */
+@media (max-width: 768px) {
+    .category {
+        flex: 1 1 calc(45% - 20px); /* Each box takes 45% width */
+    }
+}
+
+/* For mobile screens (width below 480px) */
+@media (max-width: 480px) {
+    .category {
+        flex: 1 1 100%; /* Each box takes full width */
+        height: 120px; /* Adjust height for smaller screens */
+    }
+
+    .section-wrapper {
+        padding: 10px; /* Reduce padding */
+    }
+}
+
 
 .form {
     display: flex;
