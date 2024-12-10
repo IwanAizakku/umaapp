@@ -325,8 +325,8 @@ main {
 }
 
 
-/* Purchaces items */
-.purchaces-item{
+/* purchases items */
+.purchases-item{
     display: flex;
     align-items: center;
     background-color: #b6d0e2;
@@ -336,24 +336,24 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.purchaces-title {
+.purchases-title {
     text-align: center;
     font-size: 32px;
     margin: 20px 0;
     color: #4a4a4a;
 }
 
-.purchaces-item-checkbox {
+.purchases-item-checkbox {
     flex: 0 0 5%;
     text-align: center;
 }
 
-.purchaces-item-image {
+.purchases-item-image {
     flex: 0 0 15%;
     text-align: center;
 }
 
-.purchaces-placeholder {
+.purchases-placeholder {
     width: 80px;
     height: 80px;
     background-color: #ccc;
@@ -365,19 +365,19 @@ main {
     color: #333;
 }
 
-.purchaces-item-details {
+.purchases-item-details {
     flex: 1;
     margin-left: 20px;
 }
 
-.purchaces-item-title {
+.purchases-item-title {
     font-size: 18px;
     font-weight: bold;
     text-align: left;
     margin: 0 0 5px;
 }
 
-.purchaces-item-price {
+.purchases-item-price {
     font-size: 16px;
     text-align: left;
     margin: 0;
@@ -408,7 +408,7 @@ main {
     font-weight: bold;
 }
 
-.purchaces-item-quantity {
+.purchases-item-quantity {
     display: flex;
     align-items: left;
     justify-content: left;
@@ -432,12 +432,12 @@ main {
 }
 
 /* Review button */
-.purchaces-review {
+.purchases-review {
     flex: 0 0 15%;
     text-align: center;
 }
 
-.purchaces-review-button {
+.purchases-review-button {
     background-color: #f0d800;
     color: rgb(0, 0, 0);
     border: none;
