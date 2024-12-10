@@ -277,8 +277,8 @@ main {
     display: flex;
     align-items: center;
     background-color: #b6d0e2;
-    padding: 15px;
     margin: 10px 10%;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -322,6 +322,125 @@ main {
     text-align: left;
     margin: 0;
     color: #333;
+}
+
+
+/* --Checkout section-- */
+.checkout-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 20px;
+}
+
+.checkout-item-section {
+    flex: 1;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.checkout-item-box {
+    display: flex;
+    margin: 15px 0px 0px 30px;
+    width: 500px;
+    align-items: center;
+    background-color: #b6d0e2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-item-title {
+    text-align: left;
+    font-size: 32px;
+    margin: 0px 220px;
+    width: 500px;
+    color: #4a4a4a;
+}
+
+.checkout-item-image {
+    flex: 0 0 10%;
+    text-align: left;
+}
+
+.checkout-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.checkout-item-details {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.checkout-summary-section {
+    flex: 1;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.checkout-summary-box {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 30px;
+    width: 500px;
+    height: 200px;
+    align-items: left;
+    background-color: #b6d0e2;
+    padding: 15px 0px 0px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-summary-price {
+    font-size: 18px;
+    position: relative;
+    top: 50px;
+    text-align: left;
+    margin: 0px 0px 0px 0px;
+    color: #333;
+}
+
+.checkout-sign-in-section {
+    flex: 1;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.checkout-sign-in-message {
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+    text-align: center;
+    margin: 0px 60px 0px 0px;
+    color: #333;
+}
+
+.checkout-register-buttons {
+    position: relative;
+    right: 30px;
+    top: 25px;
+}
+
+.checkout-register-buttons button{
+    background-color: #00bd48;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.checkout-register-buttons button:hover {
+    background-color: #41e171; 
 }
 
 
@@ -522,5 +641,27 @@ main {
 }
 
 .confirm-buttons button:hover {
+    background-color: #41e171; 
+}
+
+.register-buttons {
+    display: block;
+    gap: 10px;
+}
+
+.register-buttons button{
+    display: block;
+    position: center;
+    gap: 10px;
+    background-color: #00bd48;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.register-buttons button:hover {
     background-color: #41e171; 
 }
