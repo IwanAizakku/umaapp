@@ -324,6 +324,67 @@ main {
     color: #333;
 }
 
+
+/* purchases items */
+.purchases-item{
+    display: flex;
+    align-items: center;
+    background-color: #b6d0e2;
+    padding: 15px;
+    margin: 10px 10%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.purchases-title {
+    text-align: center;
+    font-size: 32px;
+    margin: 20px 0;
+    color: #4a4a4a;
+}
+
+.purchases-item-checkbox {
+    flex: 0 0 5%;
+    text-align: center;
+}
+
+.purchases-item-image {
+    flex: 0 0 15%;
+    text-align: center;
+}
+
+.purchases-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.purchases-item-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.purchases-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0 0 5px;
+}
+
+.purchases-item-price {
+    font-size: 16px;
+    text-align: left;
+    margin: 0;
+    color: #333;
+}
+
+
 /* Quantity controls */
 .cart-item-quantity {
     display: flex;
@@ -332,7 +393,7 @@ main {
     flex: 0 0 20%;
 }
 
-.quantity-button {
+.cart-quantity-button {
     background-color: #4a90e2;
     color: white;
     border: none;
@@ -341,10 +402,48 @@ main {
     cursor: pointer;
 }
 
-.quantity-value {
+.cart-quantity-value {
     margin: 0 10px;
     font-size: 16px;
     font-weight: bold;
+}
+
+.purchases-item-quantity {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex: 0 0 10%;
+}
+
+
+/* Order summary */
+.order-summary {
+    flex: 0 0 10%;
+    text-align: center;
+}
+
+.order-summary-button {
+    background-color: #4a90e2;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Review button */
+.purchases-review {
+    flex: 0 0 15%;
+    text-align: center;
+}
+
+.purchases-review-button {
+    background-color: #f0d800;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 19px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Remove button */
