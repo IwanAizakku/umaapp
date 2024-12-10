@@ -267,9 +267,24 @@ main {
     color: white;
 }
 
-.buy-now {
+.buy-now-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buy-now-buttons button {
     background-color: #5cb85c;
     color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.buy-now-buttons button:hover {
+    background-color: #26cc58; 
 }
 
 /* Cart items */
