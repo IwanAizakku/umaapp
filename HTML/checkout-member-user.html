@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* Internal css section */
+        .checkout-to-payment-buttons{
+            top: 10px;
+            right: 20px;
+        }
+        .checkout-to-payment-buttons button{
+            background-color: #00bd48;
+        }
+        .checkout-to-payment-buttons button:hover {
+            background-color: #41e171; 
+        }
+    </style>
 </head>
 <body>
 
@@ -12,9 +25,7 @@
     <header>
         <a href="https://iwanaizakku.github.io/umaapp/" img src="" alt="Logo" class="logo">Logo</a>
         <div class="header-buttons">
-            <form action="HTML/login.html">
-                <button>Login / Register</button>
-            </form>
+            <button>User</button>
         </div>
     </header>
 
@@ -64,11 +75,18 @@
                 <p class="checkout-summary-price">Subtotal: RM00.00</p>
                 <p class="checkout-summary-price">Total: RM00.00</p>
             </div>
-            <div class="checkout-sign-in-section">
-                <p class="checkout-sign-in-message">To checkout, please register/log in</p>
-                <div class="checkout-register-buttons">
+            <div class="checkout-payment-mmethod-box">
+                <div class="choice-bar">
+                    <label for="Payment-method">Payment method</label>
+  			        <select name="Payment-method" id="Payment-method">
+                        <option value="Individual">FPX</option>
+                        <option value="Business">Card</option>
+                        <option value="Business">Cash on delivery</option>
+                    </select>
+                </div>
+                <div class="checkout-to-payment-buttons">
                     <form action="login.html">
-                        <button>Click to register</button>
+                        <button>Proceed to checkout</button>
                     </form>
                 </div>
             </div>

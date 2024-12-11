@@ -408,6 +408,25 @@ main {
     color: #333;
 }
 
+.checkout-payment-mmethod-section {
+    flex: 1;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.checkout-payment-mmethod-box {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 30px;
+    width: 500px;
+    height: 145px;
+    align-items: left;
+    background-color: #b6d0e2;
+    padding: 15px 0px 0px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .checkout-sign-in-section {
     flex: 1;
     gap: 40px;
@@ -423,14 +442,14 @@ main {
     color: #333;
 }
 
-.checkout-register-buttons {
+.checkout-register-buttons, .checkout-to-payment-buttons {
     position: relative;
     right: 30px;
     top: 25px;
 }
 
-.checkout-register-buttons button{
-    background-color: #00bd48;
+.checkout-register-buttons button, .checkout-to-payment-buttons button{
+    background-color: #4682B4;
     color: rgb(0, 0, 0);
     border: none;
     padding: 10px 15px;
@@ -439,8 +458,8 @@ main {
     cursor: pointer;
 }
 
-.checkout-register-buttons button:hover {
-    background-color: #41e171; 
+.checkout-register-buttons button:hover, .checkout-to-payment-buttons button:hover {
+    background-color: #4169E1; 
 }
 
 
