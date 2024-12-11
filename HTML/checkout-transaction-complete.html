@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* Internal css section */
+        .checkout-transaction-subtitle {
+            font-weight: normal;
+        }
+        .checkout-transaction-buttons button{
+            background-color: #4682B4;
+            color: rgb(255, 255, 255);
+        }
+        .checkout-transaction-buttons button:hover {
+            background-color: #4169E1; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="https://iwanaizakku.github.io/umaapp/" img src="" alt="Logo" class="logo">Logo</a>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div class="checkout-transaction-title">Transaction successful
+            <div class="checkout-transaction-subtitle">Redirecting to order summary
+                <div class="checkout-loading-gif">
+                    <img src="../Images/check-shield.png" alt="Loading" width="60">
+                </div>
+            </div>
+        </div>
+        <div class="checkout-main">
+            <div class="checkout-transaction-section">
+                <div class="checkout-transaction-box">
+                    <div class="checkout-transaction-buttons">
+                        <form action="checkout-summary.html">
+                            <button>Order summary</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </main>
+</body>
+</html>
