@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* Internal css section */
+        .checkout-summary-price {
+            top: 40px;
+        }
+        .checkout-to-payment-buttons{
+            top: 15px;
+            right: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -12,9 +22,7 @@
     <header>
         <a href="https://iwanaizakku.github.io/umaapp/" img src="" alt="Logo" class="logo">Logo</a>
         <div class="header-buttons">
-            <form action="HTML/login.html">
-                <button>Login / Register</button>
-            </form>
+            <button>User</button>
         </div>
     </header>
 
@@ -54,21 +62,22 @@
         
         <div class="checkout-summary-section">
             <div class="checkout-summary-box">
-                <div class="choice-bar">
-                    <label for="User-address">Address</label>
-  			        <select name="User-address" id="User-address">
-                        <option value="Individual">Address 1</option>
-                        <option value="Business">Address 2</option>
-                    </select>
-                </div>
+                <p class="checkout-summary-address" for="User-address-line-1">Area</p>
+                <p class="checkout-summary-address" for="User-address-line-2">Street</p>
+                <p class="checkout-summary-address" for="User-address-line-3">12345, State</p>
+                <p class="checkout-summary-address" for="User-address-line-3">Country</p>
                 <p class="checkout-summary-price">Subtotal: RM00.00</p>
                 <p class="checkout-summary-price">Total: RM00.00</p>
             </div>
-            <div class="checkout-sign-in-section">
-                <p class="checkout-sign-in-message">To checkout, please register/log in</p>
-                <div class="checkout-register-buttons">
+            <div class="checkout-payment-mmethod-box">
+                <div class="choice-bar">
+                    <label for="Payment-method">Payment method:
+                        <label id="Payment-method">FPX</label>
+                    </label>
+                </div>
+                <div class="checkout-to-payment-buttons">
                     <form action="login.html">
-                        <button>Click to register</button>
+                        <button>Print Receipt</button>
                     </form>
                 </div>
             </div>

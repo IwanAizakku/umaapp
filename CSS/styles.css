@@ -399,9 +399,15 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-summary-price {
-    font-size: 18px;
+.checkout-summary-address {
     position: relative;
+    font-size: 18px;
+    text-align: left;
+}
+
+.checkout-summary-price {
+    position: relative;
+    font-size: 18px;
     top: 50px;
     text-align: left;
     margin: 0px 0px 0px 0px;
@@ -442,15 +448,15 @@ main {
     color: #333;
 }
 
-.checkout-register-buttons, .checkout-to-payment-buttons {
+.checkout-register-buttons, .checkout-to-payment-buttons, .checkout-summary-print-buttons {
     position: relative;
     right: 30px;
     top: 25px;
 }
 
-.checkout-register-buttons button, .checkout-to-payment-buttons button{
+.checkout-register-buttons button, .checkout-to-payment-buttons button, .checkout-summary-print-buttons button{
     background-color: #4682B4;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -458,7 +464,7 @@ main {
     cursor: pointer;
 }
 
-.checkout-register-buttons button:hover, .checkout-to-payment-buttons button:hover {
+.checkout-register-buttons button:hover, .checkout-to-payment-buttons button:hover, .checkout-summary-print-buttons button:hover {
     background-color: #4169E1; 
 }
 
