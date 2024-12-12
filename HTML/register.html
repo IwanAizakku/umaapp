@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* Internal css section */
+        .register-box-image-upload-area, .register-box-agreement-area {
+            align-items: center;
+            text-align: left;
+        }
+        .register-box-image-upload-area button {
+            background-color: #4682B4;
+            color: rgb(255, 255, 255);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .register-box-image-upload-area button:hover {
+            background-color: #4169E1;
+        }
+        .register-box-agreement-area button {
+            background-color: #00bd48;
+            color: rgb(255, 255, 255);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .register-box-agreement-area button:hover {
+            background-color: #41e171;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="https://iwanaizakku.github.io/umaapp/" img src="" alt="Logo" class="logo">Logo</a>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div class="register-main-title">Register</div>
+        <div class="register-main">
+            <section class="register-info-section">
+                <div class="register-box-area">
+                    <h2 class="register-info-section-title">User information</h2> 
+                    <form>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
+
+                        <label for="password">Enter new password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter password again">
+                        <small>
+                            • 6-8 digits<br>
+                            • Must contain ONE uppercase, ONE numeric, ONE special character, number, and no space.
+                        </small>
+
+                        <label for="address-line-1">Address:</label>
+                        <input type="text" id="address-line-1" name="address-line-1" placeholder="Your address line 1">
+                        <input type="text" id="address-line-2" name="address-line-2" placeholder="Your address line 2">
+                        <input type="text" id="address-line-3" name="address-line-3" placeholder="Your address line 3">
+                        <div class="address-row">
+                            <select name="country" id="country">
+                                <option value="" disabled selected>Country</option>
+                                <!-- Add more options here -->
+                            </select>
+                            <select name="state" id="state">
+                                <option value="" disabled selected>State</option>
+                                <!-- Add more options here -->
+                            </select>
+                        </div>
+                        <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+                    </form>
+                </div>
+            </section>
+            <section class="register-image-section">
+                <div class="register-box-image-upload-area">
+                    <h2>Add profile pic</h2>
+                    <div class="register-profile-image-placeholder">Profile pic</div>
+                    <form action="">
+                        <button class="upload-image-buttons">Upload image</button>
+                    </form>
+                    <small>
+                        • Profile picture must be at least 250 x 250 px in size.</p>
+                        • Supported formats: JPG, PNG, Webp.
+                    </small>
+                </div>
+                <section class="register-agreement-section">
+                    <div class="register-box-agreement-area">
+                        <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
+                        <form action="index-member.html">
+                            <button class="green-buttons">Register account</button>
+                        </form>
+                    </div>  
+                </section>
+            </section>
+        </div>        
+    </main>
+</body>
+</html>
