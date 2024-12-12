@@ -236,6 +236,142 @@ main {
     border-radius: 5px;
 }
 
+/* Register */
+.register-main {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px 0px 30px;
+    padding: 10px;
+    gap: 20px;
+}
+
+.register-main-title {
+    position: relative; /* Ensures positioning relative to the closest positioned ancestor */
+    text-align: center; /* Centers the text inside the container */
+    top: 15%;
+    left: 50%; /* Moves the left edge to the middle of the parent container */
+    transform: translateX(-50%); /* Adjusts the center alignment */
+    margin: 0; /* Resets any default margin */
+    font-size: 32px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.register-info-section-title {
+    position: relative;
+    text-align: center;
+    right: 10px;
+    font-size: 25px;
+    font-weight: normal;
+    width: 500px;
+    color: #4a4a4a;
+}
+
+.register-info-section, .register-image-section, .register-agreement-section {
+    flex: 1;
+    gap: 40px;
+    margin-top: 0px;
+}
+
+.register-box-area, .register-box-image-upload-area, .register-box-agreement-area {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 30px;
+    width: 500px;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #b6d0e2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.register-box-area form {
+    display: flex;
+    flex-direction: column; /* Stack form inputs vertically */
+    gap: 10px; /* Add spacing between form elements */
+    width: 100%; /* Make form inputs take full width */
+}
+
+.register-box-area label, .register-box-image-upload-area label, .register-box-agreement-area label {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+
+.register-box-area input, .register-box-area select {
+    width: 100%; /* Ensure input and select elements stretch to full width */
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box; /* Include padding in width */
+    margin-bottom: 5px;
+}
+
+.register-box-area small {
+    font-size: 12px;
+    text-align: left;
+    color: #555;
+    margin-top: 2px; /* Adjust spacing for better alignment */
+    margin-bottom: 5px;
+}
+
+.address-row {
+    display: flex;
+    gap: 10px; /* Add spacing between country and state dropdowns */
+}
+
+.address-row select {
+    flex: 1; /* Make both dropdowns equally sized */
+}
+
+.register-image-section p {
+    text-align: center;
+}
+
+.register-profile-image {
+    flex: 0 0 10%;
+    text-align: left;
+}
+
+.register-profile-image-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.upload-image-buttons, .register-account-buttons {
+    display: flex;
+    flex-direction: column;
+    right: 30px;
+    top: 25px;
+}
+
+.upload-image-buttons button, .register-account-buttons button {
+    background-color: #4682B4;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.upload-image-buttons button:hover,  .register-account-buttons button:hover{
+    background-color: #4169E1; 
+}
+
+.register-box-agreement-area {
+    
+}
+
 
 /* --Cart section-- */
 /* Cart title */
@@ -553,7 +689,7 @@ main {
     top: 25px;
 }
 
-.checkout-register-buttons button, .checkout-to-payment-buttons button, .checkout-summary-print-buttons button{
+.checkout-register-buttons button, .checkout-to-payment-buttons button, .checkout-summary-print-buttons button {
     background-color: #4682B4;
     color: rgb(255, 255, 255);
     border: none;
@@ -788,4 +924,41 @@ main {
 
 .register-buttons button:hover {
     background-color: #41e171; 
+}
+
+
+/* Template stuffs */
+/* (Buttons) */
+.blue-buttons {
+    display: block;
+    gap: 10px;
+}
+.blue-buttons button {
+    background-color: #4682B4;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.blue-buttons button:hover {
+    background-color: #4169E1; 
+}
+
+.green-buttons {
+    display: block;
+    gap: 10px;
+}
+.green-buttons button {
+    background-color: #00bd48;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.green-buttons button:hover {
+    background-color: #41e171;
 }
