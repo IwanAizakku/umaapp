@@ -19,6 +19,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-width: 1000px;  /* Avoid resizing elements */
 }
 
 .logo-only-header{
@@ -74,6 +75,7 @@ header {
 /* --Main Content-- */
 main {
     text-align: center;
+    min-width: 1000px;  /* Avoid resizing elements */
     padding: 50px;
 }
 
@@ -179,28 +181,32 @@ main {
 }
 
 /* --Login box-- */
-.form {
+.form-login-main {
     display: flex;
+    min-width: 1000px;  /* Avoid resizing elements */
+    flex-direction: row;
     justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
+    margin-right: 50px;
 }
 
 .form-login-section, .form-register-section {
+    display: flex;
+    flex-direction: column;     /* Stack items vertically in the box section */
+    align-items: center;
     width: 400px;
     height: 180px;
     margin-top: 50px;
     margin-left: 50px;
-    background-color: #87CEEB;
-    display: flex;
-    flex-direction: column;     /* Stack items vertically in the box section */
-    align-items: center;
+    background-color: #b6d0e2;
     justify-content: center;
     font-size: 0.7rem;
     border: 1px solid #ccc;
     border-radius: 10px;
-    position: relative; /* Needed for the overlay effect */
-    overflow: hidden; /* Ensures the overlay stays within the box */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-login-section h2, .form-register-section h2 {
+    font-weight: normal;
 }
 
 .username-bar {
@@ -368,10 +374,6 @@ main {
     background-color: #4169E1; 
 }
 
-.register-box-agreement-area {
-    
-}
-
 
 /* --Cart section-- */
 /* Cart title */
@@ -485,7 +487,7 @@ main {
     gap: 20px;
 }
 
-.checkout-main-title{
+.checkout-main-title {
     position: absolute; /* Ensures positioning relative to the closest positioned ancestor */
     text-align: center; /* Centers the text inside the container */
     top: 15%;

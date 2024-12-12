@@ -15,8 +15,8 @@
     <!-- Main Content -->
     <main>
         <h1>Welcome</h1>
-        <div class="form">
-            <div class="form-login-section">
+        <div class="form-login-main">
+            <section class="form-login-section">
                 <h2>Login for existing users</h2>
                 <div class="username-bar"> 
                     <label for="username">Username:</label>
@@ -27,22 +27,26 @@
                     <input type="password" id="password"  placeholder="Password">
                 </div>
                 <div class="header-buttons">
-                    <button>Login</button>
+                    <form action="index-member.html">
+                        <button>Login</button>
+                    </form>
                 </div>
-            </div>
-            <div class="form-register-section">
+            </section>
+            <section class="form-register-section">
                 <h2>Register for new users</h2>
                 <div class="choice-bar">
                     <label for="User-type">Type</label>
-  			        <select name="User-type" id="User-type">
+                    <select name="User-type" id="User-type">
                         <option value="Individual">Individual</option>
                         <option value="Business">Business</option>
                     </select>
                 </div>
                 <div class="confirm-buttons">
-                    <button>Continue registration</button>
+                    <form action="register.html">
+                        <button>Continue registration</button>
+                    </form>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 </html>
