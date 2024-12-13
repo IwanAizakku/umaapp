@@ -263,7 +263,7 @@ main {
     color: #4a4a4a;
 }
 
-.register-info-section-title {
+.register-info-section-title, .register-image-section-title {
     position: relative;
     text-align: center;
     right: 10px;
