@@ -49,11 +49,11 @@
 
     <!-- Main -->
     <main>
-        <div class="register-main-title">Register</div>
+        <div class="register-main-title">Edit profie</div>
         <div class="register-main">
             <section class="register-info-section">
                 <div class="register-box-area">
-                    <h2 class="register-info-section-title">User information</h2> 
+                    <h2 class="register-info-section-title">Edit user information</h2> 
                     <form>
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" placeholder="Username">
@@ -61,9 +61,10 @@
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
 
-                        <label for="password">Enter new password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter password">
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter password again">
+                        <label for="password">Change password</label>
+                        <input type="password" id="current-password" name="current-password" placeholder="Enter current password">
+                        <input type="password" id="password" name="password" placeholder="Enter new password">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter new password again">
                         <small>
                             • 6-8 digits<br>
                             • Must contain ONE uppercase, ONE numeric, ONE special character, number, and no space.
@@ -89,7 +90,7 @@
             </section>
             <section class="register-image-section">
                 <div class="register-box-image-upload-area">
-                    <h2 class="register-image-section-title">Add profile pic</h2>
+                    <h2 class="register-image-section-title">Change profile pic</h2>
                     <div class="register-profile-image-placeholder">Profile pic</div>
                     <form action="">
                         <button class="upload-image-buttons">Upload image</button>
@@ -101,9 +102,9 @@
                 </div>
                 <section class="register-agreement-section">
                     <div class="register-box-agreement-area">
-                        <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
-                        <form action="index-member.html">
-                            <button class="green-buttons">Register account</button>
+                        <p>Ensured that the information entered is correct</p>
+                        <form action=""> <!--Link to user profile-->
+                            <button class="green-buttons">Save changes</button>
                         </form>
                     </div>  
                 </section>
