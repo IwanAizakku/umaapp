@@ -19,7 +19,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* min-width: 1000px; */ /* Avoid resizing elements */
+    min-width: 1000px; /* Avoid resizing elements */
 }
 
 .logo-only-header{
