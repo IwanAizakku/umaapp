@@ -131,7 +131,7 @@ main {
     color: white;
 }
 
-Background Images for Each Box (test image)
+/* Background Images for Each Box (test image)
 .category:nth-child(1) {
     background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
     background-size: cover;
@@ -147,7 +147,7 @@ Background Images for Each Box (test image)
 .category:nth-child(4) {
     background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
     background-size: cover;
-}
+} */
 
 /* Make transparent box to seperate section of category */
 .section-wrapper {
