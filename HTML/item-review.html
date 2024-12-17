@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Item</title>
+        <link rel="stylesheet" href="../CSS/styles.css">
+        <style>
+            /* Internal css section */
+            .green-buttons{
+                margin: 0px 40px 0px 0px;
+            }
+            .item-details-box-list {
+                justify-content: left;
+            }
+            .item-rating-box {
+                justify-content: left;
+                font-size: 20px;
+            }
+            .review-pictures {
+                display: flex;
+                flex-direction: row;
+            }
+            .item-image-box-list h1 {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            .item-description-box h1{
+                margin: 0px 0px 20px 0px;
+                text-align: center;
+            }
+            .review-content {
+                text-align: left;
+                font-weight: normal;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <a href="https://iwanaizakku.github.io/umaapp/" class="logo">Logo</a>
+            <div class="header-buttons">
+                <form action="">
+                    <button>User</button>
+                </form>
+                <form action="HTML/cart-summary.html">
+                    <button>Cart</button>
+                </form>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main>
+            <div class="item-page-main">
+                <!-- Item info & rating -->
+                <section class="item-info">
+                    <div class="item-details-box-list">
+                        <div class="item-placeholder-mini"></div>
+                        <div class="item-details">
+                            <p class="item-title">Title</p>
+                            <p class="item-price">Price: RM00.00</p>
+                        </div>
+                    </div>
+                    <div class="item-rating-box">
+                        <div class="rating">
+                            <span>★★★★☆</span> 4.5/5.0
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Item review pictures -->
+                <section class="item-pictures">
+                    <div class="item-image-box-list">
+                        <h1>Review pictures
+                            <div class="review-pictures">
+                                <div class="item-placeholder-mini"></div>
+                                <div class="item-placeholder-mini"></div>
+                                <div class="item-placeholder-mini"></div> 
+                            </div>
+                        </h1>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Description Section -->
+            <section class="item-description">
+                <div class="item-description-box">
+                    <h1>Description
+                        <div class="review-content">
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                sed do eiusmod tempor incididunt ut labore et 
+                                dolore magna aliqua. Ut enim ad minim veniam, 
+                                quis nostrud exercitation ullamco laboris nisi ut 
+                                aliquip ex ea commodo consequat. 
+                                Duis aute irure dolor in reprehenderit in voluptate 
+                                velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, 
+                                sunt in culpa qui officia deserunt mollit anim 
+                                id est laborum."
+                            </p>
+                        </div>
+                    </h1>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
