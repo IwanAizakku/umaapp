@@ -473,7 +473,7 @@ main {
     gap: 20px;
 }
 
-.item-reviews-box, .item-description-box {
+.item-reviews-box, .item-description-box, .item-statistics-box {
     display: flex;
     margin: 15px 60px 0px 30px;
     justify-content: center;
@@ -483,6 +483,12 @@ main {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-statistics-box {
+    width: 900px;
+    margin: 15px 60px 0px 15%;
+    justify-content: space-between;
 }
 
 .item-reviews span {
@@ -1096,4 +1102,21 @@ main {
 }
 .green-buttons button:hover {
     background-color: #2dcc5d;
+}
+
+.red-buttons {
+    display: block;
+    gap: 10px;
+}
+.red-buttons button {
+    background-color: #ff6f61;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.red-buttons button:hover {
+    background-color: #ec4334;
 }
