@@ -76,6 +76,7 @@ header {
 main {
     text-align: center;
     min-width: 1000px;  /* Avoid resizing elements */
+    max-width: 1400px;
     padding: 50px;
 }
 
@@ -483,6 +484,16 @@ main {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-description-box input {
+    width: 100%; /* Ensure input and select elements stretch to full width */
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box; /* Include padding in width */
+    margin-bottom: 5px;
 }
 
 .item-statistics-box {
