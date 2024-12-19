@@ -76,7 +76,6 @@ header {
 main {
     text-align: center;
     min-width: 1000px;  /* Avoid resizing elements */
-    max-width: 1400px;
     padding: 50px;
 }
 
