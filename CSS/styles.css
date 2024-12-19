@@ -374,6 +374,69 @@ main {
     background-color: #4169E1; 
 }
 
+/* --User profile -- */
+.profile-main {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px 0px 30px;
+    padding: 10px;
+    gap: 20px;
+}
+
+.profile-main-title {
+    position: relative; /* Ensures positioning relative to the closest positioned ancestor */
+    text-align: center; /* Centers the text inside the container */
+    top: 15%;
+    left: 50%; /* Moves the left edge to the middle of the parent container */
+    transform: translateX(-50%); /* Adjusts the center alignment */
+    margin: 0; /* Resets any default margin */
+    font-size: 32px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.profile-box-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 0px 0px 0px;
+    width: 500px;
+    gap: 15px;
+    background-color: #b6d0e2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 0px 0px;
+    background-color: #ccc;
+    border-color: #333;
+    border-style: groove;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.profile-description {
+    font-size: 20px;
+    text-align: justify;
+    margin: 30px 0px 50px 0px;
+}
+
+.profile-options button{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin: 30px 0px 0px 0px;
+}
+
+
 /* --Item section-- */
 .item-page-main {
     display: flex;
