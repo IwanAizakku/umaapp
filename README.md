@@ -4,7 +4,11 @@ Website function is simillar to shopping sites, primarily focus on providing onl
 Design is focus on simple, minimal.
 
 # Hosting
-- Website will be hosted at InfinityFree, as Github does not support database (PhP) functionality.
+- Website later (maybe) 
+1. will be hosted at InfinityFree, as Github does not support database (PhP) functionality.
+2. Can also try to only host our database at here: https://www.freemysqlhosting.net/
+website only stays at github, and then try test database function.
 
 # Progress
 - Creating html pages ( In progress )
+- Create database
