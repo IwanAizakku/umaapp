@@ -896,6 +896,9 @@ main {
 }
 
 .checkout-summary-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
     gap: 40px;
     margin-top: 0px;
@@ -949,8 +952,10 @@ main {
 }
 
 .checkout-sign-in-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
-    gap: 40px;
     margin-top: 20px;
 }
 
