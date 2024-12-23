@@ -4,7 +4,7 @@ Website function is simillar to shopping sites, primarily focus on providing onl
 Design is focus on simple, minimal.
 
 # Hosting
-- Website test host: umaapp.free.nf
+- Website test host: www.umaapp.free.nf
 1. Host at InfinityFree, as Github does not support database (PhP) functionality.
 
 # Progress
