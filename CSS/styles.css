@@ -180,6 +180,31 @@ main {
     }
 }
 
+/* --Search result-- */
+.search-result-page-title h1 {
+    margin-bottom: 20px;
+    font-size: 25px
+}
+
+.sort-by {
+    display: flex;
+    align-items: baseline;  /* Centering */
+    margin-left: 5%;
+}
+
+.box-option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.sort-by h1 {
+    font-weight: lighter;
+    font-size: small;
+    margin-right: 10px;
+}
+
+
 /* --Login box-- */
 .form-login-main {
     display: flex;
@@ -305,7 +330,7 @@ main {
     margin-bottom: 1px;
 }
 
-.register-box-area input, .register-box-area select {
+.register-box-area input, .register-box-area select, .box-option select {
     width: 100%; /* Ensure input and select elements stretch to full width */
     padding: 10px;
     border: 1px solid #aaa;
