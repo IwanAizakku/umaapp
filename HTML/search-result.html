@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMA Homepage</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <label for="search">Search:</label>
+            <input type="text" id="search" placeholder="Search...">
+        </div>
+
+        <!-- Logo -->
+        <div class="logo-only-header">
+            <a href="../index.html" class="logo">
+                <!-- Add your logo image inside this anchor tag -->
+                Logo
+            </a>
+        </div>
+
+        <!-- Header Buttons -->
+        <div class="header-buttons">
+            <button>User</button>
+            <button>Cart</button>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <!-- Main Title -->
+        <section class="search-result-page-title">
+            <h1>Search results for: [search]</h1>
+        </section>
+
+        <!-- Sorting -->
+        <section class="sort-by">
+            <h1>Sort by</h1>
+            <div class="box-option">
+                <select name="category" id="category">
+                    <!--<option value="" disabled selected>Category</option> -->
+                    <option value="All">Any</option>
+                    <option value="Category">Category</option>
+                    <option value="Popularity">Popularity</option>
+                </select>
+                <select name="item-type" id="item-type">
+                    <!--<option value="" disabled selected>Category</option> -->
+                    <option value="All">Any</option>
+                    <option value="Food and Drinks">Food and beverages</option>
+                    <option value="Books">Books</option>
+                    <option value="Stationery">Stationery</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+        </section>
+            
+
+        <!-- Shops Section -->
+        <section class="section-wrapper">
+            <h2>Shops</h2>
+            <div class="categories">
+                <!-- Shop Boxes -->
+                <div class="category">Shop 1</div>
+                <div class="category">Shop 2</div>
+                <div class="category">Shop 3</div>
+                <div class="category">Shop 4</div>
+                <div class="category">Shop 5</div>
+                <div class="category">Shop 6</div>
+            </div>
+        </section>
