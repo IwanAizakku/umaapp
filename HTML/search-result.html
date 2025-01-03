@@ -33,8 +33,32 @@
 
     <!-- Main -->
     <main>
-        <!-- Main Heading -->
-        <h1>Category</h1>
+        <!-- Main Title -->
+        <section class="search-result-page-title">
+            <h1>Search results for: [search]</h1>
+        </section>
+
+        <!-- Sorting -->
+        <section class="sort-by">
+            <h1>Sort by</h1>
+            <div class="box-option">
+                <select name="category" id="category">
+                    <!--<option value="" disabled selected>Category</option> -->
+                    <option value="All">Any</option>
+                    <option value="Category">Category</option>
+                    <option value="Popularity">Popularity</option>
+                </select>
+                <select name="item-type" id="item-type">
+                    <!--<option value="" disabled selected>Category</option> -->
+                    <option value="All">Any</option>
+                    <option value="Food and Drinks">Food and beverages</option>
+                    <option value="Books">Books</option>
+                    <option value="Stationery">Stationery</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+        </section>
+            
 
         <!-- Shops Section -->
         <section class="section-wrapper">
@@ -49,20 +73,3 @@
                 <div class="category">Shop 6</div>
             </div>
         </section>
-
-        <!-- Products Section -->
-        <section class="section-wrapper">
-            <h2>Products</h2>
-            <div class="categories">
-                <!-- Product Boxes -->
-                <div class="category">Product 1</div>
-                <div class="category">Product 2</div>
-                <div class="category">Product 3</div>
-                <div class="category">Product 4</div>
-                <div class="category">Product 5</div>
-                <div class="category">Product 6</div>
-            </div>
-        </section>
-    </main>  
-</body>
-</html>

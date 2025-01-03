@@ -180,6 +180,31 @@ main {
     }
 }
 
+/* --Search result-- */
+.search-result-page-title h1 {
+    margin-bottom: 20px;
+    font-size: 25px
+}
+
+.sort-by {
+    display: flex;
+    align-items: baseline;  /* Centering */
+    margin-left: 5%;
+}
+
+.box-option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.sort-by h1 {
+    font-weight: lighter;
+    font-size: small;
+    margin-right: 10px;
+}
+
+
 /* --Login box-- */
 .form-login-main {
     display: flex;
@@ -305,7 +330,7 @@ main {
     margin-bottom: 1px;
 }
 
-.register-box-area input, .register-box-area select {
+.register-box-area input, .register-box-area select, .box-option select {
     width: 100%; /* Ensure input and select elements stretch to full width */
     padding: 10px;
     border: 1px solid #aaa;
@@ -586,6 +611,72 @@ main {
     background-color: #abc5d8;
 }
 
+.item-mode-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+}
+
+.item-mode-action label {
+    padding: 0px 30px;
+}
+
+.item-add-info {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px 0px 30px;
+    width: 100%;
+    max-width: 50%;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #b6d0e2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-add-info label {
+    text-align: left;
+    font-size: 25px;
+    font-weight: normal;
+    margin-right: 20px;
+    color: #4a4a4a;
+}
+
+.item-add-info form {
+    display: flex;
+    flex-direction: column; /* Stack form inputs vertically */
+    width: 100%;
+    gap: 10px; /* Add spacing between form elements */
+}
+
+.item-add-info input {
+    flex: 1;
+    width: 100%; /* Ensure input and select elements stretch to full width */
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.item-add-info .form-group {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure consistent alignment */
+}
+
+.item-add-description {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.item-add-description input {
+    width: 100%;
+    height: 200px;
+}
+
 
 /* --Cart section-- */
 /* Cart title */
@@ -830,6 +921,9 @@ main {
 }
 
 .checkout-summary-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
     gap: 40px;
     margin-top: 0px;
@@ -883,8 +977,10 @@ main {
 }
 
 .checkout-sign-in-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
-    gap: 40px;
     margin-top: 20px;
 }
 
