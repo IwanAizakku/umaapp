@@ -6,38 +6,179 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UMA Homepage</title>
         <link rel="stylesheet" href="CSS/styles.css">
+        <style>
+            /* Remove default margin and padding */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Body styling with gradient background */
+            body {
+                background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink */
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                outline: none;
+            }
+
+            /* Header with Gradient */
+            header {
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Same gradient for header */
+                padding: 10px 20px;
+                text-align: center;
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Search Bar */
+            .search-bar {
+                display: flex;
+                align-items: center;
+            }
+
+            .search-bar label {
+                margin-right: 10px;
+            }
+
+            .search-bar input {
+                padding: 8px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                transition: border-color 0.3s;
+            }
+
+            .search-bar input:hover,
+            .search-bar input:focus {
+                border-color: #f1c1d1;
+            }
+
+            /* Logo styling */
+            .logo {
+                height: 40px;
+            }
+
+            .center-button {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+            }
+
+            /* Header Buttons */
+            .header-buttons form {
+                display: inline;
+                margin-left: 10px;
+            }
+
+            /* User and Cart Buttons Styling */
+            .header-buttons button {
+                padding: 12px 25px;
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient button */
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 30px; /* Rounded corners for a smoother look */
+                font-size: 25px;
+                font-weight: bold;
+                transition: all 0.3s ease; /* Smooth transition */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            }
+
+            /* Hover Effect for Buttons */
+            .header-buttons button:hover {
+                transform: scale(1.1); /* Make the button slightly larger */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+                background: linear-gradient(90deg, #f1c1d1, #d8aad2); /* Inverted gradient */
+            }
+
+            .header-buttons button:active {
+                transform: scale(1); /* Reset the scale when clicked */
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Normal gradient on click */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Normal shadow */
+            }
+
+            /* Main Content Styling */
+            main {
+                text-align: center;
+                padding: 50px 20px;
+                margin: 0;
+                min-height: 100vh; /* Ensure it takes up full height */
+            }
+
+            h1 {
+                font-size: 36px;
+                color: #333;
+            }
+
+            h2 {
+                font-size: 24px;
+                color: #555;
+                margin-bottom: 20px;
+            }
+
+            .categories {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .category {
+                font-size: 18px;
+                padding: 15px 30px;
+                background-color: #fff;
+                color: #333;
+                text-decoration: none;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            }
+
+            .category:hover {
+                background-color: #f1c1d1;
+                transform: scale(1.05); /* Scale up on hover */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+            }
+
+            .category:active {
+                transform: scale(1); /* Reset scale when clicked */
+            }
+            
+            .login-prompt {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+        </style>
+    </head>
     </head>
 
     <!-- Header -->
     <header>
-        <div class="search-bar">
-            <label for="search">Search:</label>
-            <input type="text" id="search" placeholder="Search...">
-        </div>
         <!-- Ganti yang lain dengan ini-->
         <a href="">
             <img src="Images/logo design gradient.png" alt="Logo" class="logo">
         </a>
         <!------------------------------->
-        <div class="header-buttons">
-            <form action="HTML/login/login.html">
-                <button>Login / Register</button>
-            </form>
-            <form action="HTML/cart-summary.html">
-                <button>Cart</button>
-            </form>
-        </div>
     </header>
 
     <!-- Main -->
     <main>
         <h1>Welcome to Unimas Order Management App (UMA)</h1>
-        <p class="start-here">Start here</p>
-        <div class="categories">
-            <a href="HTML/category.html" class="category" title="View Categories">Category</a>
-            <a href="" class="category" title="View Categories">Shops</a>
-            <a href="" class="category" title="View Categories">Services</a>
-            <a href="" class="category" title="View Categories">Trending</a>
+        <p class="start-here">Begin by:</p>
+        <div class="center-button">
+            <form action="HTML/login/login.html" class="header-buttons">
+                <button>Login / Register</button>
+            </form>
         </div>
     </main>
 </html>
