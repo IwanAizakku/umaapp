@@ -4,49 +4,188 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UMA Homepage</title>
-        <link rel="stylesheet" href="../../CSS/styles.css">
+        <style>
+            /* Remove default margin and padding */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Remove the body margin and padding */
+            body {
+                background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink */
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                border: none; /* Remove any border on body */
+                box-shadow: none; /* Remove any shadow on body */
+                outline: none; /* Remove any outline on body */
+            }
+
+            /* Header with Gradient */
+            .logo-only-header {
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Same gradient for header */
+                padding: 10px 20px;
+                text-align: center;
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+                border: none; /* Ensure no borders */
+                box-shadow: none; /* Remove any shadow */
+                outline: none; /* Remove any outline */
+                background-color: transparent; /* Remove any background that could cause shapes */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                border-bottom: none; /* Ensure no bottom border */
+            }
+
+            /* Ensures no unwanted effect or shape on the logo link */
+            .logo-only-header a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                border: none; /* Ensure no borders around the link */
+                outline: none; /* Ensure no outline around the link */
+                background-color: transparent; /* No background for the link */
+                padding: 0; /* Remove any extra padding */
+                box-shadow: none; /* Remove any shadow or box shadow */
+            }
+
+            /* Remove any unwanted shadow or effect */
+            .logo-only-header,
+            .logo-only-header a {
+                box-shadow: none !important; /* Force removal of any shadow or border */
+                outline: none !important; /* Force removal of any outline */
+                border: none !important; /* Remove any border */
+            }
+
+            /* Main Content Styling */
+            main {
+                text-align: center;
+                padding: 50px 20px;
+                margin: 0;
+            }
+
+            h1 {
+                font-size: 36px;
+                color: #333;
+            }
+
+            h2 {
+                font-size: 24px;
+                color: #555;
+                margin-bottom: 20px;
+            }
+
+            .form-login-main {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 30px;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .form-login-section, .form-register-section {
+                width: 100%;
+                max-width: 400px;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            label {
+                display: block;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+            input, select, button {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            button {
+                background-color: #f1c1d1;
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #e1a0b2; /* Slightly darker pink for hover effect */
+            }
+
+            .header-buttons, .confirm-buttons {
+                display: flex;
+                justify-content: center;
+            }
+
+            /* Ensure no unwanted border or space below the page */
+            html, body {
+                height: 100%;
+                overflow-x: hidden; /* Avoid horizontal scroll */
+            }
+
+            /* Ensure the footer or body doesn't have any padding */
+            main {
+                min-height: 100%;
+            }
+
+        </style>
     </head>
+    <body>
+        <!-- Header -->
+        <header class="logo-only-header">
+            <a href="../">Logo</a>
+        </header>
 
-    <!-- Header -->
-    <header class="logo-only-header">
-        <a href="../" img src="" alt="Logo" class="logo">Logo</a>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <h1>Welcome</h1>
-        <div class="form-login-main">
-            <section class="form-login-section">
-                <h2>Login for existing users</h2>
-                <div class="username-bar"> 
-                    <label for="username">Username:</label>
-                    <input type="text" id="username"  placeholder="Username">
-                </div>
-                <div class="password-bar"> 
-                    <label for="username">Password:</label>
-                    <input type="password" id="password"  placeholder="Password">
-                </div>
-                <div class="header-buttons">
-                    <form action="index-member.html">
-                        <button>Login</button>
-                    </form>
-                </div>
-            </section>
-            <section class="form-register-section">
-                <h2>Register for new users</h2>
-                <div class="choice-bar">
-                    <label for="User-type">Type</label>
-                    <select name="User-type" id="User-type">
-                        <option value="Individual">Individual</option>
-                        <option value="Business">Business</option>
-                    </select>
-                </div>
-                <div class="confirm-buttons">
-                    <form action="../register/register.html">
-                        <button>Continue registration</button>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </main>
+        <!-- Main Content -->
+        <main>
+            <h1>Welcome</h1>
+            <div class="form-login-main">
+                <section class="form-login-section">
+                    <h2>Login for existing users</h2>
+                    <div class="username-bar"> 
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" placeholder="Username">
+                    </div>
+                    <div class="password-bar"> 
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" placeholder="Password">
+                    </div>
+                    <div class="header-buttons">
+                        <form action="index-member.html">
+                            <button>Login</button>
+                        </form>
+                    </div>
+                </section>
+                <section class="form-register-section">
+                    <h2>Register for new users</h2>
+                    <div class="choice-bar">
+                        <label for="User-type">Type</label>
+                        <select name="User-type" id="User-type">
+                            <option value="Individual">Individual</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
+                    <div class="confirm-buttons">
+                        <form action="../register/register.html">
+                            <button>Continue registration</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
 </html>
