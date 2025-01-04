@@ -6,37 +6,251 @@
     <title>Register</title>
     <link rel="stylesheet" href="../../CSS/styles.css"> <!-- Link to external CSS -->
     <style>
-        /* Internal css section */
-        .register-box-image-upload-area, .register-box-agreement-area {
+        /* General styling for the body and background */
+        body {
+            background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink gradient */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Make sure the body content is stacked vertically */
+        }
+
+        /* Header styling */
+        header {
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient from muted lilac to soft pink */
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between; /* Space between logo and title */
             align-items: center;
             text-align: left;
+            color: white;
+            position: fixed; /* Make header fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
-        .register-box-image-upload-area button {
-            background-color: #4682B4;
-            color: rgb(255, 255, 255);
+
+        .logo {
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 2px;
+            background: none; /* Ensure no background around the logo */
+            padding: 0; /* Remove any default padding */
+            border: none; /* Remove any default border */
+        }
+
+        .header-title {
+            font-size: 24px; /* Smaller font size */
+            font-weight: 700;
+            color: white;
+            margin: 0; /* Remove any default margin */
+            font-family: 'Arial', sans-serif; /* Professional font */
+            text-align: center;
+            flex-grow: 1; /* Allow the title to grow and be centered */
+        }
+
+        /* Main content */
+        main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px; /* Add space to prevent overlap with fixed header */
+        }
+
+        /* Section for user instructions and direction */
+        .register-main {
+            width: 100%;
+            max-width: 900px; /* Ensure the form is centered and not too wide */
+            margin: 0 auto; /* Center the form */
+            padding: 30px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+            background-color: transparent; /* Removed white background */
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap; /* Allow for multiple rows */
+            justify-content: space-between; /* Space between sections */
+            align-items: flex-start; /* Align the sections to the top */
+        }
+
+        /* Styling for form sections */
+        .register-info-section, .register-image-section {
+            width: 48%; /* Adjust the width of each section */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: white;
+            border: 1px solid #ddd; /* Add border to the sections */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+
+        .register-info-section h2, .register-image-section h2 {
+            font-size: 24px;
+            color: #333; /* Updated to a neutral dark gray */
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Professional font */
+        }
+
+        /* Label and input field styling */
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left; /* Left-align labels */
+            font-weight: bold; /* Bold the sub-headers like Username, Email, etc. */
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="postcode"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="postcode"]:focus {
+            border-color: #4682B4;
+            outline: none;
+        }
+
+        .address-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .address-row input {
+            width: 48%;
+        }
+
+        /* Profile Picture Section */
+        .register-image-section {
+            width: 100%;
+            max-width: 450px; /* Limit the width */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow added to profile image section */
+        }
+
+        .register-profile-image-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: #f1c1d1; /* Soft pink color */
+            border-radius: 50%;
+            margin: 0 auto 20px auto; /* Center it and add margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image-container:hover .register-profile-image-placeholder {
+            opacity: 0.8;
+        }
+
+        .upload-image-buttons {
+            background-color: #f1c1d1;
+            color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        .register-box-image-upload-area button:hover {
-            background-color: #4169E1;
+
+        .upload-image-buttons:hover {
+            background-color: #e55972;
         }
-        .register-box-agreement-area button {
-            background-color: #00bd48;
-            color: rgb(255, 255, 255);
+
+        .remove-image-button {
+            background-color: #d9534f;
+            color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin-top: 10px;
+            visibility: hidden; /* Hide by default */
         }
-        .register-box-agreement-area button:hover {
-            background-color: #41e171;
+
+        .remove-image-button.show {
+            visibility: visible; /* Show when an image is uploaded */
         }
-        .register-image-section-title{
-            right: 0px;
+
+        /* Button styling */
+        .create-account-button {
+            background-color: #d8aad2; /* Soft lilac color that matches the gradient background */
+            color: white; /* White text for contrast */
+            padding: 12px 24px; /* Padding for the button */
+            border: 2px solid #d8aad2; /* Smaller border with the same color as the background */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px; /* Adjust font size */
+            font-weight: 600; /* Make the text bold */
+            cursor: pointer; /* Cursor change to pointer on hover */
+            width: 100%; /* Make the button take full width of its container */
+            max-width: 300px; /* Limit the width for consistency */
+            margin-top: 20px; /* Space from the previous section */
+            transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow to button */
+        }
+
+        .create-account-button:hover {
+            background-color: #f1c1d1; /* Light pink on hover */
+            border-color: #f1c1d1; /* Change border color to match the hover background */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .register-main {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .register-info-section, .register-image-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .address-row {
+                flex-direction: column;
+            }
+
+            .address-row input {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -44,71 +258,83 @@
 
     <!-- Header -->
     <header>
-        <a href="../index.html" img src="" alt="Logo" class="logo">Logo</a>
+        <a href="../index.html" alt="Logo" class="logo">Logo</a>
+        <div class="header-title">Create Your Account</div>
     </header>
 
     <!-- Main -->
     <main>
-        <div class="register-main-title">Register</div>
         <div class="register-main">
+            <!-- User Information Section -->
             <section class="register-info-section">
-                <div class="register-box-area">
-                    <h2 class="register-info-section-title">User information</h2> 
-                    <form>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Username">
+                <form>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username">
 
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="youremail@example.com">
 
-                        <label for="password">Enter new password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter password">
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter password again">
-                        <small>
-                            • 6-8 digits<br>
-                            • Must contain ONE uppercase, ONE numeric, ONE special character, number, and no space.
-                        </small>
-
-                        <label for="address-line-1">Address:</label>
-                        <input type="text" id="address-line-1" name="address-line-1" placeholder="Your address line 1">
-                        <input type="text" id="address-line-2" name="address-line-2" placeholder="Your address line 2">
-                        <input type="text" id="address-line-3" name="address-line-3" placeholder="Your address line 3">
-                        <div class="address-row">
-                            <select name="country" id="country">
-                                <option value="" disabled selected>Country</option>
-                                <!-- Add more options here -->
-                            </select>
-                            <select name="state" id="state">
-                                <option value="" disabled selected>State</option>
-                                <!-- Add more options here -->
-                            </select>
-                        </div>
-                        <input type="text" id="postcode" name="postcode" placeholder="Postcode">
-                    </form>
-                </div>
-            </section>
-            <section class="register-image-section">
-                <div class="register-box-image-upload-area">
-                    <h2 class="register-image-section-title">Add profile pic</h2>
-                    <div class="register-profile-image-placeholder">Profile pic</div>
-                    <form action="">
-                        <button class="upload-image-buttons">Upload image</button>
-                    </form>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
                     <small>
-                        • Profile picture must be at least 250 x 250 px in size.</p>
-                        • Supported formats: JPG, PNG, Webp.
+                        • 6-8 characters<br>
+                        • Must contain ONE uppercase, ONE numeric, ONE special character, and no spaces.
                     </small>
-                </div>
-                <section class="register-agreement-section">
-                    <div class="register-box-agreement-area">
-                        <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
-                        <form action="../index-member.html">
-                            <button class="green-buttons">Register account</button>
-                        </form>
-                    </div>  
-                </section>
+
+                    <label for="postcode">Postcode</label>
+                    <input type="text" id="postcode" name="postcode" placeholder="Postal Code">
+
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="City">
+
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" placeholder="State">
+
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" placeholder="Country">
+                </form>
             </section>
-        </div>        
+
+            <!-- Profile Picture Section -->
+            <section class="register-image-section">
+                <h2>Profile Picture</h2>
+                <div class="profile-image-container">
+                    <div class="register-profile-image-placeholder" id="profileImagePreview">
+                        <span>Click to upload</span>
+                    </div>
+                    <input type="file" id="uploadImage" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                    <div class="upload-image-buttons" onclick="document.getElementById('uploadImage').click()">Upload Image</div>
+                    <div class="remove-image-button" id="removeImageButton" onclick="removeImage()">Remove Image</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div>
+            <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
+        </div>
+
+        <button type="submit" class="create-account-button">Create Account</button>
     </main>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('profileImagePreview');
+                preview.style.backgroundImage = `url(${reader.result})`;
+                document.getElementById('removeImageButton').classList.add('show');
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function removeImage() {
+            const preview = document.getElementById('profileImagePreview');
+            preview.style.backgroundImage = '';
+            document.getElementById('removeImageButton').classList.remove('show');
+            document.getElementById('uploadImage').value = ''; // Reset the file input
+        }
+    </script>
 </body>
 </html>
