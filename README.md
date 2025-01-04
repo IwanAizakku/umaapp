@@ -9,4 +9,4 @@ Design is focus on simple, minimal.
 
 # Progress
 - Creating html pages ( In progress )
-- Create database
+- Create database (Created)
