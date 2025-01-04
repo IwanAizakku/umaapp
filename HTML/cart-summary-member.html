@@ -211,8 +211,11 @@
             <div class="subtotal-container">
                 <p>Subtotal: RM00.00</p>
                 <div class="buy-now-buttons">
-                    <form action="checkout-member-user.html">
-                        <button>Buy now</button>
+                    <form id="buy-now-form" action="checkout-member-user.html" method="GET">
+                        <!-- Hidden fields to hold the selected products' data -->
+                        <input type="hidden" name="selected-products" id="selected-products" value="">
+                    
+                        <button type="button" onclick="submitForm()">Buy now</button>
                     </form>
                 </div>
             </div>
