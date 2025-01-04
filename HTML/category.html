@@ -4,27 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMA Homepage</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* General styling for the body */
+        body {
+            background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink gradient */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        /* Header styling */
+        header {
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient from muted lilac to soft pink */
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between; /* Space between logo and buttons */
+            align-items: center;
+            text-align: left;
+            color: white;
+            position: fixed; /* Fixed header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 2px;
+            background: none;
+            margin-left: 0; /* Align logo to the left of the page */
+        }
+
+        /* Header Buttons */
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-buttons button {
+            background-color: #d8aad2; /* Soft lilac background */
+            border: 2px solid #c58a9b; /* Slightly darker pink border */
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #c58a9b; /* Darker pink on hover */
+            border-color: #d8aad2; /* Swap border color to match the new background */
+        }
+
+        /* Main content styling */
+        main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px; /* Prevent header overlap */
+        }
+
+        /* Section Wrapper */
+        .section-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Categories Section */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        /* Individual Category Box */
+        .category {
+            width: calc(33.33% - 20px);
+            padding: 20px;
+            background-color: #f1c1d1;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category:hover {
+            background-color: #d8aad2;
+        }
+
+        /* Footer (Terms and Conditions) */
+        footer {
+            padding: 20px;
+            background-color: #f1c1d1;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer a {
+            color: #d8aad2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .category {
+                width: 100%;
+            }
+
+            .header-buttons {
+                display: none; /* Hide buttons on mobile for a cleaner look */
+            }
+        }
+
+    </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
-
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <label for="search">Search:</label>
-            <input type="text" id="search" placeholder="Search...">
-        </div>
-
-        <!-- Logo -->
-        <div class="logo-only-header">
-            <a href="../index.html" class="logo">
-                <!-- Add your logo image inside this anchor tag -->
-                Logo
-            </a>
-        </div>
-
-        <!-- Header Buttons -->
+        <a href="../index.html" alt="Logo" class="logo">Logo</a>
         <div class="header-buttons">
             <button>User</button>
             <button>Cart</button>
@@ -33,7 +157,6 @@
 
     <!-- Main -->
     <main>
-        <!-- Main Heading -->
         <h1>Category</h1>
 
         <!-- Shops Section -->
@@ -64,5 +187,11 @@
             </div>
         </section>
     </main>  
+
+    <!-- Footer -->
+    <footer>
+        <p>By using this site, you agree to our <a href="#">Terms and Conditions</a>.</p>
+    </footer>
+
 </body>
 </html>
