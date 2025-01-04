@@ -4,41 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Soft Pink and Lilac Gradient Background */
+        body {
+            background: linear-gradient(180deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(90deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac Gradient */
+            padding: 20px 0;
+            position: relative; /* Added to position elements inside */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* User Button - Positioned to the Top Right */
+        .header-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .header-buttons button {
+            background-color: #e6c3f0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #d1a8e8;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1.cart-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Cart Controls Styling */
+        .cart-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-controls input {
+            margin-right: 10px;
+        }
+
+        .subtotal-container {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .subtotal-container .buy-now-buttons button {
+            background-color: #e6c3f0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .subtotal-container .buy-now-buttons button:hover {
+            background-color: #d1a8e8;
+        }
+
+        /* Cart Item Styling */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .cart-item-checkbox input {
+            margin-right: 15px;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .item-price {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Add space between the quantity buttons and the remove button */
+        }
+
+        .cart-quantity-button {
+            background-color: #f8c8d0;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-quantity-button:hover {
+            background-color: #d1a8e8;
+        }
+
+        .cart-item-remove {
+            margin-left: 15px; /* Add some margin to the left of the remove button to space it out */
+        }
+
+        .cart-item-remove button {
+            background-color: #f8c8d0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item-remove button:hover {
+            background-color: #d1a8e8;
+        }
+    </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
-        <a href="index-member.html" img src="" alt="Logo" class="logo">Logo</a>
+        <a href="index-member.html" class="logo">Logo</a>
         <div class="header-buttons">
             <button>User</button>
         </div>
     </header>
 
-    <!-- Main -->
+    <!-- Main Content -->
     <main>
         <h1 class="cart-title">Cart</h1>
+
+        <!-- Cart Controls -->
         <div class="cart-controls">
             <div>
                 <input type="checkbox" id="select-all">
                 <label for="select-all">Select all</label>
-                <button class="remove-selected">Remove selected</button>
+                <button class="remove-selected" onclick="removeSelected()">Remove selected</button>
             </div>
             <div class="subtotal-container">
-                <p>Subtotal: RM00.00
-                    <div class="buy-now-buttons">
-                        <form action="checkout-member-user.html">
-                            <button>Buy now</button>
-                        </form>
-                    </div>
-                </p>
+                <p>Subtotal: RM00.00</p>
+                <div class="buy-now-buttons">
+                    <form action="checkout-member-user.html">
+                        <button>Buy now</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <!-- Cart Items -->
         <div class="cart-item">
             <div class="cart-item-checkbox">
-                <input type="checkbox">
+                <input type="checkbox" class="item-checkbox">
             </div>
             <div class="cart-item-image">
                 <div class="placeholder">Item</div>
@@ -48,18 +229,18 @@
                 <p class="item-price">Price: RM00.00</p>
             </div>
             <div class="cart-item-quantity">
-                <button class="cart-quantity-button">+</button>
-                <span class="cart-quantity-value">10</span>
-                <button class="cart-quantity-button">-</button>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'increase')">+</button>
+                <span class="cart-quantity-value">0</span>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'decrease')">-</button>
             </div>
             <div class="cart-item-remove">
-                <button class="remove-button">Remove item</button>
+                <button class="remove-button" onclick="removeItem(this)">Remove item</button>
             </div>
         </div>
 
         <div class="cart-item">
             <div class="cart-item-checkbox">
-                <input type="checkbox">
+                <input type="checkbox" class="item-checkbox">
             </div>
             <div class="cart-item-image">
                 <div class="placeholder">Item</div>
@@ -69,18 +250,18 @@
                 <p class="item-price">Price: RM00.00</p>
             </div>
             <div class="cart-item-quantity">
-                <button class="cart-quantity-button">+</button>
-                <span class="cart-quantity-value">10</span>
-                <button class="cart-quantity-button">-</button>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'increase')">+</button>
+                <span class="cart-quantity-value">0</span>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'decrease')">-</button>
             </div>
             <div class="cart-item-remove">
-                <button class="remove-button">Remove item</button>
+                <button class="remove-button" onclick="removeItem(this)">Remove item</button>
             </div>
         </div>
 
         <div class="cart-item">
             <div class="cart-item-checkbox">
-                <input type="checkbox">
+                <input type="checkbox" class="item-checkbox">
             </div>
             <div class="cart-item-image">
                 <div class="placeholder">Item</div>
@@ -90,14 +271,51 @@
                 <p class="item-price">Price: RM00.00</p>
             </div>
             <div class="cart-item-quantity">
-                <button class="cart-quantity-button">+</button>
-                <span class="cart-quantity-value">10</span>
-                <button class="cart-quantity-button">-</button>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'increase')">+</button>
+                <span class="cart-quantity-value">0</span>
+                <button class="cart-quantity-button" onclick="changeQuantity(this, 'decrease')">-</button>
             </div>
             <div class="cart-item-remove">
-                <button class="remove-button">Remove item</button>
+                <button class="remove-button" onclick="removeItem(this)">Remove item</button>
             </div>
         </div>
     </main>
+
+    <script>
+        // Select all functionality
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
+
+        // Remove selected items
+        function removeSelected() {
+            const checkboxes = document.querySelectorAll('.item-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                const cartItem = checkbox.closest('.cart-item');
+                cartItem.remove();
+            });
+        }
+
+        // Change item quantity (+ and -)
+        function changeQuantity(button, action) {
+            const quantityElement = button.closest('.cart-item').querySelector('.cart-quantity-value');
+            let quantity = parseInt(quantityElement.textContent);
+
+            if (action === 'increase') {
+                quantity++;
+            } else if (action === 'decrease' && quantity > 0) {
+                quantity--;
+            }
+
+            quantityElement.textContent = quantity;
+        }
+
+        // Remove individual item
+        function removeItem(button) {
+            const cartItem = button.closest('.cart-item');
+            cartItem.remove();
+        }
+    </script>
 </body>
 </html>
