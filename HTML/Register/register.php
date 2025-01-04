@@ -1,4 +1,12 @@
 <?php
+/* 
+- Database configuration for server hosting -
+$host = "sql305.infinityfree.com";
+$username = "if0_37900427";
+$password = "Umaapp123";
+$database = "if0_37900427_umaapp";
+*/
+
 // Database configuration
 $host = "localhost";
 $username = "root";
