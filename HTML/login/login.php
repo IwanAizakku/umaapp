@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Username not found
         $error = "Invalid username or password.";
     }
+    // Assuming login is successful
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['user_id'] = $user['user_id'];
 }
 ?>
 

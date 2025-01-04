@@ -8,13 +8,13 @@ $password = "Umaapp123";
 $database = "if0_37900427_umaapp";
 */
 
-$host = 'localhost'; // Database host
-$db = 'umaapp'; // Database name from your file
-$user = 'root'; // Database username
-$pass = ''; // Database password
+$host = "localhost"; // Database host
+$username = "root"; // Database username
+$password = ""; // Database password
+$database = "umaapp"; // Database name from your file
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());

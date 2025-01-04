@@ -166,18 +166,42 @@
                 <form action="cart-summary-member.html">
                     <button>Cart</button>
                 </form>
+                <form action="php/logout.php" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+                
             </div>
         </header>
 
         <!-- Main -->
         <main>
-            <h1>Hello [Username]</h1>
+            <h1>Hello <span id="username-placeholder">Guest</span></h1>
             <p class="start-here">Start here</p>
             <div class="categories">
                 <a href="category.html" class="category" title="View Categories">Category</a>
                 <a href="index-member.html" class="category" title="View Services">Services</a>
             </div>
         </main>
+
+        <script>
+            // Fetch user data from the backend
+            fetch('php/get-user.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('User not logged in');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Insert the username into the placeholder
+                    document.getElementById('username-placeholder').textContent = data.username;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Optionally redirect to login page if user is not logged in
+                    window.location.href = 'login.html';
+                });
+        </script>
 
     </body>
 </html>
