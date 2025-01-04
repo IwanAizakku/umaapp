@@ -1,10 +1,48 @@
+<?php
+session_start();
+include '../../PHP/db.php'; // Include database connection file
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the submitted username and password
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    // Prepare a statement to prevent SQL injection
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        // Verify the password using password_verify()
+        if (password_verify($password, $user['password_hash'])) {
+            // Set session variables
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+
+            // Redirect based on the role
+            if ($user['role'] == 'admin') {
+                header('Location: admin-dashboard.php'); // Replace with admin page
+            } else {
+                header('Location: ../index-member.html'); // Replace with member home page
+            }
+            exit();
+        } else {
+            // Incorrect password
+            $error = "Invalid username or password.";
+        }
+    } else {
+        // Username not found
+        $error = "Invalid username or password.";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UMA Homepage</title>
-        <style>
+<head>
+<style>
             /* Remove default margin and padding */
             * {
                 margin: 0;
@@ -72,6 +110,9 @@
             h1 {
                 font-size: 36px;
                 color: #333;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-align: center;
             }
 
             h2 {
@@ -135,6 +176,7 @@
             html, body {
                 height: 100%;
                 overflow-x: hidden; /* Avoid horizontal scroll */
+                text-align: center;
             }
 
             /* Ensure the footer or body doesn't have any padding */
@@ -143,50 +185,11 @@
             }
 
         </style>
-    </head>
-    <body>
-        <!-- Header -->
-        <header class="logo-only-header">
-            <a href="../">Logo</a>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            <h1>Welcome</h1>
-            <div class="form-login-main">
-                <section class="form-login-section">
-                    <h2>Login for existing users</h2>
-                    <form action="login.php" method="POST">
-                        <div class="username-bar"> 
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" placeholder="Username" required>
-                        </div>
-                        <div class="password-bar"> 
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="header-buttons">
-                            <button type="submit">Login</button>
-                        </div>
-                    </form>
-                </section>
-                
-                <section class="form-register-section">
-                    <h2>Register for new users</h2>
-                    <div class="choice-bar">
-                        <label for="User-type">Type</label>
-                        <select name="User-type" id="User-type">
-                            <option value="Individual">Individual</option>
-                            <option value="Business">Business</option>
-                        </select>
-                    </div>
-                    <div class="confirm-buttons">
-                        <form action="../register/register.html">
-                            <button>Continue registration</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </body>
+    <meta charset="UTF-8">
+    <h1>Login Error</h1>
+</head>
+<body>
+    <p><?php echo htmlspecialchars($error); ?></p>
+    <a href="login.html">Go back to login</a>
+</body>
 </html>
