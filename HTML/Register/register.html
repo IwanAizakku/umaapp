@@ -269,20 +269,32 @@
         <div class="register-main">
             <!-- User Information Section -->
             <section class="register-info-section">
-                <form>
+                <form id="registrationForm" method="POST" action="register.php" enctype="multipart/form-data">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Choose a username">
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
 
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="youremail@example.com">
+                    <input type="email" id="email" name="email" placeholder="youremail@example.com" required>
 
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter password">
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+                    <input type="password" id="password" name="password" placeholder="Enter password" required pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,8}">
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required>
                     <small>
                         • 6-8 characters<br>
                         • Must contain ONE uppercase, ONE numeric, ONE special character, and no spaces.
                     </small>
+
+                    <div class="choice-bar">
+                        <label for="User-type">Type</label>
+                        <select name="User-type" id="role">
+                            <option value="student">Student</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Address">
 
                     <label for="postcode">Postcode</label>
                     <input type="text" id="postcode" name="postcode" placeholder="Postal Code">
@@ -317,10 +329,14 @@
             <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
         </div>
 
-        <button type="submit" class="create-account-button">Create Account</button>
+        <button type="button" class="create-account-button" onclick="submitRegistrationForm()">Create Account</button>
     </main>
 
     <script>
+        function submitRegistrationForm() {
+            document.getElementById('registrationForm').submit();
+        }
+        
         function previewImage(event) {
             const reader = new FileReader();
             reader.onload = function() {
