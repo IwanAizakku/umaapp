@@ -176,14 +176,8 @@
         <!-- Products Section -->
         <section class="section-wrapper">
             <h2>Products</h2>
-            <div class="categories">
-                <!-- Product Boxes -->
-                <div class="category">Product 1</div>
-                <div class="category">Product 2</div>
-                <div class="category">Product 3</div>
-                <div class="category">Product 4</div>
-                <div class="category">Product 5</div>
-                <div class="category">Product 6</div>
+            <div class="categories" id="product-container">
+                <!-- Dynamic product boxes will be inserted here -->
             </div>
         </section>
     </main>  
@@ -194,4 +188,44 @@
     </footer>
 
 </body>
+
+<!-- Javascripts -->
+<script>
+    // Fetch products from the PHP endpoint
+    async function fetchProducts() {
+        try {
+            const response = await fetch("php/get-products.php");
+            const products = await response.json();
+
+            // Get the product container
+            const productContainer = document.getElementById("product-container");
+
+            // Clear existing content
+            productContainer.innerHTML = "";
+
+            // Add products to the container
+            products.forEach((product) => {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("category");
+
+                productDiv.innerHTML = `
+                    <img src="${product.image_url}" alt="${product.name}" />
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Price: $${product.price}</p>
+                    <p>Stock: ${product.stock_quantity}</p>
+                `;
+
+                productContainer.appendChild(productDiv);
+            });
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", fetchProducts);
+</script>
+
+
 </html>
