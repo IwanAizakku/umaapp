@@ -1,269 +1,279 @@
 <!DOCTYPE html>
-<html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Item</title>
-        <link rel="stylesheet" href="../CSS/styles.css">
-        <style>
-            /* Internal css section */
-            .green-buttons{
-                margin: 0px 40px 0px 0px;
-            }
-                /* General styling for the body */
-                body {
-                    background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink gradient */
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    color: #333;
-                    margin: 0;
-                    padding: 0;
-                    overflow-x: hidden; /* Prevent horizontal scrolling */
-                    display: flex;
-                    justify-content: center; /* Center content horizontally */
-                    align-items: flex-start; /* Align content to the top */
-                    min-height: 100vh; /* Full viewport height */
-                    flex-direction: column; /* Stack content vertically */
-                }
-        
-                /* Header styling */
-                header {
-                    background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient from muted lilac to soft pink */
-                    padding: 15px 40px;
-                    display: flex;
-                    justify-content: space-between; /* Space between logo and buttons */
-                    align-items: center;
-                    text-align: left;
-                    color: white;
-                    position: fixed; /* Fixed header */
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    z-index: 1000;
-                }
-        
-                /* Logo */
-                .logo {
-                    text-decoration: none;
-                    font-size: 28px;
-                    font-weight: 600;
-                    color: white;
-                    letter-spacing: 2px;
-                    background: none;
-                    margin-left: 0; /* Align logo to the left of the page */
-                }
-        
-                /* Header Buttons */
-                .header-buttons {
-                    display: flex;
-                    gap: 10px;
-                }
-        
-                .header-buttons button {
-                    background-color: #d8aad2; /* Soft lilac background */
-                    border: 2px solid #c58a9b; /* Slightly darker pink border */
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    color: white;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease, border-color 0.3s ease;
-                }
-        
-                .header-buttons button:hover {
-                    background-color: #c58a9b; /* Darker pink on hover */
-                    border-color: #d8aad2; /* Swap border color to match the new background */
-                }
-        
-                /* Main content styling */
-                main {
-                    width: 100%;
-                    padding: 20px;
-                    text-align: center;
-                    margin-top: 80px; /* Prevent header overlap */
-                }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink */
+            color: #333;
+        }
 
-                .item-page-main {
-                    display: flex;
-                    justify-content: center;
-                }
-        
-                /* Section Wrapper */
-                .section-wrapper {
-                    width: 100%;
-                    max-width: 1100px;
-                    margin: 20px auto;
-                    padding: 20px;
-                    background-color: white;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
-        
-                /* Categories Section */
-                .categories {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-around;
-                    gap: 20px;
-                }
-        
-                /* Individual Category Box */
-                .category {
-                    width: calc(33.33% - 20px);
-                    padding: 10px;
-                    background-color: #f1c1d1;
-                    border-radius: 10px;
-                    text-align: center;
-                    font-weight: bold;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                }
-        
-                .category img {
-                    max-width: 100%;
-                    max-height: 300px; /* Prevent images from becoming too large */
-                    height: auto;
-                    width: auto;
-                    display: block;
-                    margin: 0 auto;
-                }
-        
-                .category:hover {
-                    background-color: #d8aad2;
-                }
-        
-                /* Footer (Terms and Conditions) */
-                footer {
-                    padding: 20px;
-                    background-color: #f1c1d1;
-                    text-align: center;
-                    font-size: 14px;
-                    color: #555;
-                }
-        
-                footer a {
-                    color: #d8aad2;
-                    text-decoration: none;
-                    font-weight: bold;
-                }
-        
-                footer a:hover {
-                    text-decoration: underline;
-                }
-        
-                /* Mobile responsiveness */
-                @media (max-width: 768px) {
-                    .category {
-                        width: 100%;
-                    }
-        
-                    .header-buttons {
-                        display: none; /* Hide buttons on mobile for a cleaner look */
-                    }
-                }
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Same gradient for header */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-        </style>
-    </head>
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    <body>
-        <header>
-            <a href="index-member.html">
-                <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
-            </a>
-            <div class="header-buttons">
-                <form action="">
-                    <button>User</button>
-                </form>
-                <form action="cart-summary-member.html">
-                    <button>Cart</button>
-                </form>
+        header .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        header .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        header .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        header .nav-buttons button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+        }
+
+        header .nav-buttons button:hover {
+            background-color: #495057;
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            margin: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            max-width: 250px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-right: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Product Section */
+        .product-section {
+            flex: 3;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .product-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .product-details {
+            margin-bottom: 20px;
+        }
+
+        .product-details h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            margin-bottom: 10px;
+        }
+
+        .product-actions button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-actions .add-to-cart {
+            background-color: #6a8caf; /* Matches the theme */
+            color: white;
+        }
+
+        .product-actions .buy-now {
+            background-color: #829cbc; /* Matches the theme */
+            color: white;
+        }
+
+        .product-actions button:hover {
+            opacity: 0.9;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #6a8caf;
+        }
+
+        .modal-content button {
+            padding: 10px;
+            background-color: #6a8caf;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #829cbc;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Same gradient as header */
+            color: white;
+        }
+
+        footer a {
+            color: #6a8caf;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">ShopEasy</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="nav-buttons">
+            <button>Login</button>
+            <button>Cart</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li>Electronics</li>
+                <li>Fashion</li>
+                <li>Home Appliances</li>
+                <li>Books</li>
+                <li>Sports</li>
+            </ul>
+        </div>
+
+        <!-- Product Section -->
+        <div class="product-section">
+            <img src="product-image.jpg" alt="Product">
+            <div class="product-details">
+                <h1>Product Name</h1>
+                <p>Price: $49.99</p>
+                <p>Description: This is a great product with amazing features.</p>
             </div>
-        </header>
-    
-        <main>
-            <div class="item-page-main">
-                <section class="item-info">
-                    <div class="item-description" id="product-description">Loading...</div>
-                    <div class="item-action-buttons">
-                        <div class="green-buttons">
-                            <button>Add to Cart</button>
-                        </div>
-                        <div class="blue-buttons">
-                            <button>Buy Now</button>
-                        </div>
-                    </div>
-                </section>
+            <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
             </div>
-    
-            <!-- Reviews Section -->
-            <section class="item-reviews">
-                <h2 id="reviews-title">Reviews</h2>
-                <div id="reviews-container">
-                    <p>Loading reviews...</p>
-                </div>
-            </section>
-        </main>
-    
-        <script>
-            // Function to fetch the product ID from the URL
-            function getProductIdFromUrl() {
-                const params = new URLSearchParams(window.location.search);
-                return params.get("product_id");
-            }
-        
-            // Function to fetch product data and reviews
-            async function fetchProductData() {
-                const productId = getProductIdFromUrl();
-                if (!productId) {
-                    console.error("No product ID found in URL");
-                    return;
-                }
-        
-                try {
-                    const response = await fetch(`php/get-product-data.php?product_id=${productId}`);
-                    const data = await response.json();
-        
-                    if (data.product) {
-                        displayProductDetails(data.product);
-                    } else {
-                        console.error("Product not found");
-                    }
-        
-                    if (data.reviews && data.reviews.length > 0) {
-                        displayProductReviews(data.reviews);
-                    } else {
-                        document.getElementById("reviews-container").innerHTML = "<p>No reviews available for this product.</p>";
-                    }
-                } catch (error) {
-                    console.error("Error fetching product data:", error);
-                }
-            }
-        
-            // Function to display product details
-            function displayProductDetails(product) {
-                const productDetailsContainer = document.getElementById("product-description");
-                productDetailsContainer.innerHTML = `
-                    <h1>${product.name}</h1>
-                    <img src="${product.image_url}" alt="${product.name}" />
-                    <p>Price: RM${parseFloat(product.price).toFixed(2)}</p>
-                    <p>Description: ${product.description}</p>
-                `;
-            }
-        
-            // Function to display product reviews
-            function displayProductReviews(reviews) {
-                const reviewsContainer = document.getElementById("reviews-container");
-                reviewsContainer.innerHTML = reviews.map(review => `
-                    <div class="review">
-                        <p><strong>${review.username}</strong> - ${review.rating} ★</p>
-                        <p>${review.review_text}</p>
-                        ${review.review_image_url ? `<img src="${review.review_image_url}" alt="Review Image" />` : ""}
-                        <p><small>${new Date(review.created_at).toLocaleString()}</small></p>
-                    </div>
-                `).join("");
-            }
-        
-            // Call the function on page load
-            document.addEventListener("DOMContentLoaded", fetchProductData);
-        </script>
-    </body>
-    </html>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Successfully Added to Cart!</h2>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ShopEasy. <a href="#">Contact Us</a> | <a href="#">FAQ</a></p>
+    </footer>
+
+    <script>
+        // Modal handling
+        const addToCartButton = document.querySelector('.add-to-cart');
+        const buyNowButton = document.querySelector('.buy-now');
+        const modal = document.getElementById('modal');
+
+        // Show modal
+        function showModal() {
+            modal.style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Event listeners for buttons
+        addToCartButton.addEventListener('click', showModal);
+        buyNowButton.addEventListener('click', showModal);
+    </script>
+</body>
+</html>
