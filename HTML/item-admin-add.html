@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,15 +35,32 @@
             background-color: transparent;
             color: #f1c1d1;
             border: 2px solid #f1c1d1;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
             transition: all 0.3s ease;
         }
 
-        .header-buttons button:hover {
-            background-color: #f1c1d1;
+        /* Enhanced User Button */
+        .user-button {
+            background-color: #ff69b4; /* Solid, contrasting background color */
+            color: #fff;  /* Ensure text is visible */
+            border: 2px solid #ff69b4;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .user-button:hover {
+            background-color: #ff1493; /* Slightly darker shade */
             color: white;
         }
 
@@ -183,7 +200,7 @@
             <img src="/Images/logo.png" alt="Logo" class="logo">
         </a>
         <div class="header-buttons">
-            <button class="user-button">User</button>
+            <button class="user-button">User</button> <!-- User Button Visible Now -->
         </div>
     </header>
 
