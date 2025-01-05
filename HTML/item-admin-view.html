@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <meta charset="UTF-8">
@@ -7,9 +7,211 @@
         <title>Item</title>
         <link rel="stylesheet" href="../CSS/styles.css">
         <style>
-            /* Internal css section */
-            .blue-buttons{
-                margin: 0px 40px 0px 0px;
+            /* General Styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: linear-gradient(180deg, #e8c1d5, #f3d7e2);
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                color: #333;
+            }
+
+            header {
+                background: linear-gradient(90deg, #e8c1d5, #f3d7e2);
+                padding: 15px 25px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid #d8aad2;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+            .header-buttons {
+                display: flex;
+                justify-content: flex-end;
+                gap: 15px;
+            }
+
+            button {
+                background: linear-gradient(145deg, #f3d7e2, #d8aad2);  /* Gradient background */
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.1);
+                letter-spacing: 0.5px;
+            }
+
+            button:hover {
+                background: linear-gradient(145deg, #d8aad2, #f3d7e2);  /* Reverse gradient on hover */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2);  /* Increased shadow for 3D effect */
+                transform: translateY(-2px);  /* Simulate 3D button press */
+            }
+
+            /* Main Section */
+            main {
+                padding: 40px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .item-page-main {
+                display: flex;
+                gap: 40px;
+                flex-direction: row; /* Side-by-side layout for thumbnail and info */
+            }
+
+            /* Item Thumbnail */
+            .item-image {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 20px; /* Space between image and name */
+            }
+
+            .item-placeholder {
+                width: 100%;
+                max-width: 350px;
+                height: 350px;
+                background-color: #fff;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                color: #888;
+            }
+
+            /* Item Info */
+            .item-info {
+                flex: 1;
+                padding: 15px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+                text-align: center; /* Center-align all text inside */
+            }
+
+            .item-price {
+                font-size: 20px;
+                color: #333;
+                font-weight: 600;
+                margin-top: 10px;
+                text-align: center; /* Center the price */
+            }
+
+            .rating {
+                margin: 10px 0;
+                font-size: 16px;
+                color: #f1c1d1;
+            }
+
+            .item-description {
+                font-size: 14px;
+                color: #666;
+                margin: 20px 0;
+                line-height: 1.5;
+            }
+
+            .item-action-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+                margin-top: 25px;
+            }
+
+            /* Professional Button Style */
+            .blue-buttons button {
+                background: linear-gradient(145deg, #d8aad2, #f1c1d1);
+                color: white;
+            }
+
+            .blue-buttons button:hover {
+                background: linear-gradient(145deg, #f1c1d1, #d8aad2);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .red-buttons button {
+                background: linear-gradient(145deg, #f1c1d1, #e1a0b2);
+                color: white;
+            }
+
+            .red-buttons button:hover {
+                background: linear-gradient(145deg, #e1a0b2, #f1c1d1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            /* Reviews Section */
+            .item-statistics {
+                margin-top: 40px;
+            }
+
+            .item-statistics-box {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+            }
+
+            .statistics-info {
+                font-size: 14px;
+                color: #555;
+            }
+
+            .item-reviews {
+                margin-top: 40px;
+            }
+
+            .item-reviews-box {
+                display: flex;
+                margin-bottom: 20px;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .user-icon {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            .review-content {
+                flex: 1;
+            }
+
+            .review-extend-buttons {
+                margin-top: 10px;
+            }
+
+            .review-extend-buttons button {
+                font-size: 14px;
+                color: #d8aad2;
+                border: none;
+                background: none;
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .review-extend-buttons button:hover {
+                color: #f1c1d1;
             }
         </style>
     </head>
@@ -42,12 +244,6 @@
                     <div class="item-placeholder">
                         <img src="../images/item view.png" alt="Item Thumbnail">
                     </div>
-                    <div class="item-image-box-list">
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                    </div>
                 </section>
 
                 <!-- Item Info -->
@@ -58,9 +254,7 @@
                         <span>★★★★☆</span> 4.5/5.0
                     </div>
                     <div class="item-description">
-                        Lorem Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. Sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...
                     </div>
                     <div class="item-action-buttons">
                         <div class="blue-buttons">
