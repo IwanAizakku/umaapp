@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
     <style>
         /* Internal css section */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #d8aad2, #f1c1d1); /* Muted Lilac to Soft Pink */
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Same gradient for header */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Register Box Styles */
         .register-box-image-upload-area, .register-box-agreement-area {
             align-items: center;
             text-align: left;
@@ -35,8 +56,15 @@
         .register-box-agreement-area button:hover {
             background-color: #41e171;
         }
-        .register-image-section-title{
+        .register-image-section-title {
             right: 0px;
+        }
+
+        .register-main-title {
+            font-size: 2rem;
+            color: #333;
+            padding: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -51,7 +79,7 @@
 
     <!-- Main -->
     <main>
-        <div class="register-main-title">Edit profie</div>
+        <div class="register-main-title">Edit Profile</div>
         <div class="register-main">
             <section class="register-info-section">
                 <div class="register-box-area">
@@ -104,7 +132,7 @@
                 </div>
                 <section class="register-agreement-section">
                     <div class="register-box-agreement-area">
-                        <p>Ensured that the information entered is correct</p>
+                        <p>Ensure that the information entered is correct</p>
                         <form action=""> <!--Link to user profile-->
                             <button class="green-buttons">Save changes</button>
                         </form>
