@@ -1,69 +1,294 @@
 <!DOCTYPE html>
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Item</title>
-        <link rel="stylesheet" href="../CSS/styles.css">
-        <style>
-            /* Internal css section */
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <body>
-        <!-- Header -->
-        <header>
-            <a href="index-member.html" >
-                <img src="/Images/logo design gradient.png" alt="Logo" class="logo">
-            </a>
-            <div class="header-buttons">
-                <form action="">
-                    <button>User</button>
-                </form>
+        body {
+            background: linear-gradient(180deg, #d8aad2, #f1c1d1);
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: linear-gradient(90deg, #d8aad2, #f1c1d1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .header-buttons button {
+            background-color: transparent;
+            color: #f1c1d1;
+            border: 2px solid #f1c1d1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #f1c1d1;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .item-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .item-placeholder {
+            width: calc(100% - 20px);
+            max-width: 300px;
+            height: 300px;
+            background-color: #ffffff;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .upload-button {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #f1c1d1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .upload-button:hover {
+            background-color: #e1a0b2;
+        }
+
+        .upload-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            width: 48%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cancel-button {
+            background-color: #eee;
+            color: #555;
+        }
+
+        .cancel-button:hover {
+            background-color: #ddd;
+        }
+
+        .add-item-button {
+            background-color: #f1c1d1;
+            color: white;
+        }
+
+        .add-item-button:hover {
+            background-color: #e1a0b2;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: fadeOut 4s ease-out;
+        }
+
+        @keyframes fadeOut {
+            0%, 90% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index-member.html">
+            <img src="/Images/logo.png" alt="Logo" class="logo">
+        </a>
+        <div class="header-buttons">
+            <button class="user-button">User</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1 style="text-align: center; margin-bottom: 20px;">Add New Item</h1>
+        <section class="item-image">
+            <div class="item-placeholder" id="image-preview">No image uploaded</div>
+            <div class="upload-container">
+                <input type="file" id="image-upload" class="upload-button" accept="image/*" />
             </div>
-        </header>
+        </section>
 
-        <!-- Main -->
-        <main>
-            <section class="item-mode-action">
-                <div class="red-buttons"><button>Cancel</button></div>
-                <label> Add mode in progress </label>
-                <div class="green-buttons"><button>Add item</button></div>
-            </section>
-            <div class="item-page-main">
-                <!-- Item Thumbnail -->
-                <section class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="">
-                        Add image
-                    </div>
-                    <div class="item-image-box-list">
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                        <div class="item-placeholder-mini"></div>
-                    </div>
-                </section>
-
-                <!-- Item Info -->
-                <section class="item-add-info">
-                    <form>
-                        <div class="form-group">
-                            <label for="item-title">Title:</label>
-                            <input type="text" id="item-title" name="item-title" placeholder="Enter item title">
-                        </div>
-                        <div class="form-group">
-                            <label for="item-price">Price:</label>
-                            <input type="text" id="item-price" name="item-price" placeholder="Enter item price">
-                        </div>
-                        <div class="item-add-description">
-                            <label for="item-price">Description</label>
-                            <input type="text" id="item-price" name="item-price" placeholder="Enter item description">
-                        </div>
-                    </form>
-                </section>
+        <form id="item-form">
+            <!-- Item Title -->
+            <div class="form-group">
+                <label for="item-title">Item Title:</label>
+                <input type="text" id="item-title" name="item-title" placeholder="Enter item title" required>
             </div>
-        </main>
-    </body>
+
+            <!-- Item Price -->
+            <div class="form-group">
+                <label for="item-price">Price:</label>
+                <input type="text" id="item-price" name="item-price" placeholder="Enter item price" required>
+            </div>
+
+            <!-- Item Description -->
+            <div class="form-group">
+                <label for="item-description">Description:</label>
+                <textarea id="item-description" name="item-description" placeholder="Enter item description"></textarea>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="item-category">Category:</label>
+                <input type="text" id="item-category" name="item-category" placeholder="Enter item category" required>
+            </div>
+
+            <!-- Shop Selection -->
+            <div class="form-group">
+                <label for="shop">Shop:</label>
+                <select id="shop" name="shop" required>
+                    <option value="" disabled selected>Select shop</option>
+                    <option value="Shop 1">Shop 1</option>
+                    <option value="Shop 2">Shop 2</option>
+                    <option value="Shop 3">Shop 3</option>
+                </select>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="cancel-button" onclick="cancelForm()">Cancel</button>
+                <button type="submit" class="add-item-button">Add Item</button>
+            </div>
+        </form>
+
+        <!-- Notification -->
+        <div id="notification" class="notification">Item successfully added!</div>
+    </main>
+
+    <script>
+        // Cancel form
+        function cancelForm() {
+            if (confirm("Are you sure you want to cancel?")) {
+                document.getElementById("item-form").reset();
+                document.getElementById("image-preview").textContent = "No image uploaded";
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        }
+
+        // Handle form submission
+        document.getElementById("item-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showNotification("Item successfully added!");
+            this.reset();
+            document.getElementById("image-preview").textContent = "No image uploaded";
+        });
+
+        // Handle image upload
+        document.getElementById("image-upload").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById("image-preview");
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    preview.style.backgroundSize = "cover";
+                    preview.style.backgroundPosition = "center";
+                    preview.textContent = "";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.backgroundImage = "none";
+                preview.textContent = "No image uploaded";
+            }
+        });
+    </script>
+</body>
 </html>
