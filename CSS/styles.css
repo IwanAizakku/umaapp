@@ -86,51 +86,6 @@ main {
     color: #333; 
 }
 
-/* --Categories, Items, etc. Boxes-- */
-.categories {
-    display: flex; /* Enable Flexbox */
-    flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
-}
-
-.category {
-    flex: 1 1 calc(20% - 20px); /* Dynamic width: 20% minus gap */
-    max-width: 150px; /* Set maximum width */
-    width: 150px;
-    height: 150px;
-    background-color: white;
-    font-size: 1.4rem;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    position: relative; /* Needed for the overlay effect */
-    overflow: hidden; /* Ensures the overlay stays within the box */
-}
-
-/* Add a dark overlay on hover */
-.category:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay (40% opacity) */
-    transition: background 0.3s ease; /* Smooth fade-in effect */
-}
-
-.category:hover {
-    color: white;
-}
-
 /* Background Images for Each Box (test image)
 .category:nth-child(1) {
     background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');

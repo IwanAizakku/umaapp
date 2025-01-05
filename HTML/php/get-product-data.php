@@ -1,6 +1,4 @@
 <?php
-// fetch_item_data.php
-
 header('Content-Type: application/json');
 
 // Database configuration for server hosting
