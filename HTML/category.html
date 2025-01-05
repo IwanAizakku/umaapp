@@ -88,6 +88,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        
         /* Categories Section */
         .categories {
             display: flex;
@@ -119,6 +120,11 @@
 
         .category:hover {
             background-color: #d8aad2;
+        }
+
+        p {
+            font-weight: lighter;
+            font-size: 20px;
         }
 
         /* Footer (Terms and Conditions) */
@@ -203,33 +209,6 @@
 
 <!-- Javascripts -->
 <script>
-    // Fetch products from the PHP endpoint
-    async function fetchProducts() {
-        try {
-            const response = await fetch("php/get-products.php");
-            const products = await response.json();
-
-            // Get the product container
-            const productContainer = document.getElementById("product-container");
-
-            // Clear existing content
-            productContainer.innerHTML = "";
-
-            // Add products to the container
-            products.forEach((product) => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("category");
-                // Add content to container
-                productDiv.innerHTML = `
-                    <img src="${product.image_url}" alt="${product.name}" />
-                `;
-
-                productContainer.appendChild(productDiv);
-            });
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
-    }
 
     // Fetch products by category
     async function fetchProductsByCategory(categoryId, containerId) {
@@ -248,8 +227,13 @@
                 const productDiv = document.createElement("div");
                 productDiv.classList.add("category");
 
+                // Add product details and link to item page
                 productDiv.innerHTML = `
-                    <img src="${product.image_url}" alt="${product.name}" />
+                    <a href="item-view.html?product_id=${product.product_id}" style="text-decoration: none; color: inherit;">
+                        <img src="${product.image_url}" alt="${product.name}" />
+                        <p>${product.name}</p>
+                        <p>RM${parseFloat(product.price).toFixed(2)}</p>
+                    </a>
                 `;
 
                 categoryContainer.appendChild(productDiv);
@@ -259,11 +243,12 @@
         }
     }
 
-    // Call the function when the page loads
-    document.addEventListener("DOMContentLoaded", fetchProducts);
-    fetchProductsByCategory(1, "category-1-container"); // Fetch products for category_id = 1
-    fetchProductsByCategory(2, "category-2-container"); // Fetch products for category_id = 2
-    fetchProductsByCategory(3, "category-3-container"); // Fetch products for category_id = 3
+    // Fetch products for each category when the page loads
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProductsByCategory(1, "category-1-container"); // Fetch products for category_id = 1
+        fetchProductsByCategory(2, "category-2-container"); // Fetch products for category_id = 2
+        fetchProductsByCategory(3, "category-3-container"); // Fetch products for category_id = 3
+    });
 </script>
 
 
