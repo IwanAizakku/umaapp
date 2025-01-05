@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2025 at 08:56 AM
+-- Generation Time: Jan 05, 2025 at 02:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -137,15 +137,14 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `retailer_id`, `category_id`, `name`, `description`, `price`, `stock_quantity`, `image_url`, `created_at`) VALUES
 (2, 1, 1, 'Notebook', 'A 100-page notebook', 25.50, 50, '../Images/notebook.jpg', '2025-01-03 20:29:42'),
-(41, 1, 1, 'Laptop', 'High-performance laptop ideal for programming and research', 1500.00, 25, NULL, '2025-01-04 02:00:00'),
-(42, 1, 1, 'Noise-Cancelling Headphones', 'Headphones for focused studying in noisy environments', 250.00, 40, NULL, '2025-01-04 02:05:00'),
-(43, 1, 1, 'Wireless Mouse', 'Ergonomic mouse for comfortable usage during long study sessions', 30.00, 60, NULL, '2025-01-04 02:10:00'),
-(44, 1, 2, 'Introduction to Algorithms', 'Comprehensive guide to algorithms used in software development', 120.00, 50, NULL, '2025-01-04 02:15:00'),
-(45, 1, 2, 'Advanced Physics Textbook', 'Detailed physics textbook for engineering students', 80.00, 40, NULL, '2025-01-04 02:20:00'),
-(46, 1, 3, 'Notebooks Pack', 'Set of 5 ruled notebooks for class notes', 15.00, 150, NULL, '2025-01-04 02:30:00'),
-(47, 1, 3, 'Scientific Calculator', 'Essential tool for math and engineering courses', 50.00, 120, NULL, '2025-01-04 02:35:00'),
-(48, 1, 3, 'Pen Set', 'Set of 10 black pens for writing', 5.00, 200, NULL, '2025-01-04 02:40:00'),
-(49, 1, 3, 'Highlighter Set', 'Set of 5 colorful highlighters for marking important notes', 8.00, 100, NULL, '2025-01-04 02:45:00');
+(41, 8, 2, 'Laptop', 'High-performance laptop ideal for programming and research', 1500.00, 25, '../Images/laptop.jpg', '2025-01-04 02:00:00'),
+(42, 8, 2, 'Noise-Cancelling Headphones', 'Headphones for focused studying in noisy environments', 250.00, 40, '../Images/headphones.jpg', '2025-01-04 02:05:00'),
+(43, 1, 2, 'Wireless Mouse', 'Ergonomic mouse for comfortable usage during long study sessions', 30.00, 60, '../Images/mouse.jpg', '2025-01-04 02:10:00'),
+(44, 1, 3, 'Introduction to Algorithms', 'Comprehensive guide to algorithms used in software development', 120.00, 50, '../Images/book1.jpg', '2025-01-04 02:15:00'),
+(45, 1, 3, 'Advanced Physics Textbook', 'Detailed physics textbook for engineering students', 80.00, 40, '../Images/book2.jpg', '2025-01-04 02:20:00'),
+(46, 1, 3, 'Notebooks Pack', 'Set of 5 ruled notebooks for class notes', 15.00, 150, '../Images/notebookset.jpg', '2025-01-04 02:30:00'),
+(47, 1, 1, 'Scientific Calculator', 'Essential tool for math and engineering courses', 50.00, 120, '../Images/cal.jpg', '2025-01-04 02:35:00'),
+(49, 1, 1, 'Highlighter Set', 'Set of 5 colorful highlighters for marking important notes', 8.00, 100, '../Images/highlighter.jpg', '2025-01-04 02:45:00');
 
 -- --------------------------------------------------------
 
@@ -177,15 +176,21 @@ CREATE TABLE `users` (
   `role` enum('student','retailer','admin') NOT NULL,
   `profile_picture_url` varchar(255) DEFAULT NULL,
   `address` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `postcode` varchar(10) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `profile_picture_url`, `address`, `created_at`) VALUES
-(1, 'retailer1', 'retailer1@example.com', 'hashedpassword123', 'retailer', 'NULL', '123 Campus Street', '2025-01-03 20:26:13');
+INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `profile_picture_url`, `address`, `created_at`, `postcode`, `city`, `state`, `country`) VALUES
+(1, 'Student1', 'student@example.com', '$2y$10$3iP15Rnb/6l8JZtVPNRLNOD.7zeVxUSkqRTfulVQFzP1BvnFGmJIG', 'student', 'NULL', '123 Campus Street', '2025-01-03 20:26:13', NULL, NULL, NULL, NULL),
+(8, 'Ivan', 'ivan@gmail.com', '$2y$10$1dj8V07P4/8GNMZXlzlEaOUHC2glLEnL6jqV7sto9hqwVyTdjLWBO', 'student', NULL, 'Taman Penampang', '2025-01-04 20:42:08', '89500', 'Penampang', 'Sabah', 'Malaysia'),
+(9, 'Test 2', 'testemail@gmail.com', '$2y$10$BCpTJFNZeoOEjpZGZS1vGOi2KaoFB/2pLn0cUzlO0T.ZAyMqMuzSy', 'student', NULL, 'Penampang', '2025-01-05 03:25:20', '89500', 'Penampang', 'Sabah', 'Malaysia');
 
 --
 -- Indexes for dumped tables
@@ -315,7 +320,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
