@@ -7,40 +7,112 @@
         <title>Item</title>
         <link rel="stylesheet" href="../CSS/styles.css">
         <style>
+            /* General Styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: linear-gradient(180deg, #e8c1d5, #f3d7e2);
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                color: #333;
+            }
+
+            header {
+                background: linear-gradient(90deg, #e8c1d5, #f3d7e2);
+                padding: 15px 25px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid #d8aad2;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+            .header-buttons {
+                display: flex;
+                justify-content: flex-end;
+                gap: 15px;
+            }
+
+            button {
+                background: linear-gradient(145deg, #f3d7e2, #d8aad2); /* Gradient background */
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.1);
+                letter-spacing: 0.5px;
+            }
+
+            button:hover {
+                background: linear-gradient(145deg, #d8aad2, #f3d7e2); /* Reverse gradient on hover */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2); /* Increased shadow for 3D effect */
+                transform: translateY(-2px); /* Simulate 3D button press */
+            }
+
+            .green-buttons button {
+                background: linear-gradient(145deg, #c9e9d1, #9fd8ad); /* Green gradient */
+            }
+
+            .green-buttons button:hover {
+                background: linear-gradient(145deg, #9fd8ad, #c9e9d1); /* Hover effect */
+            }
+
             /* Internal css section */
-            .green-buttons{
+            .green-buttons {
                 margin: 0px 0px 0px 80%;
             }
+
             .item-details-box-list {
                 justify-content: left;
             }
+
             .item-rating-box {
                 justify-content: left;
                 font-size: 20px;
             }
+
             .review-pictures {
                 display: flex;
                 flex-direction: row;
             }
+
             .item-image-box-list {
                 margin: 15px 0px 0px -50px;
             }
+
             .item-image-box-list button {
                 margin: 30px 0px 0px 0px;
             }
+
             .item-image-box-list small {
                 margin: 30px 0px 0px 50px;
                 font-size: 15px;
             }
+
             .item-image-box-list h1 {
                 display: flex;
                 flex-direction: column;
                 text-align: center;
             }
-            .item-description-box h1{
+
+            .item-description-box h1 {
                 margin: 0px 0px 20px 0px;
                 text-align: center;
             }
+
             .review-content {
                 text-align: left;
                 font-weight: normal;
@@ -100,7 +172,7 @@
                                 <div class="blue-buttons">
                                     <button>Upload pic</button>
                                     <small>
-                                        • Pictues must be at least 500 x 500 in size.<br>
+                                        • Pictures must be at least 500 x 500 in size.<br>
                                         • Supported formats: JPG, PNG, Webp.<br>
                                         • Showcase the item and the condition.<br>
                                         • Up to 5 pictures can be added.
