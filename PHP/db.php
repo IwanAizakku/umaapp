@@ -14,8 +14,8 @@ $password = ""; // Database password
 $database = "umaapp"; // Database name from your file
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $username, $password);
+    $db ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }

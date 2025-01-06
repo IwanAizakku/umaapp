@@ -5,192 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <style>
-        /* Reset default margin and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Soft Pink and Lilac Gradient Background */
-        body {
-            background: linear-gradient(180deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac */
-            font-family: 'Arial', sans-serif;
-            color: #333;
-        }
-
-        /* Header Styling */
-        header {
-            background: linear-gradient(90deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac Gradient */
-            padding: 20px 0;
-            position: relative; /* Added to position elements inside */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contains logo in a circle */
-        .logo {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        /* User Button - Positioned to the Top Right */
-        .header-buttons {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .header-buttons button {
-            background-color: #e6c3f0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .header-buttons button:hover {
-            background-color: #d1a8e8;
-        }
-
-        /* Main Content Styling */
-        main {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        h1.cart-title {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        /* Cart Controls Styling */
-        .cart-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .cart-controls input {
-            margin-right: 10px;
-        }
-
-        .subtotal-container {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .subtotal-container .buy-now-buttons button {
-            background-color: #e6c3f0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .subtotal-container .buy-now-buttons button:hover {
-            background-color: #d1a8e8;
-        }
-
-        /* Cart Item Styling */
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .cart-item-checkbox input {
-            margin-right: 15px;
-        }
-
-        .cart-item-image {
-            width: 60px;
-            height: 60px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-            text-align: left;
-            padding: 0 20px;
-        }
-
-        .item-title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .item-price {
-            font-size: 16px;
-            color: #777;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            margin-right: 20px; /* Add space between the quantity buttons and the remove button */
-        }
-
-        .cart-quantity-button {
-            background-color: #f8c8d0;
-            border: none;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .cart-quantity-button:hover {
-            background-color: #d1a8e8;
-        }
-
-        .cart-item-remove {
-            margin-left: 15px; /* Add some margin to the left of the remove button to space it out */
-        }
-
-        .cart-item-remove button {
-            background-color: #f8c8d0;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .cart-item-remove button:hover {
-            background-color: #d1a8e8;
-        }
+            /* Reset default margin and padding */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            /* Soft Pink and Lilac Gradient Background */
+            body {
+                background: linear-gradient(180deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac */
+                font-family: 'Arial', sans-serif;
+                color: #333;
+            }
+    
+            /* Header Styling */
+            header {
+                background: linear-gradient(90deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac Gradient */
+                padding: 20px 0;
+                position: relative; /* Added to position elements inside */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+    
+            /* Contains logo in a circle */
+            .logo {
+                width: 50px;
+                height: 50px;
+                background-color: white;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+    
+            /* User Button - Positioned to the Top Right */
+            .header-buttons {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+    
+            .header-buttons button {
+                background-color: #e6c3f0;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            .header-buttons button:hover {
+                background-color: #d1a8e8;
+            }
+    
+            /* Main Content Styling */
+            main {
+                padding: 50px 20px;
+                text-align: center;
+            }
+    
+            h1.cart-title {
+                font-size: 36px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+    
+            /* Cart Controls Styling */
+            .cart-controls {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+    
+            .cart-controls input {
+                margin-right: 10px;
+            }
+    
+            .subtotal-container {
+                font-size: 18px;
+                font-weight: bold;
+            }
+    
+            .subtotal-container .buy-now-buttons button {
+                background-color: #e6c3f0;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            .subtotal-container .buy-now-buttons button:hover {
+                background-color: #d1a8e8;
+            }
+    
+            /* Cart Item Styling */
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: white;
+                padding: 20px;
+                margin-bottom: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+    
+            .cart-item-checkbox input {
+                margin-right: 15px;
+            }
+    
+            .cart-item-image {
+                width: 60px;
+                height: 60px;
+                background-color: #e0e0e0;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                color: #fff;
+            }
+    
+            .cart-item-details {
+                flex-grow: 1;
+                text-align: left;
+                padding: 0 20px;
+            }
+    
+            .item-title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+    
+            .item-price {
+                font-size: 16px;
+                color: #777;
+            }
+    
+            .cart-item-quantity {
+                display: flex;
+                align-items: center;
+                margin-right: 20px; /* Add space between the quantity buttons and the remove button */
+            }
+    
+            .cart-quantity-button {
+                background-color: #f8c8d0;
+                border: none;
+                padding: 5px 10px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+    
+            .cart-quantity-button:hover {
+                background-color: #d1a8e8;
+            }
+    
+            .cart-item-remove {
+                margin-left: 15px; /* Add some margin to the left of the remove button to space it out */
+            }
+    
+            .cart-item-remove button {
+                background-color: #f8c8d0;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            .cart-item-remove button:hover {
+                background-color: #d1a8e8;
+            }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Header -->
     <header>
         <a href="index-member.html">
@@ -213,7 +213,7 @@
                 <button class="remove-selected" onclick="removeSelected()">Remove selected</button>
             </div>
             <div class="subtotal-container">
-                <p>Subtotal: RM<span id="subtotal">0.00</span></p>
+                <p id="subtotal">Subtotal: RM0.00</p>
                 <div class="buy-now-buttons">
                     <form action="checkout-member-user.html">
                         <button>Buy now</button>
@@ -223,134 +223,122 @@
         </div>
 
         <!-- Cart Items -->
-        <div id="cart-items">
-            <!-- Cart items will be loaded dynamically here -->
+        <div id="cart-items-container">
+            <!-- Cart items will be dynamically added here via JavaScript -->
         </div>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const subtotalElement = document.getElementById('subtotal');
-        
-            // Fetch cart items from the server
-            fetch('php/fetch-cart.php')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.cartItems && data.cartItems.length > 0) {
-                        let subtotal = 0;
-        
-                        data.cartItems.forEach(item => {
-                            const cartItem = document.createElement('div');
-                            cartItem.className = 'cart-item'; // Updated to 'cart-item' for consistency
-                            cartItem.dataset.itemId = item.product_id;
-        
-                            const itemImageUrl = item.image_url || 'default-image.jpg'; // Default image if none exists
-                            const itemPrice = parseFloat(item.price).toFixed(2); // Ensure price is two decimal places
-        
-                            cartItem.innerHTML = `
-                                <div class="cart-item-checkbox">
-                                    <input type="checkbox" class="item-checkbox">
-                                </div>
-                                <div class="cart-item-image">
-                                    <img src="${itemImageUrl}" alt="${item.name}">
-                                </div>
-                                <div class="cart-item-details">
-                                    <p class="item-title">${item.name}</p>
-                                    <p class="item-price">Price: RM<span class="item-price-value">${itemPrice}</span></p>
-                                </div>
-                                <div class="cart-item-quantity">
-                                    <button class="cart-quantity-button" onclick="changeQuantity(this, 'decrease')">-</button>
-                                    <span class="cart-quantity-value">${item.quantity}</span>
-                                    <button class="cart-quantity-button" onclick="changeQuantity(this, 'increase')">+</button>
-                                </div>
-                                <div class="cart-item-remove">
-                                    <button class="remove-button" onclick="removeItem(this)">Remove item</button>
-                                </div>
-                            `;
-        
-                            subtotal += itemPrice * item.quantity;
-                            cartItemsContainer.appendChild(cartItem);
-                        });
-        
-                        subtotalElement.textContent = subtotal.toFixed(2);
-                    } else {
-                        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-                    }
-                });
-        
-            // Select all functionality
-            document.getElementById('select-all').addEventListener('change', function () {
-                const checkboxes = document.querySelectorAll('.item-checkbox');
-                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-            });
-        
-            // Remove selected items
-            window.removeSelected = () => {
-                const checkboxes = document.querySelectorAll('.item-checkbox:checked');
-                checkboxes.forEach(checkbox => {
-                    const cartItem = checkbox.closest('.cart-item');
-                    const itemId = cartItem.dataset.itemId;
-        
-                    // Update the server
-                    fetch(`php/remove-cart-item.php?cart_id=${itemId}`, { method: 'POST' })
-                        .then(() => {
-                            cartItem.remove();
-                            updateSubtotal();
-                        })
-                        .catch(err => console.error('Error removing item:', err));
-                });
-            };
-        
-            // Change item quantity
-            window.changeQuantity = (button, action) => {
-                const cartItem = button.closest('.cart-item');
-                const quantityElement = cartItem.querySelector('.cart-quantity-value');
-                let quantity = parseInt(quantityElement.textContent);
-                const price = parseFloat(cartItem.querySelector('.item-price-value').textContent);
-        
-                if (action === 'increase') {
-                    quantity++;
-                } else if (action === 'decrease' && quantity > 1) {
-                    quantity--;
+        // Fetch cart data from the API
+        async function fetchCartItems() {
+            try {
+                const response = await fetch('php/fetch-cart.php');
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
                 }
-        
-                quantityElement.textContent = quantity;
-        
-                // Update the server
-                const itemId = cartItem.dataset.itemId;
-                fetch(`php/update-cart-item.php?cart_id=${itemId}&quantity=${quantity}`, { method: 'POST' })
-                    .then(() => updateSubtotal())
-                    .catch(err => console.error('Error updating quantity:', err));
-            };
-        
-            // Remove individual item
-            window.removeItem = (button) => {
-                const cartItem = button.closest('.cart-item');
-                const itemId = cartItem.dataset.itemId;
-        
-                // Update the server
-                fetch(`php/remove-cart-item.php?cart_id=${itemId}`, { method: 'POST' })
-                    .then(() => {
-                        cartItem.remove();
-                        updateSubtotal();
-                    })
-                    .catch(err => console.error('Error removing item:', err));
-            };
-        
-            // Update subtotal
-            function updateSubtotal() {
+
+                const cartItemsContainer = document.getElementById('cart-items-container');
+                cartItemsContainer.innerHTML = '';
+
                 let subtotal = 0;
-                const cartItems = document.querySelectorAll('.cart-item');
-                cartItems.forEach(item => {
-                    const quantity = parseInt(item.querySelector('.cart-quantity-value').textContent);
-                    const price = parseFloat(item.querySelector('.item-price-value').textContent);
-                    subtotal += quantity * price;
+
+                data.cartItems.forEach(item => {
+                    const itemSubtotal = parseFloat(item.price) * item.quantity; // Ensure price is treated as a number
+                    subtotal += itemSubtotal;
+                
+                    const cartItemHTML = `
+                        <div class="cart-item" data-id="${item.cart_id}">
+                            <div class="cart-item-checkbox">
+                                <input type="checkbox" class="item-checkbox">
+                            </div>
+                            <div class="cart-item-image">
+                                <img src="${item.image_url}" alt="${item.name}" style="width: 60px; height: 60px;">
+                            </div>
+                            <div class="cart-item-details">
+                                <p class="item-title">${item.name}</p>
+                                <p class="item-price">Price: RM${parseFloat(item.price).toFixed(2)}</p> <!-- Format price correctly -->
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="cart-quantity-button" onclick="updateQuantity(${item.cart_id}, -1)">-</button>
+                                <span class="cart-quantity-value">${item.quantity}</span>
+                                <button class="cart-quantity-button" onclick="updateQuantity(${item.cart_id}, 1)">+</button>
+                            </div>
+                            <div class="cart-item-remove">
+                                <button class="remove-button" onclick="removeItem(${item.cart_id})">Remove item</button>
+                            </div>
+                        </div>`;
+                    cartItemsContainer.innerHTML += cartItemHTML;
                 });
-        
-                subtotalElement.textContent = subtotal.toFixed(2);
+                
+                document.getElementById('subtotal').textContent = `RM${subtotal.toFixed(2)}`;
+            } catch (error) {
+                console.error('Error fetching cart items:', error);
             }
+        }
+
+        // Remove selected items
+        async function removeSelected() {
+            const checkboxes = document.querySelectorAll('.item-checkbox:checked');
+            for (const checkbox of checkboxes) {
+                const cartItem = checkbox.closest('.cart-item');
+                const cartId = cartItem.getAttribute('data-id');
+                await removeItem(cartId, false);
+                cartItem.remove();
+            }
+            fetchCartItems();
+        }
+
+        // Remove a specific item
+        async function removeItem(cartId, refresh = true) {
+            try {
+                const response = await fetch(`php/remove-cart-item.php?cart_item_id=${cartId}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                } else if (refresh) {
+                    fetchCartItems();
+                }
+            } catch (error) {
+                console.error('Error removing cart item:', error);
+            }
+        }
+
+        // Update item quantity
+        async function updateQuantity(cartId, change) {
+            try {
+                const quantityElement = document.querySelector(`.cart-item[data-id="${cartId}"] .cart-quantity-value`);
+                let quantity = parseInt(quantityElement.textContent) + change;
+
+                if (quantity < 1) {
+                    alert('Quantity cannot be less than 1.');
+                    return;
+                }
+
+                const response = await fetch(`php/update-cart-item-quantity.php?cart_item_id=${cartId}&quantity=${quantity}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    fetchCartItems();
+                }
+            } catch (error) {
+                console.error('Error updating cart item quantity:', error);
+            }
+        }
+
+        // Select all functionality
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
         });
+
+        // Initial fetch of cart items
+        fetchCartItems();
     </script>
 </body>
 </html>
