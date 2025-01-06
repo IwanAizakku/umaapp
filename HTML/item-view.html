@@ -50,12 +50,13 @@
         }
 
         header .nav-buttons button {
-            padding: 8px 15px;
-            border: none;
+            background-color: #d8aad2; /* Soft lilac background */
+            border: 2px solid #c58a9b; /* Slightly darker pink border */
+            padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
-            background-color: #6c757d;
             color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         header .nav-buttons button:hover {
@@ -68,15 +69,35 @@
             margin: 20px;
         }
 
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
         /* Sidebar */
         .sidebar {
-            flex: 1;
+            display: flex;
+            align-items: center;
             max-width: 250px;
+            max-height: 250px;
             background-color: #ffffff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
             margin-right: 20px;
+        }
+
+        .sidebar img {
+            display: flex;
+            justify-content: center;
+            max-width: 250px;
+            max-height: 250px;
         }
 
         .sidebar ul {
@@ -203,12 +224,14 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">ShopEasy</div>
+        <a href="index-member.html"> 
+            <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
+        </a>
         <div class="search-bar">
             <input type="text" placeholder="Search for products...">
         </div>
         <div class="nav-buttons">
-            <button>Login</button>
+            <button>User</button>
             <form action="cart-summary-member.html">
                 <button>Cart</button>
             </form>
@@ -219,22 +242,16 @@
     <main>
         <!-- Sidebar -->
         <div class="sidebar">
-            <h3>Categories</h3>
-            <ul>
-                <li>Electronics</li>
-                <li>Fashion</li>
-                <li>Home Appliances</li>
-                <li>Books</li>
-                <li>Sports</li>
-            </ul>
+            <div class="item-pictures">
+                <img src="product-image.jpg" alt="Product">
+            </div>
         </div>
 
         <!-- Product Section -->
         <div class="product-section">
-            <img src="product-image.jpg" alt="Product">
             <div class="product-details">
                 <h1>Product Name</h1>
-                <p>Price: $49.99</p>
+                <p>Price: RM00.00</p>
                 <p>Description: This is a great product with amazing features.</p>
             </div>
             <div class="product-actions">
@@ -254,28 +271,61 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 ShopEasy. <a href="#">Contact Us</a> | <a href="#">FAQ</a></p>
+        <p>&copy; UMA <a href="#">Contact Us</a> | <a href="#">FAQ</a></p>
     </footer>
 
     <script>
-        // Modal handling
-        const addToCartButton = document.querySelector('.add-to-cart');
-        const buyNowButton = document.querySelector('.buy-now');
-        const modal = document.getElementById('modal');
-
-        // Show modal
-        function showModal() {
-            modal.style.display = 'flex';
-        }
-
-        // Close modal
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Event listeners for buttons
-        addToCartButton.addEventListener('click', showModal);
-        buyNowButton.addEventListener('click', showModal);
+        document.addEventListener('DOMContentLoaded', () => {
+            const productId = new URLSearchParams(window.location.search).get('product_id');
+            if (productId) {
+                fetch(`php/get-product-data.php?product_id=${productId}`) // Replace with the correct PHP file path
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.product) {
+                            // Update product details
+                            document.querySelector('.product-details h1').textContent = data.product.name;
+                            document.querySelector('.product-details p:nth-child(2)').textContent = `Price: RM${data.product.price}`;
+                            document.querySelector('.product-details p:nth-child(3)').textContent = `Description: ${data.product.description}`;
+                            document.querySelector('.sidebar img').src = data.product.image_url || 'default-image.jpg';
+                        } else {
+                            alert('Product not found!');
+                        }
+                    })
+                    .catch(err => console.error('Error fetching product:', err));
+            }
+    
+            // Modal functionality
+            const modal = document.getElementById('modal');
+            const closeModal = () => modal.style.display = 'none';
+    
+            document.querySelector('.add-to-cart').addEventListener('click', () => {
+                // Add to cart logic here: Send AJAX request
+                const quantity = 1; // You can replace this with a dynamic value if necessary
+                fetch('php/add-to-cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `product_id=${productId}&quantity=${quantity}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        modal.style.display = 'flex'; // Show success modal
+                    } else {
+                        alert(data.error || 'Error adding to cart');
+                    }
+                })
+                .catch(err => console.error('Error adding to cart:', err));
+            });
+    
+            document.querySelector('.buy-now').addEventListener('click', () => {
+                // Redirect to purchase page logic here
+                alert('Redirecting to purchase page...');
+            });
+    
+            window.closeModal = closeModal; // Expose the function for the inline "Close" button
+        });
     </script>
 </body>
 </html>
