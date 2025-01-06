@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = trim($_POST['password']);
 
     // Prepare a statement to prevent SQL injection
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->execute(['username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
