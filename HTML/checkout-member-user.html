@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< Updated upstream
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +26,14 @@
         }
 
         .logo {
-            font-size: 28px;
-            text-decoration: none;
-            color: white;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         /* Main content styling */
@@ -59,8 +63,12 @@
         }
 
         .checkout-item-box {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
             background-color: #fff;
             padding: 10px; /* Reduced padding */
+            margin-left: 15%;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             border: 2px solid #f1c1d1;
@@ -69,15 +77,12 @@
             min-height: 150px; /* Reduced height */
         }
 
-        .checkout-item-box:hover {
-            transform: translateY(-5px);
-        }
-
         .checkout-item-image {
-            height: 100px; /* Reduced height */
+            max-height: fit-content;
+            max-width: fit-content;
             background-color: #e1e1e1;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-right: 7%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,13 +95,18 @@
         }
 
         .item-title {
-            font-size: 14px; /* Reduced font size */
-            font-weight: 600;
+            font-size: 20px; 
+            font-weight: 400;
             color: #2c3e50;
+        }
+        
+        .item-qty{
+            font-size: 15px; 
         }
 
         .item-price {
-            font-size: 12px; /* Reduced font size */
+            font-size: 18px;
+            font-weight: bold; 
             color: #16a085;
             margin-top: 5px;
         }
@@ -182,52 +192,28 @@
 
     <!-- Header -->
     <header>
-        <a href="index-member.html" class="logo">MyShop</a>
+        <a href="index-member.html">
+            <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
+        </a>
     </header>
 
     <!-- Main Content -->
     <main>
         <div class="checkout-item-section">
             <div class="checkout-item-title">Your Shopping Cart</div>
-
-            <!-- Checkout Items -->
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">Product 1</div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Product Title 1</p>
-                    <p class="item-price">RM30.00</p>
-                </div>
-            </div>
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">Product 2</div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Product Title 2</p>
-                    <p class="item-price">RM45.00</p>
-                </div>
-            </div>
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">Product 3</div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Product Title 3</p>
-                    <p class="item-price">RM20.00</p>
-                </div>
-            </div>
+            <!-- Dynamic cart items will be inserted here -->
         </div>
-
-        <!-- Combined Checkout Summary and Payment -->
+    
         <div class="checkout-summary-payment-section">
             <!-- Delivery Address -->
             <p><strong>Delivery Address:</strong></p>
-            <select>
-                <option value="address1">Address 1</option>
-                <option value="address2">Address 2</option>
-                <option value="address3">Address 3</option>
+            <select name="delivery-address">
+                <!-- Dynamic addresses will be inserted here -->
             </select>
-
+    
             <!-- Subtotal and Total -->
-            <p class="checkout-summary-price">Subtotal: RM95.00</p>
-            <p class="checkout-summary-price">Total: RM95.00</p>
-
+            <p class="checkout-summary-price">Subtotal: RM0.00</p>
+    
             <!-- Payment Method -->
             <p><strong>Payment Method:</strong></p>
             <select>
@@ -235,18 +221,59 @@
                 <option value="card">Credit/Debit Card</option>
                 <option value="cod">Cash on Delivery</option>
             </select>
-
+    
             <!-- Proceed to Payment Button -->
             <div class="checkout-to-payment-buttons">
                 <button>Proceed to Checkout</button>
             </div>
         </div>
     </main>
-
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('php/get-checkout-data.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Populate cart items
+                    const checkoutItemsContainer = document.querySelector(".checkout-item-section");
+                    const cartItemsTitle = checkoutItemsContainer.querySelector(".checkout-item-title");
+                    const cartItemsHTML = data.cartItems.map(item => `
+                        <div class="checkout-item-box">
+                            <div class="checkout-item-image">
+                                <img src="${item.product_image}" alt="${item.product_name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="checkout-item-details">
+                                <p class="item-title">${item.product_name}</p>
+                                <p class="item-qty">Qty: ${item.quantity}</p>
+                                <p class="item-price">RM${(item.product_price * item.quantity).toFixed(2)}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                    cartItemsTitle.insertAdjacentHTML('afterend', cartItemsHTML);
+    
+                    // Calculate and display subtotal and total
+                    const subtotal = data.cartItems.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
+                    const checkoutSummary = document.querySelector(".checkout-summary-payment-section");
+                    checkoutSummary.querySelector(".checkout-summary-price").textContent = `Subtotal: RM${subtotal.toFixed(2)}`;
+                } else {
+                    console.error("No cart items found.");
+                }
+    
+                // Populate addresses
+                const addressDropdown = document.querySelector(".checkout-summary-payment-section select");
+                addressDropdown.innerHTML = data.addresses.map(address => `
+                    <option value="${address.user_id}">${address.full_address}</option>
+                `).join('');
+            })
+        .catch(error => console.error("Failed to fetch checkout data:", error));
+    });        
+    </script>
+    
     <!-- Footer -->
     <footer>
         <p>By clicking "Proceed to Checkout" you agree to our <a href="#">Terms and Conditions</a>.</p>
     </footer>
 
 </body>
-=======
+</html>
