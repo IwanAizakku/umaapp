@@ -320,9 +320,37 @@
             });
     
             document.querySelector('.buy-now').addEventListener('click', () => {
-                // Redirect to purchase page logic here
-                alert('Redirecting to purchase page...');
+                const productId = new URLSearchParams(window.location.search).get('product_id');
+                const quantity = 1; // Default quantity
+            
+                if (!productId) {
+                    alert('Product ID is missing!');
+                    return;
+                }
+            
+                // Add item to cart
+                fetch('php/add-to-cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `product_id=${productId}&quantity=${quantity}`,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Redirect to the cart summary page
+                        window.location.href = 'cart-summary-member.html';
+                    } else {
+                        alert(data.error || 'Failed to add the product to the cart');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error adding product to cart:', err);
+                    alert('An error occurred while adding the product to the cart.');
+                });
             });
+                        
     
             window.closeModal = closeModal; // Expose the function for the inline "Close" button
         });

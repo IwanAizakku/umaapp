@@ -13,19 +13,39 @@ $product_id = $_POST['product_id'] ?? null;
 $quantity = $_POST['quantity'] ?? 1;
 
 if ($product_id && $quantity > 0) {
-    // Check if the product exists
+    // Check if the product exists and has enough stock
     $stmt = $db->prepare("SELECT stock_quantity FROM products WHERE product_id = ?");
     $stmt->execute([$product_id]);
     $product = $stmt->fetch();
 
     if ($product && $product['stock_quantity'] >= $quantity) {
-        // Add to cart
-        $stmt = $db->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)");
-        $stmt->execute([$user_id, $product_id, $quantity]);
+        // Check if the product already exists in the cart
+        $stmt = $db->prepare("SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?");
+        $stmt->execute([$user_id, $product_id]);
+        $cartItem = $stmt->fetch();
 
-        echo json_encode(['success' => true, 'message' => 'Product added to cart.']);
+        if ($cartItem) {
+            // Update the quantity if the product is already in the cart
+            $newQuantity = $cartItem['quantity'] + $quantity;
+
+            // Ensure the updated quantity does not exceed stock
+            if ($newQuantity <= $product['stock_quantity']) {
+                $stmt = $db->prepare("UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?");
+                $stmt->execute([$newQuantity, $user_id, $product_id]);
+
+                echo json_encode(['success' => true, 'message' => 'Cart updated successfully.']);
+            } else {
+                echo json_encode(['error' => 'Not enough stock available for the updated quantity.']);
+            }
+        } else {
+            // Add as a new item if not already in the cart
+            $stmt = $db->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)");
+            $stmt->execute([$user_id, $product_id, $quantity]);
+
+            echo json_encode(['success' => true, 'message' => 'Product added to cart.']);
+        }
     } else {
-        echo json_encode(['error' => 'Not enough stock available.']);
+        echo json_encode(['error' => 'Not enough stock available or invalid product.']);
     }
 } else {
     echo json_encode(['error' => 'Invalid product ID or quantity.']);
