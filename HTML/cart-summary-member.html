@@ -294,7 +294,7 @@
         // Remove a specific item
         async function removeItem(cartId, refresh = true) {
             try {
-                const response = await fetch(`php/remove-cart-item.php?cart_item_id=${cartId}`);
+                const response = await fetch(`php/remove-cart-item.php?cart_id=${cartId}`);
                 const data = await response.json();
 
                 if (data.error) {
@@ -318,7 +318,7 @@
                     return;
                 }
 
-                const response = await fetch(`php/update-cart-item-quantity.php?cart_item_id=${cartId}&quantity=${quantity}`);
+                const response = await fetch(`php/update-cart-item-quantity.php?cart_id=${cartId}&quantity=${quantity}`);
                 const data = await response.json();
 
                 if (data.error) {

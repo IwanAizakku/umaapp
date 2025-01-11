@@ -1,0 +1,87 @@
+ 	
+	Umaapp database tables list
+	
+	Cart 
+	# 	Name 					Type 	Collation 	Attributes 	Null 	Default 	Comments 	Extra 	
+	1 	cart_id 	Primary 	int(11) 			No 					None 					AUTO_INCREMENT 	  	  	
+	2 	user_id 	Index 		int(11) 			No 					None 			  	  	
+	3 	product_id  Index 		int(11) 			No 					None 			  	  	
+	4 	quantity 				int(11) 			No 					None 			  	  	
+	5 	added_at 				timestamp 			No 					current_timestamp() 	
+
+	Categories
+
+	# 	Name 					Type 			Collation 			Attributes 	Null 	Default 	Comments 	Extra 		
+	1 	category_id Primary 	int(11) 										No 		None 					AUTO_INCREMENT 	  	  	
+	2 	name Index 				varchar(100) 	utf8mb4_general_ci 				No 		None 			  	  	
+	3 	description 			text 			utf8mb4_general_ci 				Yes 	NULL 			  	  
+
+	notifications
+	# 	Name 						Type 		Collation 	Attributes 	Null 	Default 	Comments 	Extra 	 	
+ 	1 	notification_id Primary 	int(11) 							No 		None 					AUTO_INCREMENT 	  	  	
+	2 	user_id Index 				int(11) 							No 		None 			  	  	
+	3 	message 					text 		utf8mb4_general_ci 		No 		None 			  	  	
+	4 	is_read 					tinyint(1) 							Yes 	0 			  	  	
+	5 	created_at 					timestamp 							No 		current_timestamp() 			
+	
+	orderitems
+	# 	Name 					Type 			Collation 	Attributes 	Null 	Default 	Comments 	Extra 	
+	1 	order_item_id Primary 	int(11) 								No 		None 					AUTO_INCREMENT 	  	  	
+	2 	order_id Index 			int(11) 								No 		None 			  	  	
+	3 	product_id Index 		int(11) 								No 		None 			  	  	
+	4 	quantity 				int(11) 								No 		None 			  	  	
+	5 	price 					decimal(10,2) 							No 		None 		
+	
+	orders
+	# 	Name 					Type 													Collation 				Attributes 	Null 	Default 	Comments 	Extra 	 	
+	1 	order_id Primary 		int(11) 																					No 		None 					AUTO_INCREMENT 	
+	2 	user_id Index 			int(11) 																					No 		None 			  	
+	3 	total_price 			decimal(10,2) 																				No 		None 			  	  	
+	4 	status 					enum('received', 'processing', 'ready', 'completed... 	utf8mb4_general_ci 					Yes 	received 			 	
+	5 	created_at 	timestamp 																								No 		current_timestamp() 			
+	6 	updated_at 	timestamp 																								No 		current_timestamp() 	ON UPDATE CURRENT_TIMESTAMP() 	
+	
+	payments
+	# 	Name 														Type 		Collation 				Attributes 	Null 	Default 	Comments 	Extra 		
+	1 	payment_id Primary 											int(11) 										No 		None 					AUTO_INCREMENT 	  	  	
+	2 	order_id Index 												int(11) 										No 		None 			  	  	
+	3 	payment_method 	enum('card', 'e-wallet', 'bank_transfer') 				utf8mb4_general_ci 					No 		None 			  	  	
+	4 	payment_status 	enum('pending', 'completed', 'failed') 					utf8mb4_general_ci 					Yes 	pending 			  	  	
+	5 	trans_date 	timestamp 																						No 		current_timestamp() 		
+	
+	products
+	# 	Name 					Type 			Collation 	Attributes 	Null 	Default 	Comments 	Extra 	
+	1 	product_id Primary 		int(11) 								No 		None 					AUTO_INCREMENT 	  	  	
+	2 	retailer_id Index 		int(11) 								No 		None 			  	  	
+	3 	category_id Index 		int(11) 								No 		None 			  	  	
+	4 	name 					varchar(100) 	utf8mb4_general_ci 		No 		None 			  	  	
+	5 	description 			text 			utf8mb4_general_ci 		Yes 	NULL 			  	  	
+	6 	price 					decimal(10,2) 							No 		None 			  	  	
+	7 	stock_quantity 			int(11) 								No 		None 			  	  	
+	8 	image_url 				varchar(255) 	utf8mb4_general_ci 		Yes 	NULL 			  	  	
+	9 	created_at 				timestamp 								No 		current_timestamp() 		
+	
+	reviews
+	# 	Name 					Type 			Collation 			Attributes 	Null 	Default 	Comments 	Extra 	
+	1 	review_id Primary 		int(11) 										No 		None 					AUTO_INCREMENT 	  	  	
+	2 	user_id Index 			int(11) 										No 		None 			  	  	
+	3 	product_id Index 		int(11) 										No 		None 			  	  	
+	4 	rating 					decimal(2,1) 									Yes 	NULL 			  	  	
+	5 	review_text 			varchar(255) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	6 	review_image_url 		varchar(255) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	7 	created_at 				timestamp 										No 		current_timestamp() 		
+	
+	users
+	# 	Name 															Type 			Collation 			Attributes 	Null 	Default 	Comments 	Extra 		
+	1 	user_id Primary 												int(11) 										No 		None 					AUTO_INCREMENT 	  	  	
+	2 	username Index 													varchar(50) 	utf8mb4_general_ci 				No 		None 			  	  	
+	3 	email Index 													varchar(100) 	utf8mb4_general_ci 				No 		None 			  	  	
+	4 	password_hash 													varchar(255) 	utf8mb4_general_ci 				No 		None 			  	  	
+	5 	role 					enum('student', 'retailer', 'admin') 					utf8mb4_general_ci 				No 		None 			  	  	
+	6 	profile_picture_url 											varchar(255) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	7 	address 														text 			utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	8 	created_at 														timestamp 										No 		current_timestamp() 			  	  	
+	9 	postcode 														varchar(10) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	10 	city 															varchar(100) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	11 	state 															varchar(100) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
+	12 	country 														varchar(100) 	utf8mb4_general_ci 				Yes 	NULL

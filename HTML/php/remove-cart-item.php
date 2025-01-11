@@ -9,9 +9,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$cart_item_id = $_GET['cart_item_id'] ?? null;
+$cart_id = $_GET['cart_id'] ?? null;
 
-if (!$cart_item_id) {
+if (!$cart_id) {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid input.']);
     exit;
@@ -20,9 +20,9 @@ if (!$cart_item_id) {
 try {
     $query = "
         DELETE FROM cart 
-        WHERE cart_item_id = ? AND user_id = ?";
+        WHERE cart_id = ? AND user_id = ?";
     $stmt = $db->prepare($query);
-    $stmt->execute([$cart_item_id, $user_id]);
+    $stmt->execute([$cart_id, $user_id]);
 
     if ($stmt->rowCount() > 0) {
         echo json_encode(['success' => 'Cart item removed.']);
