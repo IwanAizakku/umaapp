@@ -232,7 +232,7 @@
         // Fetch cart data from the API
         async function fetchCartItems() {
             try {
-                const response = await fetch('php/fetch-cart.php');
+                const response = await fetch('php/get-cart-item.php');
                 const data = await response.json();
 
                 if (data.error) {

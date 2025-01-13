@@ -315,9 +315,8 @@
                 <h2>Profile Picture</h2>
                 <div class="profile-image-container">
                     <div class="register-profile-image-placeholder" id="profileImagePreview">
-                        <span>Click to upload</span>
                     </div>
-                    <input type="file" id="uploadImage" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                    <input type="file" id="uploadImage" name="profile_picture" accept="image/*" style="display: none;" onchange="previewImage(event)">
                     <div class="upload-image-buttons" onclick="document.getElementById('uploadImage').click()">Upload Image</div>
                     <div class="remove-image-button" id="removeImageButton" onclick="removeImage()">Remove Image</div>
                 </div>
@@ -329,7 +328,7 @@
             <p>By creating an account, you agree to our <a href="#">Terms and Conditions</a>.</p>
         </div>
 
-        <button type="button" class="create-account-button" onclick="submitRegistrationForm()">Create Account</button>
+        <button type="submit" class="create-account-button" onclick="submitRegistrationForm()">Create Account</button>
     </main>
 
     <script>
