@@ -4,24 +4,340 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="../CSS/styles.css"> <!-- Link to external CSS -->
     <style>
-        /* Internal css section */
-        .checkout-summary-price {
-            top: 40px;
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .checkout-to-payment-buttons{
-            top: 15px;
+
+        /* Soft Pink and Lilac Gradient Background */
+        body {
+            background: linear-gradient(180deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(90deg, #f8c8d0, #e6c3f0); /* Soft Pink to Lilac Gradient */
+            padding: 20px 0;
+            position: relative; /* Added to position elements inside */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contains logo in a circle */
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* User Button - Positioned to the Top Right */
+        .header-buttons {
+            position: absolute;
+            top: 20px;
             right: 20px;
         }
-    </style>
+
+        .header-buttons button {
+            background-color: #e6c3f0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #d1a8e8;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1.cart-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Cart Controls Styling */
+        .cart-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-controls input {
+            margin-right: 10px;
+        }
+
+        .subtotal-container {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .subtotal-container .buy-now-buttons button {
+            background-color: #e6c3f0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .subtotal-container .buy-now-buttons button:hover {
+            background-color: #d1a8e8;
+        }
+
+        /* Cart Item Styling */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .cart-item-checkbox input {
+            margin-right: 15px;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .item-price {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Add space between the quantity buttons and the remove button */
+        }
+
+        .cart-quantity-button {
+            background-color: #f8c8d0;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-quantity-button:hover {
+            background-color: #d1a8e8;
+        }
+
+        .cart-item-remove {
+            margin-left: 15px; /* Add some margin to the left of the remove button to space it out */
+        }
+
+        .cart-item-remove button {
+            background-color: #f8c8d0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item-remove button:hover {
+            background-color: #d1a8e8;
+        }
+
+        .checkout-main {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0px 0px 30px;
+            padding: 10px;
+            gap: 20px;
+        }
+
+        .checkout-register-buttons, .checkout-to-payment-buttons, .checkout-summary-print-buttons {
+            position: relative;
+            right: 30px;
+            top: 25px;
+        }
+        
+        .checkout-register-buttons button, .checkout-to-payment-buttons button, .checkout-summary-print-buttons button {
+            background-color: #f8c8d0;
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .checkout-register-buttons button:hover, .checkout-to-payment-buttons button:hover, .checkout-summary-print-buttons button:hover {
+            background-color: #d1a8e8; 
+        }
+
+        .checkout-summary-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            gap: 40px;
+            margin-top: 0px;
+        }
+        
+        .checkout-summary-box {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0px 0px 30px;
+            width: 500px;
+            height: 200px;
+            align-items: left;
+            background-color: #b6d0e2;
+            padding: 15px 0px 0px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkout-summary-address {
+            position: relative;
+            font-size: 18px;
+            text-align: left;
+        }
+        
+        .checkout-summary-price {
+            position: relative;
+            font-size: 18px;
+            top: 50px;
+            text-align: left;
+            margin: 0px 0px 0px 0px;
+            color: #333;
+        }
+
+        .checkout-main-title {
+            position: absolute; /* Ensures positioning relative to the closest positioned ancestor */
+            text-align: center; /* Centers the text inside the container */
+            top: 15%;
+            left: 50%; /* Moves the left edge to the middle of the parent container */
+            transform: translateX(-50%); /* Adjusts the center alignment */
+            margin: 0; /* Resets any default margin */
+            font-size: 32px;
+            font-weight: bold;
+            color: #4a4a4a;
+        }
+        
+        .checkout-item-title {
+            text-align: left;
+            font-size: 32px;
+            margin: 40px 0px 0px 250px;
+            width: 500px;
+            color: #4a4a4a;
+        }
+        
+        .checkout-item-section {
+            flex: 1;
+            gap: 40px;
+            margin-top: 0px;
+        }
+        
+        .checkout-item-box {
+            display: flex;
+            margin: 15px 0px 0px 30px;
+            width: 500px;
+            align-items: center;
+            background-color: #b6d0e2;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-item-image {
+            flex: 0 0 10%;
+            text-align: left;
+        }
+        
+        .checkout-placeholder {
+            width: 80px;
+            height: 80px;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .checkout-item-details {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .checkout-payment-method-section {
+            flex: 1;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        .checkout-payment-method-box {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0px 0px 30px;
+            width: 500px;
+            height: 145px;
+            align-items: left;
+            background-color: #b6d0e2;
+            padding: 15px 0px 0px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+</style>
 </head>
 <body>
 
     <!-- Header -->
     <header>
         <a href="../index.html"> 
-            <img src="/Images/logo design gradient.png" alt="Logo" class="logo">
+            <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
         </a>
         <div class="header-buttons">
             <button>User</button>

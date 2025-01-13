@@ -12,35 +12,6 @@ body {
     color: #333;
 }
 
-/* Header Styling */
-header {
-    background-color: #87CEEB;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 1000px; /* Avoid resizing elements */
-}
-
-.logo-only-header{
-    display: flex; /* Flexbox for centering */
-    padding: 10px 20px;
-    justify-content: center; /* Horizontally center the logo */
-    align-items: center; /* Vertically center the logo */
-    padding: 10px 20px;
-}
-
-.logo {
-    width: 50px;
-    height: 50px;
-    background-color: white;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
 .search-bar {
     display: flex;
     align-items: center;
@@ -58,19 +29,6 @@ header {
     gap: 10px;
 }
 
-.header-buttons button {
-    background-color: #4682B4;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
-
-.header-buttons button:hover {
-    background-color: #4169E1; 
-}
 
 /* --Main Content-- */
 main {
@@ -78,31 +36,6 @@ main {
     min-width: 1000px;  /* Avoid resizing elements */
     padding: 50px;
 }
-
-.start-here{
-    margin-top: 50px; /* Space between the heading and "Start here" */
-    margin-bottom: 10px; /* Space between "Start here" and categories */
-    font-size: 1.5rem; 
-    color: #333; 
-}
-
-/* Background Images for Each Box (test image)
-.category:nth-child(1) {
-    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-    background-size: cover;
-}
-.category:nth-child(2) {
-    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-    background-size: cover;
-}
-.category:nth-child(3) {
-    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-    background-size: cover;
-}
-.category:nth-child(4) {
-    background-image: url('../Images/Rick\ Astley\ Never\ Gonna\ Give\ You\ Up.gif');
-    background-size: cover;
-} */
 
 /* Make transparent box to seperate section of category */
 .section-wrapper {
