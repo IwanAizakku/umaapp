@@ -12,6 +12,23 @@ $user_id = $_SESSION['user_id'];
 $product_id = $_POST['product_id'] ?? null;
 $quantity = $_POST['quantity'] ?? 1;
 
+// Get price from the productID
+if ($product_id) {
+    $stmt = $db->prepare("SELECT price FROM products WHERE product_id = ?");
+    $stmt->execute([$product_id]);
+    $productData = $stmt->fetch();
+
+    if ($productData) {
+        $price = $productData['price'];
+    } else {
+        echo json_encode(['error' => 'Product not found.']);
+        exit;
+    }
+} else {
+    echo json_encode(['error' => 'Invalid product ID.']);
+    exit;
+}
+
 if ($product_id && $quantity > 0) {
     // Check if the product exists and has enough stock
     $stmt = $db->prepare("SELECT stock_quantity FROM products WHERE product_id = ?");
@@ -39,8 +56,9 @@ if ($product_id && $quantity > 0) {
             }
         } else {
             // Add as a new item if not already in the cart
-            $stmt = $db->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)");
-            $stmt->execute([$user_id, $product_id, $quantity]);
+            $stmt = $db->prepare("INSERT INTO cart (user_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$user_id, $product_id, $quantity, $price]);
+
 
             echo json_encode(['success' => true, 'message' => 'Product added to cart.']);
         }

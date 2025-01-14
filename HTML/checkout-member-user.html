@@ -216,7 +216,7 @@
     
             <!-- Payment Method -->
             <p><strong>Payment Method:</strong></p>
-            <select>
+            <select name="payment-method">
                 <option value="fpx">FPX</option>
                 <option value="card">Credit/Debit Card</option>
                 <option value="cod">Cash on Delivery</option>
@@ -224,53 +224,108 @@
     
             <!-- Proceed to Payment Button -->
             <div class="checkout-to-payment-buttons">
-                <a href="checkout-transaction-progress.html">
-                    <button>Proceed to Checkout</button>
-                </a>
+                <button id="checkout-button">Proceed to Checkout</button>
             </div>
         </div>
     </main>
     
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        fetch('php/get-checkout-data.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Populate cart items
-                    const checkoutItemsContainer = document.querySelector(".checkout-item-section");
-                    const cartItemsTitle = checkoutItemsContainer.querySelector(".checkout-item-title");
-                    const cartItemsHTML = data.cartItems.map(item => `
-                        <div class="checkout-item-box">
-                            <div class="checkout-item-image">
-                                <img src="${item.product_image}" alt="${item.product_name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                            </div>
-                            <div class="checkout-item-details">
-                                <p class="item-title">${item.product_name}</p>
-                                <p class="item-qty">Qty: ${item.quantity}</p>
-                                <p class="item-price">RM${(item.product_price * item.quantity).toFixed(2)}</p>
-                            </div>
-                        </div>
-                    `).join('');
-                    cartItemsTitle.insertAdjacentHTML('afterend', cartItemsHTML);
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fetch user ID using AJAX from get-user.php
+            fetch('php/get-user.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('User not logged in');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const userId = data.userId;
     
-                    // Calculate and display subtotal and total
-                    const subtotal = data.cartItems.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
-                    const checkoutSummary = document.querySelector(".checkout-summary-payment-section");
-                    checkoutSummary.querySelector(".checkout-summary-price").textContent = `Subtotal: RM${subtotal.toFixed(2)}`;
-                } else {
-                    console.error("No cart items found.");
-                }
+                    // Check if user is logged in
+                    if (!userId) {
+                        alert("Please log in to proceed.");
+                        window.location.href = 'login/login.html'; // Redirect to login page if not logged in
+                    } else {
+                        console.log("Logged in as User ID:", userId);
     
-                // Populate addresses
-                const addressDropdown = document.querySelector(".checkout-summary-payment-section select");
-                addressDropdown.innerHTML = data.addresses.map(address => `
-                    <option value="${address.user_id}">${address.full_address}</option>
-                `).join('');
-            })
-        .catch(error => console.error("Failed to fetch checkout data:", error));
-    });        
-    </script>
+                        // Fetch checkout data once the user is authenticated
+                        fetch('php/get-checkout-data.php?user_id=' + userId)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Populate cart items
+                                    const checkoutItemsContainer = document.querySelector(".checkout-item-section");
+                                    const cartItemsTitle = checkoutItemsContainer.querySelector(".checkout-item-title");
+                                    const cartItemsHTML = data.cartItems.map(item => `
+                                        <div class="checkout-item-box">
+                                            <div class="checkout-item-image">
+                                                <img src="${item.product_image}" alt="${item.product_name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                            </div>
+                                            <div class="checkout-item-details">
+                                                <p class="item-title">${item.product_name}</p>
+                                                <p class="item-qty">Qty: ${item.quantity}</p>
+                                                <p class="item-price">RM${(item.product_price * item.quantity).toFixed(2)}</p>
+                                            </div>
+                                        </div>
+                                    `).join('');
+                                    cartItemsTitle.insertAdjacentHTML('afterend', cartItemsHTML);
+    
+                                    // Calculate and display subtotal and total
+                                    const subtotal = data.cartItems.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
+                                    const checkoutSummary = document.querySelector(".checkout-summary-payment-section");
+                                    checkoutSummary.querySelector(".checkout-summary-price").textContent = `Subtotal: RM${subtotal.toFixed(2)}`;
+                                } else {
+                                    console.error("No cart items found.");
+                                }
+    
+                                // Populate addresses
+                                const addressDropdown = document.querySelector(".checkout-summary-payment-section select[name='delivery-address']");
+                                addressDropdown.innerHTML = data.addresses.map(address => `
+                                    <option value="${address.user_id}">${address.full_address}</option>
+                                `).join('');
+                            })
+                            .catch(error => console.error("Failed to fetch checkout data:", error));
+    
+                        // Handle checkout button click
+                        document.querySelector("#checkout-button").addEventListener("click", (event) => {
+                            event.preventDefault(); // Prevent default button action (no page reload)
+                            const totalPrice = parseFloat(document.querySelector(".checkout-summary-price").textContent.replace('Subtotal: RM', ''));
+                            const paymentMethod = document.querySelector("select[name='payment-method']").value;
+                            const deliveryAddress = document.querySelector(".checkout-summary-payment-section select[name='delivery-address']").value;
+    
+                            // Send data to the server
+                            fetch('php/process-checkout.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: new URLSearchParams({
+                                    user_id: userId,  // Send the actual logged-in user ID
+                                    total_price: totalPrice,
+                                    payment_method: paymentMethod,
+                                    delivery_address: deliveryAddress
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Order placed successfully!');
+                                    // Redirect to order success page after successful order
+                                    window.location.href = 'checkout-summary.html';
+                                } else {
+                                    alert(`Failed to place order: ${data.message}`);
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        });
+    </script>       
     
     <!-- Footer -->
     <footer>

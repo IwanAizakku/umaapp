@@ -278,7 +278,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const productId = new URLSearchParams(window.location.search).get('product_id');
             if (productId) {
-                fetch(`php/get-product-data.php?product_id=${productId}`) // Replace with the correct PHP file path
+                fetch(`php/get-product-data.php?product_id=${productId}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.product) {

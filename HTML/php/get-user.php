@@ -11,6 +11,7 @@ if (!isset($_SESSION['username'])) {
 
 // Respond with the user's information
 echo json_encode([
-    'username' => $_SESSION['username']
+    'username' => $_SESSION['username'],
+    'userId' => $_SESSION['user_id']
 ]);
 ?>
