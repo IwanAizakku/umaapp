@@ -105,104 +105,13 @@
             background-color: #d1a8e8;
         }
 
-        /* Cart Item Styling */
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .cart-item-checkbox input {
-            margin-right: 15px;
-        }
-
-        .cart-item-image {
-            width: 60px;
-            height: 60px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-            text-align: left;
-            padding: 0 20px;
-        }
-
-        .item-title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .item-price {
-            font-size: 16px;
-            color: #777;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            margin-right: 20px; /* Add space between the quantity buttons and the remove button */
-        }
-
-        .cart-quantity-button {
-            background-color: #f8c8d0;
-            border: none;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .cart-quantity-button:hover {
-            background-color: #d1a8e8;
-        }
-
-        .cart-item-remove {
-            margin-left: 15px; /* Add some margin to the left of the remove button to space it out */
-        }
-
-        .cart-item-remove button {
-            background-color: #f8c8d0;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .cart-item-remove button:hover {
-            background-color: #d1a8e8;
-        }
-
-        .checkout-main {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0px 0px 30px;
-            padding: 10px;
-            gap: 20px;
-        }
-
-        .checkout-register-buttons, .checkout-to-payment-buttons, .checkout-summary-print-buttons {
+        .checkout-summary-print-buttons {
             position: relative;
             right: 30px;
             top: 25px;
         }
         
-        .checkout-register-buttons button, .checkout-to-payment-buttons button, .checkout-summary-print-buttons button {
+        .checkout-summary-print-buttons button {
             background-color: #f8c8d0;
             color: rgb(255, 255, 255);
             border: none;
@@ -212,7 +121,7 @@
             cursor: pointer;
         }
         
-        .checkout-register-buttons button:hover, .checkout-to-payment-buttons button:hover, .checkout-summary-print-buttons button:hover {
+        .checkout-summary-print-buttons button:hover {
             background-color: #d1a8e8; 
         }
 
@@ -265,11 +174,32 @@
             font-weight: bold;
             color: #4a4a4a;
         }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .item-price {
+            font-size: 18px;
+            font-weight: bold; 
+            margin-top: 20px;
+            color: #16a085;
+            margin-top: 5px;
+        }
+
+        .checkout-main {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0px 0px 30px;
+            padding: 10px;
+            gap: 20px;
+        }
         
         .checkout-item-title {
             text-align: left;
             font-size: 32px;
-            margin: 40px 0px 0px 250px;
+            margin: 40px 0px 0px 240px;
             width: 500px;
             color: #4a4a4a;
         }
@@ -284,7 +214,7 @@
         .checkout-item-box {
             display: flex;
             justify-content: center;
-            flex-direction: row;
+            flex-direction: column;
             background-color: #fff;
             padding: 10px; /* Reduced padding */
             margin-left: 15%;
@@ -298,12 +228,6 @@
 
         .checkout-item-image img{
             max-height: 200px;
-            border-radius: 8px;
-            margin-right: 7%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
             color: #888;
         }
         
@@ -362,7 +286,7 @@
                         <label for="payment-method-section">Payment method:</label>
                         <span id="payment-method">FPX</span>
                     </div>
-                    <div class="checkout-to-payment-buttons">
+                    <div class="checkout-summary-print-buttons">
                         <form action="">
                             <button>Print Receipt</button>
                         </form>
@@ -424,14 +348,11 @@
                     return;
                 }
         
-                // Debugging API response
-                console.log('API Response:', data);
-        
                 // Populate the order items
                 const itemsSection = document.querySelector('.checkout-item-section');
                 itemsSection.innerHTML = ''; // Clear existing template items
                 data.items.forEach(item => {
-                    const price = parseFloat(item.product_price) || 0;
+                    const price = parseFloat(item.price) || 0;
                     const itemBox = `
                         <div class="checkout-item-box">
                             <div class="checkout-item-image">
