@@ -1,0 +1,7 @@
+Name,Data Type,Null,Default,Extra
+cart_id,int(11),NO,,"PRIMARY KEY, AUTO_INCREMENT"
+user_id,int(11),NO,,FOREIGN KEY (users.user_id) ON DELETE CASCADE
+product_id,int(11),NO,,FOREIGN KEY (products.product_id) ON DELETE CASCADE
+quantity,int(11),NO,,
+price,"decimal(10,2)",NO,,
+added_at,timestamp,NO,current_timestamp(),

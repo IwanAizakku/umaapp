@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Payment</title>
     <style>
         /* General body styling */
         body {
@@ -329,12 +329,78 @@
             <div class="checkout-transaction-section">
                 <div class="checkout-transaction-box">
                     <div class="checkout-transaction-buttons">
-                        <form action="checkout-transaction-complete.html">
-                            <button>Complete transaction</button>
+                        <form id="complete-transaction-form">
+                            <button id="complete-transaction">Complete transaction</button>
                         </form>
                     </div>
                 </div>
             </div>
     </main>
+
+    <script>
+        document.getElementById('complete-transaction-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+        
+            // Fetch user ID using AJAX from get-user.php
+            fetch('php/get-user.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('User not logged in');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const userId = data.userId;
+        
+                    // Check if user is logged in
+                    if (!userId) {
+                        alert("Please log in to proceed.");
+                        window.location.href = 'login/login.html'; // Redirect to login page if not logged in
+                    } else {
+                        console.log("Logged in as User ID:", userId);
+        
+                        // Fetch the payment ID for the user
+                        fetch(`php/get-payment-id.php?user_id=${userId}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    const paymentId = data.payment_id;
+        
+                                    // Send an AJAX POST request to process-payment.php
+                                    fetch('php/process-payment.php', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                        body: new URLSearchParams({ payment_id: paymentId })
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                // Redirect to the transaction complete page
+                                                window.location.href = 'checkout-transaction-complete.html';
+                                            } else {
+                                                alert(`Error: ${data.message}`);
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('An unexpected error occurred.');
+                                        });
+                                } else {
+                                    alert(`Error: ${data.message}`);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Failed to retrieve payment information.');
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Unable to fetch user information. Please log in.");
+                    window.location.href = 'login/login.html'; // Redirect to login page if fetching fails
+                });
+        });        
+    </script>
 </body>
 </html>

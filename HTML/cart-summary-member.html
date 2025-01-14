@@ -215,9 +215,7 @@
             <div class="subtotal-container">
                 <p id="subtotal">Subtotal: RM0.00</p>
                 <div class="buy-now-buttons">
-                    <form action="checkout-member-user.html">
-                        <button>Buy now</button>
-                    </form>
+                    <button id="buy-now-button" onclick="validateCartBeforeCheckout()">Buy now</button>
                 </div>
             </div>
         </div>
@@ -339,6 +337,17 @@
 
         // Initial fetch of cart items
         fetchCartItems();
+
+        function validateCartBeforeCheckout() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            // Check if there are any cart items
+            if (cartItemsContainer.children.length === 0) {
+                alert('Your cart is empty. Please add items before proceeding to checkout.');
+                return; // Stop further execution
+            }
+            // If the cart is not empty, redirect to the checkout page
+            window.location.href = 'checkout-member-user.html';
+        }
     </script>
 </body>
 </html>

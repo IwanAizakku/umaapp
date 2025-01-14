@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Checkout summary</title>
     <style>
         /* Reset default margin and padding */
         * {
@@ -232,7 +232,8 @@
             width: 500px;
             height: 200px;
             align-items: left;
-            background-color: #b6d0e2;
+            background-color: #fff;
+            border: 2px solid #f1c1d1;
             padding: 15px 0px 0px 30px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -275,36 +276,35 @@
         
         .checkout-item-section {
             flex: 1;
-            gap: 40px;
-            margin-top: 0px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduced gap between items */
         }
         
         .checkout-item-box {
             display: flex;
-            margin: 15px 0px 0px 30px;
-            width: 500px;
-            align-items: center;
-            background-color: #b6d0e2;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            flex-direction: row;
+            background-color: #fff;
+            padding: 10px; /* Reduced padding */
+            margin-left: 15%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f1c1d1;
+            transition: transform 0.3s ease-in-out;
+            max-width: 350px;
+            min-height: 150px; /* Reduced height */
         }
 
-        .checkout-item-image {
-            flex: 0 0 10%;
-            text-align: left;
-        }
-        
-        .checkout-placeholder {
-            width: 80px;
-            height: 80px;
-            background-color: #ccc;
+        .checkout-item-image img{
+            max-height: 200px;
+            border-radius: 8px;
+            margin-right: 7%;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 5px;
-            font-size: 12px;
-            color: #333;
+            font-size: 18px;
+            color: #888;
         }
         
         .checkout-item-details {
@@ -325,15 +325,15 @@
             width: 500px;
             height: 145px;
             align-items: left;
-            background-color: #b6d0e2;
+            background-color: #fff;
             padding: 15px 0px 0px 30px;
+            border: 2px solid #f1c1d1;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 </style>
 </head>
 <body>
-
     <!-- Header -->
     <header>
         <a href="index-member.html"> 
@@ -346,61 +346,118 @@
 
     <!-- Main -->
     <main>
-    <div class="checkout-main-title">Order summary</div>
-    <div class="checkout-item-title">Your items</div>
-    <div class="checkout-main">
-        <div class="checkout-item-section">
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">
-                    <div class="checkout-placeholder">Item</div>
-                </div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Title</p>
-                    <p class="item-price">Price: RM00.00</p>
-                </div>
+        <div class="checkout-main-title">Order summary</div>
+        <div class="checkout-item-title">Your items</div>
+        <div class="checkout-main">
+            <div class="checkout-item-section">
+                <!-- Items will be dynamically inserted here -->
             </div>
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">
-                    <div class="checkout-placeholder">Item</div>
+            <div class="checkout-summary-section">
+                <div class="checkout-summary-box">
+                    <p class="checkout-summary-address" for="User-address-line-1">Address</p>
+                    <p class="checkout-summary-price">Total: RM00.00</p>
                 </div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Title</p>
-                    <p class="item-price">Price: RM00.00</p>
-                </div>
-            </div>
-            <div class="checkout-item-box">
-                <div class="checkout-item-image">
-                    <div class="checkout-placeholder">Item</div>
-                </div>
-                <div class="checkout-item-details">
-                    <p class="item-title">Title</p>
-                    <p class="item-price">Price: RM00.00</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="checkout-summary-section">
-            <div class="checkout-summary-box">
-                <p class="checkout-summary-address" for="User-address-line-1">Area</p>
-                <p class="checkout-summary-address" for="User-address-line-2">Street</p>
-                <p class="checkout-summary-address" for="User-address-line-3">12345, State</p>
-                <p class="checkout-summary-address" for="User-address-line-3">Country</p>
-                <p class="checkout-summary-price">Subtotal: RM00.00</p>
-                <p class="checkout-summary-price">Total: RM00.00</p>
-            </div>
-            <div class="checkout-payment-method-box">
-                <div class="choice-bar">
-                    <label for="Payment-method">Payment method:
-                        <label id="Payment-method">FPX</label>
-                    </label>
-                </div>
-                <div class="checkout-to-payment-buttons">
-                    <form action="login.html">
-                        <button>Print Receipt</button>
-                    </form>
+                <div class="checkout-payment-method-box">
+                    <div class="choice-bar">
+                        <label for="payment-method-section">Payment method:</label>
+                        <span id="payment-method">FPX</span>
+                    </div>
+                    <div class="checkout-to-payment-buttons">
+                        <form action="">
+                            <button>Print Receipt</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // Fetch user ID dynamically
+        fetch('php/get-user.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('User not logged in');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const userId = data.userId;
+
+                // Check if user is logged in
+                if (!userId) {
+                    alert("Please log in to proceed.");
+                    window.location.href = 'login/login.html'; // Redirect to login page if not logged in
+                } else {
+                    console.log("Logged in as User ID:", userId);
+
+                    // Fetch the order ID for the logged-in user
+                    fetch(`php/get-order-id.php?user_id=${userId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                const orderId = data.order_id;
+
+                                // Load checkout summary using the order ID
+                                loadCheckoutSummary(orderId);
+                            } else {
+                                console.error('Error:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching order ID:', error);
+                        });
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user:', error);
+            });
+
+        // Function to load the checkout summary
+        async function loadCheckoutSummary(orderId) {
+            try {
+                const response = await fetch(`php/get-payment-data.php?order_id=${orderId}`);
+                const data = await response.json();
+        
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+        
+                // Debugging API response
+                console.log('API Response:', data);
+        
+                // Populate the order items
+                const itemsSection = document.querySelector('.checkout-item-section');
+                itemsSection.innerHTML = ''; // Clear existing template items
+                data.items.forEach(item => {
+                    const price = parseFloat(item.product_price) || 0;
+                    const itemBox = `
+                        <div class="checkout-item-box">
+                            <div class="checkout-item-image">
+                                <img src="${item.product_image}" alt="${item.product_name}" class="product-image">
+                            </div>
+                            <div class="checkout-item-details">
+                                <p class="item-title">${item.product_name}</p>
+                                <p class="item-quantity">Quantity: ${item.quantity}</p>
+                                <p class="item-price">Price: RM${price.toFixed(2)}</p>
+                            </div>
+                        </div>`;
+                    itemsSection.innerHTML += itemBox;
+                });                
+        
+                // Populate the order summary
+                const addressLines = document.querySelectorAll('.checkout-summary-address');
+                addressLines[0].textContent = data.order.delivery_address;
+                document.querySelector('.checkout-summary-price').textContent = `Total: RM${(parseFloat(data.order.total_price) || 0).toFixed(2)}`;
+        
+                // Populate the payment method
+                document.getElementById('payment-method').textContent = data.payment.payment_method;
+        
+            } catch (error) {
+                console.error('Error loading checkout summary:', error);
+            }
+        }        
+    </script>
 </body>
 </html>

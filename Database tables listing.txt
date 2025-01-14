@@ -47,7 +47,7 @@
 	2 	order_id Index 												int(11) 										No 		None 			  	  	
 	3 	payment_method 	enum('card', 'e-wallet', 'bank_transfer') 				utf8mb4_general_ci 					No 		None 			  	  	
 	4 	payment_status 	enum('pending', 'completed', 'failed') 					utf8mb4_general_ci 					Yes 	pending 			  	  	
-	5 	trans_date 	timestamp 																						No 		current_timestamp() 		
+	5 	transaction_date 	timestamp 																						No 		current_timestamp() 		
 	
 	products
 	# 	Name 					Type 			Collation 	Attributes 	Null 	Default 	Comments 	Extra 	
@@ -85,3 +85,12 @@
 	10 	city 															varchar(100) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
 	11 	state 															varchar(100) 	utf8mb4_general_ci 				Yes 	NULL 			  	  	
 	12 	country 														varchar(100) 	utf8mb4_general_ci 				Yes 	NULL
+	
+	
+	SQL query to add
+	ALTER TABLE orders
+ADD COLUMN delivery_address VARCHAR(255) NOT NULL AFTER total_price;
+
+ALTER TABLE cart
+ADD COLUMN price decimal(10,2) NOT NULL AFTER quantity;
+

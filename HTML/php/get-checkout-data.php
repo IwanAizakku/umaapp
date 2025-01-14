@@ -28,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $stmtCart->execute();
             $cartItems = $stmtCart->fetchAll(PDO::FETCH_ASSOC);
 
-            // Fetch addresses for the user
+            // Fetch addresses for the user (" ', ', " = spacing)
             $addressQuery = "
                 SELECT 
                     user_id, 
-                    CONCAT(address, ', ', city, ', ', state) AS full_address 
+                    CONCAT(address, ', ', postcode, ', ', city, ', ', state, ', ', country) AS full_address 
                 FROM 
                     users 
                 WHERE 

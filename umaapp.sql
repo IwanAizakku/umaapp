@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: sql305.infinityfree.com
--- Generation Time: Jan 14, 2025 at 04:53 AM
--- Server version: 10.6.19-MariaDB
--- PHP Version: 7.2.22
+-- Host: 127.0.0.1
+-- Generation Time: Jan 14, 2025 at 02:53 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `if0_37900427_umaapp`
+-- Database: `umaapp`
 --
 
 -- --------------------------------------------------------
@@ -36,13 +35,6 @@ CREATE TABLE `cart` (
   `price` decimal(10,2) NOT NULL,
   `added_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `quantity`, `price`, `added_at`) VALUES
-(4, 8, 2, 1, '0.00', '2025-01-13 15:08:24');
 
 -- --------------------------------------------------------
 
@@ -93,6 +85,13 @@ CREATE TABLE `orderitems` (
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orderitems`
+--
+
+INSERT INTO `orderitems` (`order_item_id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
+(13, 26, 47, 2, 50.00);
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +108,13 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `total_price`, `delivery_address`, `status`, `created_at`, `updated_at`) VALUES
+(26, 8, 100.00, 'Taman Penampang, 89500, Penampang, Sabah, Malaysia', 'received', '2025-01-14 13:50:38', '2025-01-14 13:50:38');
+
 -- --------------------------------------------------------
 
 --
@@ -118,10 +124,17 @@ CREATE TABLE `orders` (
 CREATE TABLE `payments` (
   `payment_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `payment_method` enum('card','e-wallet','bank_transfer') NOT NULL,
+  `payment_method` enum('fpx','card','cod') NOT NULL,
   `payment_status` enum('pending','completed','failed') DEFAULT 'pending',
   `transaction_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `payment_status`, `transaction_date`) VALUES
+(16, 26, 'fpx', 'completed', '2025-01-14 13:50:38');
 
 -- --------------------------------------------------------
 
@@ -146,15 +159,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `retailer_id`, `category_id`, `name`, `description`, `price`, `stock_quantity`, `image_url`, `created_at`) VALUES
-(2, 1, 1, 'Notebook', 'A 100-page notebook', '25.50', 50, '../Images/notebook.jpg', '2025-01-03 20:29:42'),
-(41, 8, 2, 'Laptop', 'High-performance laptop ideal for programming and research', '1500.00', 25, '../Images/laptop.jpg', '2025-01-04 02:00:00'),
-(42, 8, 2, 'Noise-Cancelling Headphones', 'Headphones for focused studying in noisy environments', '250.00', 40, '../Images/headphones.jpg', '2025-01-04 02:05:00'),
-(43, 1, 2, 'Wireless Mouse', 'Ergonomic mouse for comfortable usage during long study sessions', '30.00', 60, '../Images/mouse.jpg', '2025-01-04 02:10:00'),
-(44, 1, 3, 'Introduction to Algorithms', 'Comprehensive guide to algorithms used in software development', '120.00', 50, '../Images/book1.jpg', '2025-01-04 02:15:00'),
-(45, 1, 3, 'Advanced Physics Textbook', 'Detailed physics textbook for engineering students', '80.00', 40, '../Images/book2.jpg', '2025-01-04 02:20:00'),
-(46, 1, 3, 'Notebooks Pack', 'Set of 5 ruled notebooks for class notes', '15.00', 150, '../Images/notebookset.jpg', '2025-01-04 02:30:00'),
-(47, 1, 1, 'Scientific Calculator', 'Essential tool for math and engineering courses', '50.00', 120, '../Images/cal.jpg', '2025-01-04 02:35:00'),
-(49, 1, 1, 'Highlighter Set', 'Set of 5 colorful highlighters for marking important notes', '8.00', 100, '../Images/highlighter.jpg', '2025-01-04 02:45:00');
+(2, 1, 1, 'Notebook', 'A 100-page notebook', 25.50, 50, '../Images/notebook.jpg', '2025-01-03 20:29:42'),
+(41, 8, 2, 'Laptop', 'High-performance laptop ideal for programming and research', 1500.00, 25, '../Images/laptop.jpg', '2025-01-04 02:00:00'),
+(42, 8, 2, 'Noise-Cancelling Headphones', 'Headphones for focused studying in noisy environments', 250.00, 40, '../Images/headphones.jpg', '2025-01-04 02:05:00'),
+(43, 1, 2, 'Wireless Mouse', 'Ergonomic mouse for comfortable usage during long study sessions', 30.00, 60, '../Images/mouse.jpg', '2025-01-04 02:10:00'),
+(44, 1, 3, 'Introduction to Algorithms', 'Comprehensive guide to algorithms used in software development', 120.00, 50, '../Images/book1.jpg', '2025-01-04 02:15:00'),
+(45, 1, 3, 'Advanced Physics Textbook', 'Detailed physics textbook for engineering students', 80.00, 40, '../Images/book2.jpg', '2025-01-04 02:20:00'),
+(46, 1, 3, 'Notebooks Pack', 'Set of 5 ruled notebooks for class notes', 15.00, 150, '../Images/notebookset.jpg', '2025-01-04 02:30:00'),
+(47, 1, 1, 'Scientific Calculator', 'Essential tool for math and engineering courses', 50.00, 120, '../Images/cal.jpg', '2025-01-04 02:35:00'),
+(49, 1, 1, 'Highlighter Set', 'Set of 5 colorful highlighters for marking important notes', 8.00, 100, '../Images/highlighter.jpg', '2025-01-04 02:45:00');
 
 -- --------------------------------------------------------
 
@@ -166,8 +179,11 @@ CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `rating` decimal(2,1) DEFAULT NULL
-) ;
+  `rating` decimal(2,1) DEFAULT NULL CHECK (`rating` >= 1.0 and `rating` <= 5.0),
+  `review_text` varchar(255) DEFAULT NULL,
+  `review_image_url` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -197,7 +213,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `profile_picture_url`, `address`, `created_at`, `postcode`, `city`, `state`, `country`) VALUES
 (1, 'Student1', 'student@example.com', '$2y$10$3iP15Rnb/6l8JZtVPNRLNOD.7zeVxUSkqRTfulVQFzP1BvnFGmJIG', 'student', 'NULL', '123 Campus Street', '2025-01-03 20:26:13', NULL, NULL, NULL, NULL),
 (8, 'Ivan', 'ivan@gmail.com', '$2y$10$1dj8V07P4/8GNMZXlzlEaOUHC2glLEnL6jqV7sto9hqwVyTdjLWBO', 'student', NULL, 'Taman Penampang', '2025-01-04 20:42:08', '89500', 'Penampang', 'Sabah', 'Malaysia'),
-(13, 'Isaac', 'isaac20@gmail.com', '$2y$10$Zz0YbojKKJLZYukYY/d4WeejJv1CtPMysMH9PpAcxEujW3sBh1z5u', 'student', NULL, 'Address', '2025-01-13 15:07:39', '89500', 'City', 'State', 'Country');
+(9, 'Test 2', 'testemail@gmail.com', '$2y$10$BCpTJFNZeoOEjpZGZS1vGOi2KaoFB/2pLn0cUzlO0T.ZAyMqMuzSy', 'student', NULL, 'Penampang', '2025-01-05 03:25:20', '89500', 'Penampang', 'Sabah', 'Malaysia'),
+(15, 'Isaac', 'isaac20@gmail.com', '$2y$10$kFkeMyLJLTayppgCdiPUF.U.xe8h6rFAHVhGBURlaH6tU7Bq0VagC', 'student', NULL, 'Address', '2025-01-13 15:00:21', '89500', 'City', 'State', 'Country');
 
 --
 -- Indexes for dumped tables
@@ -256,6 +273,14 @@ ALTER TABLE `products`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -271,7 +296,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -289,19 +314,19 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -313,13 +338,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -363,6 +388,13 @@ ALTER TABLE `payments`
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`retailer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

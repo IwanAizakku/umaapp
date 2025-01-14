@@ -66,6 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
+        // Remove items from the cart table once the order is successful 
+        $stmt = $db->prepare("DELETE FROM cart WHERE user_id = :user_id");
+        $stmt->execute([':user_id' => $userId]);
+
         // Insert payment into the payments table
         $stmt = $db->prepare("
             INSERT INTO payments (order_id, payment_method, payment_status, transaction_date)
@@ -88,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 }
 ?>
+
 
 
 

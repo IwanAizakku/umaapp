@@ -279,10 +279,10 @@
                                     console.error("No cart items found.");
                                 }
     
-                                // Populate addresses
-                                const addressDropdown = document.querySelector(".checkout-summary-payment-section select[name='delivery-address']");
+                                // Populate addresses box from user_id
+                                const addressDropdown = document.querySelector("select[name='delivery-address']");
                                 addressDropdown.innerHTML = data.addresses.map(address => `
-                                    <option value="${address.user_id}">${address.full_address}</option>
+                                     <option value="${address.full_address}">${address.full_address}</option>
                                 `).join('');
                             })
                             .catch(error => console.error("Failed to fetch checkout data:", error));
@@ -292,7 +292,7 @@
                             event.preventDefault(); // Prevent default button action (no page reload)
                             const totalPrice = parseFloat(document.querySelector(".checkout-summary-price").textContent.replace('Subtotal: RM', ''));
                             const paymentMethod = document.querySelector("select[name='payment-method']").value;
-                            const deliveryAddress = document.querySelector(".checkout-summary-payment-section select[name='delivery-address']").value;
+                            const deliveryAddress = document.querySelector("select[name='delivery-address']").value;
     
                             // Send data to the server
                             fetch('php/process-checkout.php', {
@@ -310,9 +310,9 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    alert('Order placed successfully!');
+                                    alert('Order placed successfully! Redirecting to the payment page.');
                                     // Redirect to order success page after successful order
-                                    window.location.href = 'checkout-summary.html';
+                                    window.location.href = 'checkout-transaction-progress.html';
                                 } else {
                                     alert(`Failed to place order: ${data.message}`);
                                 }
