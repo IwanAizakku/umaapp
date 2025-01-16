@@ -362,8 +362,12 @@
         
             function renderReviews(reviews) {
                 if (!reviews || reviews.length === 0) {
-                    reviewsContainer.innerHTML = '<p>No reviews yet. Be the first to review this product!</p>';
-                    return;
+                    reviewsContainer.innerHTML = `
+                    <p style="text-align: center; font-style: italic; margin: 20px 0;">
+                        No reviews yet. Be the first to review this product!
+                    </p>
+                `;
+                return;
                 }
         
                 reviewsContainer.innerHTML = reviews.map(review => `
