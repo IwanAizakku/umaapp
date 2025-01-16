@@ -33,13 +33,16 @@
 	5 	price 					decimal(10,2) 							No 		None 		
 	
 	orders
-	# 	Name 					Type 													Collation 				Attributes 	Null 	Default 	Comments 	Extra 	 	
-	1 	order_id Primary 		int(11) 																					No 		None 					AUTO_INCREMENT 	
-	2 	user_id Index 			int(11) 																					No 		None 			  	
-	3 	total_price 			decimal(10,2) 																				No 		None 			  	  	
-	4 	status 					enum('received', 'processing', 'ready', 'completed... 	utf8mb4_general_ci 					Yes 	received 			 	
-	5 	created_at 	timestamp 																								No 		current_timestamp() 			
-	6 	updated_at 	timestamp 																								No 		current_timestamp() 	ON UPDATE CURRENT_TIMESTAMP() 	
+	# 	Name 	Type 	Collation 	Attributes 	Null 	Default 	Comments 	Extra 	Action
+	1 	order_id Primary 	int(11) 			No 	None 		AUTO_INCREMENT 	Change Change 	Drop Drop 	
+	2 	user_id Index 	int(11) 			No 	None 			Change Change 	Drop Drop 	
+	3 	session_id 	varchar(255) 	utf8mb4_general_ci 		Yes 	NULL 			Change Change 	Drop Drop 	
+	4 	total_price 	decimal(10,2) 			No 	None 			Change Change 	Drop Drop 	
+	5 	delivery_address 	varchar(255) 	utf8mb4_general_ci 		No 	None 			Change Change 	Drop Drop 	
+	6 	status 	enum('received', 'processing', 'ready', 'completed... 	utf8mb4_general_ci 		Yes 	received 			Change Change 	Drop Drop 	
+	7 	created_at 	timestamp 			No 	current_timestamp() 			Change Change 	Drop Drop 	
+	8 	updated_at 	timestamp 			No 	current_timestamp() 		ON UPDATE CURRENT_TIMESTAMP() 	Change Change 	Drop Drop 	
+
 	
 	payments
 	# 	Name 														Type 		Collation 				Attributes 	Null 	Default 	Comments 	Extra 		
