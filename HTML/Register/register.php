@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die("Passwords do not match!");
         }
 
-        // Hash the password
+        // Hash the password before saving into database
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
         // Handle file upload
@@ -60,10 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $profile_picture_url = "/Images/profile-picture/" . $upload_name;
         }
 
+        // Set the timezone to UTC+8
+        $timezone = new DateTimeZone('Asia/Kuala_Lumpur'); // UTC+8 timezone
+        $createdAt = new DateTime('now', $timezone);
+        $formattedCreatedAt = $createdAt->format('Y-m-d H:i:s'); // Format the current time for MySQL
+
         // Prepare the SQL query
         $stmt = $db->prepare("
-            INSERT INTO users (username, email, password_hash, role, profile_picture_url, address, postcode, city, state, country)
-            VALUES (:username, :email, :password_hash, :role, :profile_picture_url, :address, :postcode, :city, :state, :country)
+            INSERT INTO users (username, email, password_hash, role, profile_picture_url, address, postcode, city, state, country, created_at)
+            VALUES (:username, :email, :password_hash, :role, :profile_picture_url, :address, :postcode, :city, :state, :country, :created_at)
         ");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
@@ -75,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':city', $city);
         $stmt->bindParam(':state', $state);
         $stmt->bindParam(':country', $country);
+        $stmt->bindParam(':created_at', $formattedCreatedAt); // Bind the formatted date
 
         // Execute and check
         if ($stmt->execute()) {

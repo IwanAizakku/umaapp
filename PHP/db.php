@@ -1,5 +1,8 @@
 <?php
 
+// Set default timezone (Malaysia area)
+date_default_timezone_set('Asia/Kuala_Lumpur');
+
 /* 
 - Database configuration for server hosting -
 $host = "sql305.infinityfree.com";
@@ -19,4 +22,5 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+
 ?>
