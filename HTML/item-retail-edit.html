@@ -249,7 +249,12 @@
             <!-- Category -->
             <div class="form-group">
                 <label for="item-category">Category:</label>
-                <input type="text" id="item-category" name="item-category" placeholder="Current item category" required>
+                <select id="item-category" name="category" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="Category 1">Stationery</option>
+                    <option value="Category 1">Electronics</option>
+                    <option value="Category 1">Books</option>
+                </select>   
             </div>
 
             <!-- Shop Selection -->
