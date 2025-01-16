@@ -152,6 +152,82 @@
             .category:active {
                 transform: scale(1); /* Reset scale when clicked */
             }
+            .item-page-main {
+                display: flex;
+                gap: 40px;
+                flex-direction: row; /* Side-by-side layout for thumbnail and info */
+            }
+            .container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    
+                    
+                }
+                .box {
+                    width: 20%; /* Adjust the width to make space for 3 boxes per row */
+                    height: 250px;
+                    background-color: white;
+                    margin:50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                      
+                }
+                .item-image img {
+                    max-width: 100%; /* Ensure the image doesn't overflow */
+                    height: 100px; /* Maintain aspect ratio */
+                    border-radius: 5px; /* Optional: round the image corners */
+                }
+                .item-placeholder {
+                    width: 100%;
+                    max-width: 350px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    display: flex;
+                    flex-direction: column; /* Stack children vertically */
+                    align-items: center; /* Center content horizontally */
+                    justify-content: flex-start; /* Align content to the top */
+                    font-size: 18px;
+                    border: 5px solid black;
+                    color: #888;
+                    padding: 10px;
+                 }
+                 .item-name {
+                    margin-top: 10px; /* Add spacing between image and product name */
+                    font-size: 16px;
+                    color: #333; /* Darker text for better readability */
+                    text-align: center; /* Center-align the product name */
+                }
+                .add-button button {
+                padding: 12px 25px;
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient button */
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 30px; /* Rounded corners for a smoother look */
+                font-size: 25px;
+                font-weight: bold;
+                transition: all 0.3s ease; /* Smooth transition */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            }
+            .add-button button:hover {
+                transform: scale(1.1); /* Make the button slightly larger */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+                background: linear-gradient(90deg, #f1c1d1, #d8aad2); /* Inverted gradient */
+            }
+            .header-buttons button:active {
+                transform: scale(1); /* Reset the scale when clicked */
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Normal gradient on click */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Normal shadow */
+            }
+            .add-button form {
+                display:inline;
+                margin-left: 10px;
+            }
+
+                
+            
         </style>
     </head>
 
@@ -163,7 +239,7 @@
                 <label for="search">Search:</label>
                 <input type="text" id="search" placeholder="Search...">
             </div>
-            <a href="index-member.html">
+            <a href="index-retail.html">
                 <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
             </a>
             <div class="header-buttons">
@@ -183,11 +259,117 @@
         <!-- Main -->
         <main>
             <h1>Hello <span id="username-placeholder">Guest</span></h1>
-            <p class="start-here">Start here</p>
-            <div class="categories">
-                <a href="category.html" class="category" title="View Categories">Category</a>
-                <a href="index-retail.html" class="category" title="View Services">Services</a>
+            <p class="start-here">Your Item list:</p>
+
+            <div class="add-button">
+            <form action="item-retail-add.html">
+                <button>Add Item</button>
+            </form>
+        </div>
+
+            <div class="container">
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                  
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
+                <div class="box">
+                    <section class="item-image">
+                        <div class="item-placeholder">
+                            <img src="../images/item view.png" alt="Item Thumbnail">
+                        </div>
+                    </section>
+                    <div class="item-name">
+                        product name
+                    </div>
+                </div>
             </div>
+                
+
+                
+            
+
+            </div>
+            </div>
+
+            </div>
+        
         </main>
 
         <script>
