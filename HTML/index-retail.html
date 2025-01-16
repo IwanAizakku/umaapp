@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UMA members Homepage</title>
+        <title>UMA retailers Homepage</title>
         <style>
             /* Remove default margin and padding */
             * {
@@ -203,22 +203,38 @@
                 }
                 .add-button button {
                 padding: 12px 25px;
+                margin-top:20px;
                 background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient button */
                 color: white;
                 border: none;
                 cursor: pointer;
                 border-radius: 30px; /* Rounded corners for a smoother look */
+                text-decoration: none;
                 font-size: 25px;
                 font-weight: bold;
                 transition: all 0.3s ease; /* Smooth transition */
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             }
-            .add-button button:hover {
+
+            .view-item-button {
+                padding: 12px 25px;
+                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient button */
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 30px; /* Rounded corners for a smoother look */
+                text-decoration: none;
+                font-size: 25px;
+                font-weight: bold;
+                transition: all 0.3s ease; /* Smooth transition */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            }
+            .add-button button:hover, .view-item-button:hover {
                 transform: scale(1.1); /* Make the button slightly larger */
                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
                 background: linear-gradient(90deg, #f1c1d1, #d8aad2); /* Inverted gradient */
             }
-            .header-buttons button:active {
+            .header-buttons button:active, .view-item-button:active {
                 transform: scale(1); /* Reset the scale when clicked */
                 background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Normal gradient on click */
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Normal shadow */
@@ -285,165 +301,71 @@
             </form>
         </div>
 
-        <div class="container">
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-                
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-            <div class="box">
-                <div class="item-image">
-                    <div class="item-placeholder">
-                        <img src="../images/item view.png" alt="Item Thumbnail">
-                    </div>
-                </div>
-                <div class="item-name">
-                    product name
-                </div>
-                <div class="delete-button">
-                    <form action="item-retail-add.html">
-                        <button>Delete Item</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <div id="product-container" class="container"></div>
     </main>
 
-        <script>
-            // Fetch user data from the backend
-            fetch('php/get-user.php')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('User not logged in');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Insert the username into the placeholder
-                    document.getElementById('username-placeholder').textContent = data.username;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Optionally redirect to login page if user is not logged in
-                    window.location.href = 'login/login.html';
+    <script>
+        // Fetch user data from the backend
+        fetch('php/get-user.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('User not logged in');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Insert the username into the placeholder
+            document.getElementById('username-placeholder').textContent = data.username;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Optionally redirect to login page if user is not logged in
+            window.location.href = 'login/login.html';
+        });
+
+
+        // Fetch products from the backend
+        fetch('php/get-products.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                return response.json();
+            })
+            .then(products => {
+                const container = document.getElementById('product-container');
+    
+                // Check if there are products
+                if (products.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; font-size:18px; color:#555;">No products found.</p>';
+                    return;
+                }
+    
+                // Render each product
+                products.forEach(product => {
+                    const box = document.createElement('div');
+                    box.className = 'box';
+                    box.innerHTML = `
+                        <div class="item-image">
+                            <div class="item-placeholder">
+                                <img src="${product.image_url || '../images/item view.png'}" alt="${product.name}">
+                            </div>
+                        </div>
+                        <div class="item-name">${product.name}</div>
+                        <div class="item-price">RM ${isNaN(parseFloat(product.price)) ? "0.00" : parseFloat(product.price).toFixed(2)}</div>
+                        <a href="item-retail-view.html?product_id=${product.product_id}" class="view-item-button">
+                        View item
+                        </a>
+                    `;
+                    container.appendChild(box);
                 });
-        </script>
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const container = document.getElementById('product-container');
+                container.innerHTML = '<p style="text-align:center; font-size:18px; color:red;">Failed to load products. Please try again later.</p>';
+            });
+    </script>
 
     </body>
 </html>

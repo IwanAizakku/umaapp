@@ -221,7 +221,7 @@
     <!-- Header -->
     <header>
         <a href="index-member.html">
-            <img src="/Images/logo design gradient.png" alt="Logo" class="logo">
+            <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
         </a>
         <div class="header-buttons">
             <button class="user-button">User</button>
@@ -238,49 +238,56 @@
             </div>
         </section>
 
-        <form id="item-form">
+        <form id="item-form" action="php/add-product.php" method="POST" enctype="multipart/form-data">
+            
             <!-- Item Title -->
             <div class="form-group">
                 <label for="item-title">Item Title:</label>
                 <input type="text" id="item-title" name="item-title" placeholder="Enter item title" required>
             </div>
-
+        
             <!-- Item Price -->
             <div class="form-group">
                 <label for="item-price">Price:</label>
                 <input type="text" id="item-price" name="item-price" placeholder="Enter item price" required>
             </div>
-
+        
             <!-- Item Description -->
             <div class="form-group">
                 <label for="item-description">Description:</label>
                 <textarea id="item-description" name="item-description" placeholder="Enter item description"></textarea>
             </div>
-
+        
             <!-- Category -->
             <div class="form-group">
                 <label for="item-category">Category:</label>
                 <select id="item-category" name="category" required>
                     <option value="" disabled selected>Select category</option>
-                    <option value="Category 1">Stationery</option>
-                    <option value="Category 1">Electronics</option>
-                    <option value="Category 1">Books</option>
+                    <option value="1">Stationery</option>
+                    <option value="2">Electronics</option>
+                    <option value="3">Books</option>
                 </select>   
-
+            </div>
+        
             <!-- Shop Selection -->
             <div class="form-group">
                 <label for="shop">Shop:</label>
                 <select id="shop" name="shop" required>
                     <option value="" disabled selected>Select shop</option>
-                    <option value="Shop 1">Allamanda Mart</option>
-                    
+                    <option value="1">Allamanda Mart</option>
                 </select>
             </div>
-
+        
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="image-upload">Item Image:</label>
+                <input type="file" id="image-upload" name="image-upload" accept="image/*">
+            </div>
+        
             <!-- Form Actions -->
             <div class="form-actions">
-                <button type="button" class="cancel-button" onclick="cancelForm()">Cancel</button>
-                <button type="submit" class="add-item-button">Add Item</button> <!-- Updated Add Item button -->
+                <button type="button" class="cancel-button" onclick="cancelForm()">Back</button>
+                <button type="submit" class="add-item-button">Add Item</button>
             </div>
         </form>
 
@@ -291,9 +298,10 @@
     <script>
         // Cancel form
         function cancelForm() {
-            if (confirm("Are you sure you want to cancel?")) {
+            if (confirm("Are you sure you want to go back?")) {
                 document.getElementById("item-form").reset();
                 document.getElementById("image-preview").textContent = "No image uploaded";
+                window.location.href = "index-retail.html"; // Redirect to the previous page
             }
         }
 
@@ -307,18 +315,36 @@
             }, 3000);
         }
 
-        // Handle form submission
+        // Handle form submission (using AJAX)
         document.getElementById("item-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            showNotification("Item successfully added!");
-            this.reset();
-            document.getElementById("image-preview").textContent = "No image uploaded";
+            event.preventDefault();  // Prevent the form from submitting in the usual way
+            
+            const formData = new FormData(this);  // Collect the form data including file input
+            
+            // Perform AJAX request to submit form data
+            fetch('php/add-product.php', {
+                method: 'POST',
+                body: formData  // Send the form data as the body of the request
+            })
+            .then(response => response.text())  // Get the response text from the server
+            .then(data => {
+                // Show success notification and reset the form
+                showNotification("Item successfully added!");
+                document.getElementById("item-form").reset();
+                document.getElementById("image-preview").textContent = "No image uploaded";
+            })
+            .catch(error => {
+                // Show error notification in case of failure
+                console.error("Error:", error);
+                showNotification("There was an error adding the item.");
+            });
         });
 
-        // Handle image upload
+        // Handle image upload (to show a preview of the selected image)
         document.getElementById("image-upload").addEventListener("change", function (event) {
             const file = event.target.files[0];
             const preview = document.getElementById("image-preview");
+
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -333,6 +359,7 @@
                 preview.textContent = "No image uploaded";
             }
         });
+
     </script>
 </body>
 </html>

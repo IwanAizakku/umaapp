@@ -291,7 +291,7 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", async () => {
-                const productId = new URLSearchParams(window.location.search).get("product_id") || 2; // Default to product 1
+                const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
                 const apiUrl = `php/get-product-data.php?product_id=${productId}`;
                 
                 try {
