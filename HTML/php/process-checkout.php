@@ -33,14 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
+        // Set the timezone to UTC+8
+        $timezone = new DateTimeZone('Asia/Kuala_Lumpur'); // UTC+8 timezone
+        $createdAt = new DateTime('now', $timezone);
+        $formattedCreatedAt = $createdAt->format('Y-m-d H:i:s');
+
         // Insert order into the orders table
         $stmt = $db->prepare("
-            INSERT INTO orders (user_id, total_price, status, created_at, delivery_address)
-            VALUES (:user_id, :total_price, 'received', NOW(), :delivery_address)
+            INSERT INTO orders (user_id, total_price, status, created_at, updated_at, delivery_address)
+            VALUES (:user_id, :total_price, 'received', :created_at, :created_at, :delivery_address)
         ");
         $stmt->execute([
             ':user_id' => $userId,
             ':total_price' => $totalPrice,
+            ':created_at' => $formattedCreatedAt,
             ':delivery_address' => $deliveryAddress
         ]);
 
@@ -73,11 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insert payment into the payments table
         $stmt = $db->prepare("
             INSERT INTO payments (order_id, payment_method, payment_status, transaction_date)
-            VALUES (:order_id, :payment_method, 'pending', NOW())
+            VALUES (:order_id, :payment_method, 'pending', :created_at)
         ");
         $stmt->execute([
             ':order_id' => $orderId,
-            ':payment_method' => $paymentMethod
+            ':payment_method' => $paymentMethod,
+            ':created_at' => $formattedCreatedAt
         ]);
 
         // Get the last inserted payment ID (payment_id)
@@ -92,9 +99,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 }
 ?>
-
-
-
-
-
-
