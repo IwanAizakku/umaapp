@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
 
-            // Redirect based on the role
+            // Redirect based on the role (Need to create page for admin/use existing if available)
             if ($user['role'] == 'admin') {
                 header('Location: admin-dashboard.php'); // Replace with admin page
             } else {
