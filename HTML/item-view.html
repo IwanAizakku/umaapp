@@ -66,7 +66,14 @@
         /* Main Content */
         main {
             display: flex;
+            flex-direction: column; /* Stack elements vertically */
             margin: 20px;
+            gap: 20px; /* Space between sections */
+        }
+
+        .main-content {
+            display: flex; /* Align sidebar and product section horizontally */
+            gap: 20px;
         }
 
         .logo {
@@ -82,15 +89,13 @@
 
         /* Sidebar */
         .sidebar {
-            display: flex;
-            align-items: center;
+            flex: 1;
             max-width: 250px;
             max-height: 250px;
             background-color: #ffffff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
-            margin-right: 20px;
         }
 
         .sidebar img {
@@ -163,6 +168,50 @@
 
         .product-actions button:hover {
             opacity: 0.9;
+        }
+
+        /* Item review */
+        .item-reviews {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            margin: 50px 0px 0px 0px;
+            gap: 20px;
+        }
+
+        .item-reviews h2 {
+            font-size: 30px;
+            text-align: center;
+        }
+        
+        .item-reviews-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0;
+        }
+
+        .review-extend-buttons {
+            display: block;
+            padding: 10px 0px 0px 40%;
+        }
+        .review-extend-buttons button {
+            background-color: #b6d0e2;
+            color: rgb(0, 0, 0);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .review-extend-buttons button:hover {
+            background-color: #abc5d8;
         }
 
         /* Modal Styling */
@@ -240,26 +289,38 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="item-pictures">
-                <img src="product-image.jpg" alt="Product">
+        <!-- Main Content Container -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="item-pictures">
+                    <img src="product-image.jpg" alt="Product">
+                </div>
+            </div>
+    
+            <!-- Product Section -->
+            <div class="product-section">
+                <div class="product-details">
+                    <h1>Product Name</h1>
+                    <p>Price: RM00.00</p>
+                    <p>Description: This is a great product with amazing features.</p>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
             </div>
         </div>
-
-        <!-- Product Section -->
-        <div class="product-section">
-            <div class="product-details">
-                <h1>Product Name</h1>
-                <p>Price: RM00.00</p>
-                <p>Description: This is a great product with amazing features.</p>
-            </div>
-            <div class="product-actions">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="buy-now">Buy Now</button>
+    
+        <!-- Item Reviews Section -->
+        <div class="item-reviews">
+            <h2>Reviews</h2>
+            <div class="reviews-container">
+                <!-- Reviews will be dynamically inserted here -->
             </div>
         </div>
     </main>
+    
 
     <!-- Success Modal -->
     <div class="modal" id="modal">
@@ -277,6 +338,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const productId = new URLSearchParams(window.location.search).get('product_id');
+            const reviewsContainer = document.querySelector('.reviews-container');
+        
             if (productId) {
                 fetch(`php/get-product-data.php?product_id=${productId}`)
                     .then(response => response.json())
@@ -287,20 +350,43 @@
                             document.querySelector('.product-details p:nth-child(2)').textContent = `Price: RM${data.product.price}`;
                             document.querySelector('.product-details p:nth-child(3)').textContent = `Description: ${data.product.description}`;
                             document.querySelector('.sidebar img').src = data.product.image_url || 'default-image.jpg';
+        
+                            // Render reviews
+                            renderReviews(data.reviews);
                         } else {
                             alert('Product not found!');
                         }
                     })
                     .catch(err => console.error('Error fetching product:', err));
             }
-    
-            // Modal functionality
+        
+            function renderReviews(reviews) {
+                if (!reviews || reviews.length === 0) {
+                    reviewsContainer.innerHTML = '<p>No reviews yet. Be the first to review this product!</p>';
+                    return;
+                }
+        
+                reviewsContainer.innerHTML = reviews.map(review => `
+                    <div class="item-reviews-box">
+                        <div class="item-placeholder-mini">
+                            <img src="${review.review_image_url || '../images/user-placeholder.png'}" alt="Picture" class="user-icon">
+                        </div>
+                        <div class="review-content">
+                            <span class="rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                            <p>${review.review_text}</p>
+                            <p class="review-author">By: ${review.username}</p>
+                            <p class="review-date">${new Date(review.created_at).toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        
+            // Modal functionality (kept unchanged)
             const modal = document.getElementById('modal');
             const closeModal = () => modal.style.display = 'none';
-    
+        
             document.querySelector('.add-to-cart').addEventListener('click', () => {
-                // Add to cart logic here: Send AJAX request
-                const quantity = 1; // You can replace this with a dynamic value if necessary
+                const quantity = 1;
                 fetch('php/add-to-cart.php', {
                     method: 'POST',
                     headers: {
@@ -311,49 +397,37 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        modal.style.display = 'flex'; // Show success modal
+                        modal.style.display = 'flex';
                     } else {
                         alert(data.error || 'Error adding to cart');
                     }
                 })
                 .catch(err => console.error('Error adding to cart:', err));
             });
-    
+        
             document.querySelector('.buy-now').addEventListener('click', () => {
-                const productId = new URLSearchParams(window.location.search).get('product_id');
-                const quantity = 1; // Default quantity
-            
-                if (!productId) {
-                    alert('Product ID is missing!');
-                    return;
-                }
-            
-                // Add item to cart
+                const quantity = 1;
                 fetch('php/add-to-cart.php', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `product_id=${productId}&quantity=${quantity}`,
+                    body: `product_id=${productId}&quantity=${quantity}`
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Redirect to the cart summary page
                         window.location.href = 'cart-summary-member.html';
                     } else {
-                        alert(data.error || 'Failed to add the product to the cart');
+                        alert(data.error || 'Error adding to cart');
                     }
                 })
-                .catch(err => {
-                    console.error('Error adding product to cart:', err);
-                    alert('An error occurred while adding the product to the cart.');
-                });
+                .catch(err => console.error('Error adding to cart:', err));
             });
-                        
-    
-            window.closeModal = closeModal; // Expose the function for the inline "Close" button
+        
+            window.closeModal = closeModal;
         });
+        
     </script>
 </body>
 </html>
