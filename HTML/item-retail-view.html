@@ -259,7 +259,7 @@
                             <button id="edit-item-button">Edit item info</button>
                         </div>
                         <div class="red-buttons">
-                            <button>Remove item</button>
+                            <button id="remove-item-button">Remove item</button>
                         </div>
                     </div>
                 </section>
@@ -351,6 +351,40 @@
             document.getElementById("edit-item-button").addEventListener("click", () => {
                 const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
                 window.location.href = `item-retail-edit.html?product_id=${productId}`;
+            });
+
+            // Delete item based on current product_id
+            document.getElementById("remove-item-button").addEventListener("click", async () => {
+                const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
+            
+                // Confirm deletion with a popup
+                const confirmDelete = confirm("Are you sure you want to delete this item?");
+                if (!confirmDelete) {
+                    return; // Exit if the user cancels
+                }
+            
+                try {
+                    // Send a POST request to delete-product.php
+                    const response = await fetch("php/delete-product.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ product_id: productId }),
+                    });
+            
+                    const result = await response.json();
+            
+                    if (result.success) {
+                        alert(result.message); // Show success message
+                        window.location.href = "index-retail.html"; // Redirect to the previous page
+                    } else {
+                        alert(result.message); // Show failure message
+                    }
+                } catch (error) {
+                    console.error("Error deleting product:", error);
+                    alert("An error occurred while deleting the product. Please try again.");
+                }
             });
             
         </script>
