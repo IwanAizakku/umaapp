@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect based on the role (Need to create page for admin/use existing if available)
             if ($user['role'] == 'admin') {
-                header('../Admin/dashboard.html'); // Replace with admin page
+                header('Location: ../dashboard.html'); // Replace with admin page
             } else if ($user['role'] == 'retailer') {
                 header('Location: ../index-retail.html'); // Replace with member home page
             } else {
