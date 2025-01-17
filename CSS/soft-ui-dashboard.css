@@ -1,18 +1,13 @@
 @charset "UTF-8";
 
-/*!
- * Bootstrap  v5.3.3 (https://getbootstrap.com/)
- * Copyright 2011-2024 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0ea5e9;
   --bs-indigo: #6366f1;
   --bs-purple: #a855f7;
   --bs-pink: #ec4899;
-  --bs-red: #ef4444;
-  --bs-orange: #f97316;
+  --bs-red: #D8BFD8;
+  --bs-orange: #D8BFD8;
   --bs-yellow: #eab308;
   --bs-green: #22c55e;
   --bs-teal: #14b8a6;
@@ -29,12 +24,12 @@
   --bs-gray-700: #3f3f46;
   --bs-gray-800: #27272a;
   --bs-gray-900: #18181b;
-  --bs-primary: #f97316;
+  --bs-primary: #D8BFD8;
   --bs-secondary: #71717a;
   --bs-success: #22c55e;
   --bs-info: #0ea5e9;
   --bs-warning: #eab308;
-  --bs-danger: #ef4444;
+  --bs-danger: #D8BFD8;
   --bs-light: #e3e3e7;
   --bs-dark: #27272a;
   --bs-white: #fff;
@@ -95,7 +90,7 @@
   --bs-tertiary-bg: #f4f4f5;
   --bs-tertiary-bg-rgb: 244, 244, 245;
   --bs-heading-color: #27272a;
-  --bs-link-color: #f97316;
+  --bs-link-color: #D8BFD8;
   --bs-link-color-rgb: 249, 115, 22;
   --bs-link-decoration: none;
   --bs-link-hover-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
@@ -124,8 +119,8 @@
   --bs-focus-ring-color: rgba(249, 115, 22, 0.25);
   --bs-form-valid-color: #66d432;
   --bs-form-valid-border-color: #66d432;
-  --bs-form-invalid-color: #fd5c70;
-  --bs-form-invalid-border-color: #fd5c70;
+  --bs-form-invalid-color: #D8BFD8;
+  --bs-form-invalid-border-color: #D8BFD8;
 }
 
 [data-bs-theme=dark] {
@@ -144,7 +139,7 @@
   --bs-tertiary-color-rgb: 212, 212, 216;
   --bs-tertiary-bg: rgb(31.5, 31.5, 34.5);
   --bs-tertiary-bg-rgb: 32, 32, 35;
-  --bs-primary-text-emphasis: rgb(251.4, 171, 115.2);
+  --bs-primary-text-emphasis: #D8BFD8;
   --bs-secondary-text-emphasis: rgb(169.8, 169.8, 175.2);
   --bs-success-text-emphasis: rgb(122.4, 220.2, 158.4);
   --bs-info-text-emphasis: rgb(110.4, 201, 241.8);
@@ -169,8 +164,8 @@
   --bs-light-border-subtle: #3f3f46;
   --bs-dark-border-subtle: #27272a;
   --bs-heading-color: inherit;
-  --bs-link-color: rgb(251.4, 171, 115.2);
-  --bs-link-hover-color: rgb(252.12, 187.8, 143.16);
+  --bs-link-color: #D8BFD8;
+  --bs-link-hover-color: #D8BFD8;
   --bs-link-color-rgb: 251, 171, 115;
   --bs-link-hover-color-rgb: 252, 188, 143;
   --bs-code-color: rgb(243.6, 145.2, 193.8);
@@ -3272,7 +3267,7 @@ textarea.form-control-lg {
   height: 1rem;
   margin-top: -0.25rem;
   appearance: none;
-  background-color: #f97316;
+  background-color: #D8BFD8;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3302,7 +3297,7 @@ textarea.form-control-lg {
   width: 1rem;
   height: 1rem;
   appearance: none;
-  background-color: #f97316;
+  background-color: #D8BFD8;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
