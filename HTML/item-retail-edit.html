@@ -224,7 +224,7 @@
             <div class="item-placeholder" id="image-preview">No image uploaded</div>
         </section>
 
-        <form id="edit-item-form" action="php/edit-product.php" method="POST"  enctype="multipart/form-data">
+        <form id="edit-item-form" onsubmit="submitEditForm(event)" enctype="multipart/form-data">
             <!-- Hidden input for product ID -->
             <input type="hidden" id="product-id" name="product-id">
 
@@ -288,7 +288,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get("product_id");
-        
+
             if (productId) {
                 fetch(`php/get-product-data.php?product_id=${productId}`)
                     .then(response => {
@@ -302,7 +302,7 @@
                             console.error("Error fetching product:", data.error);
                         } else if (data.product) {
                             const product = data.product;
-        
+
                             // Populate form fields with fetched product data
                             document.getElementById("product-id").value = product.product_id;
                             document.getElementById("item-title").value = product.name || "";
@@ -310,7 +310,7 @@
                             document.getElementById("item-description").value = product.description || "";
                             document.getElementById("item-category").value = product.category_id || "";
                             document.getElementById("shop").value = product.retailer_id || "";
-        
+
                             // Display image preview
                             if (product.image_url) {
                                 const preview = document.getElementById("image-preview");
@@ -328,8 +328,6 @@
                 console.warn("No product_id parameter provided in the URL.");
             }
         });
-        
-        
 
         // Cancel form
         function cancelForm() {
@@ -337,6 +335,37 @@
                 document.getElementById("edit-item-form").reset();
                 window.location.href = "index-retail.html";
             }
+        }
+
+        // Submit form via AJAX
+        function submitEditForm(event) {
+            event.preventDefault(); // Prevent form's default submission behavior
+
+            const form = document.getElementById("edit-item-form");
+            const formData = new FormData(form);
+
+            // Send the AJAX request
+            fetch("php/edit-product.php", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Show success message
+                    alert("Product updated successfully!");
+
+                    // Redirect back to the previous page
+                    window.location.href = "index-retail.html";
+                } else {
+                    // Show error message
+                    alert(data.message || "An error occurred while updating the product.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while processing the request.");
+            });
         }
     </script>
 </body>

@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':category_id', $category);
         $stmt->bindParam(':retailer_id', $shop);
-        $stmt->bindParam(':id', $product_id);
+        $stmt->bindParam(':id', $productId);
 
         if ($image_url) {
             $stmt->bindParam(':image_url', $image_url);

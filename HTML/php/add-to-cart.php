@@ -50,6 +50,10 @@ if ($product_id && $quantity > 0) {
                 $stmt = $db->prepare("UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?");
                 $stmt->execute([$newQuantity, $user_id, $product_id]);
 
+                // Increment added_to_cart for the product
+                $stmt = $db->prepare("UPDATE products SET added_to_cart = added_to_cart + ? WHERE product_id = ?");
+                $stmt->execute([$quantity, $product_id]);
+
                 echo json_encode(['success' => true, 'message' => 'Cart updated successfully.']);
             } else {
                 echo json_encode(['error' => 'Not enough stock available for the updated quantity.']);
@@ -59,6 +63,9 @@ if ($product_id && $quantity > 0) {
             $stmt = $db->prepare("INSERT INTO cart (user_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
             $stmt->execute([$user_id, $product_id, $quantity, $price]);
 
+            // Increment added_to_cart for the product
+            $stmt = $db->prepare("UPDATE products SET added_to_cart = added_to_cart + ? WHERE product_id = ?");
+            $stmt->execute([$quantity, $product_id]);
 
             echo json_encode(['success' => true, 'message' => 'Product added to cart.']);
         }

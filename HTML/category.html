@@ -272,7 +272,7 @@
 
                 // Add product details and link to item page
                 productDiv.innerHTML = `
-                    <a href="item-view.html?product_id=${product.product_id}" style="text-decoration: none; color: inherit;">
+                    <a href="#" onclick="handleProductClick(${product.product_id})" style="text-decoration: none; color: inherit;">
                         <img src="${product.image_url}" alt="${product.name}" />
                         <p>${product.name}</p>
                         <p>RM${parseFloat(product.price).toFixed(2)}</p>
@@ -283,6 +283,18 @@
             });
         } catch (error) {
             console.error(`Error fetching products for category ${categoryId}:`, error);
+        }
+    }
+
+    async function handleProductClick(productId) {
+        try {
+            // Increment the views for the product
+            await fetch(`php/increment-views.php?product_id=${productId}`);
+    
+            // Redirect to the product details page
+            window.location.href = `item-view.html?product_id=${productId}`;
+        } catch (error) {
+            console.error(`Error incrementing views for product ${productId}:`, error);
         }
     }
 </script>
