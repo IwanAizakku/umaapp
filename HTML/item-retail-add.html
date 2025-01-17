@@ -233,13 +233,16 @@
         <h1 style="text-align: center; margin-bottom: 20px;">Add New Item</h1>
         <section class="item-image">
             <div class="item-placeholder" id="image-preview">No image uploaded</div>
-            <div class="upload-container">
-                <input type="file" id="image-upload" class="upload-button" accept="image/*" />
-            </div>
         </section>
 
         <form id="item-form" action="php/add-product.php" method="POST" enctype="multipart/form-data">
             
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="image-upload">Item Image:</label>
+                <input type="file" id="image-upload" name="image-upload" accept="image/*">
+            </div>
+
             <!-- Item Title -->
             <div class="form-group">
                 <label for="item-title">Item Title:</label>
@@ -276,12 +279,6 @@
                     <option value="" disabled selected>Select shop</option>
                     <option value="1">Allamanda Mart</option>
                 </select>
-            </div>
-        
-            <!-- Image Upload -->
-            <div class="form-group">
-                <label for="image-upload">Item Image:</label>
-                <input type="file" id="image-upload" name="image-upload" accept="image/*">
             </div>
         
             <!-- Form Actions -->

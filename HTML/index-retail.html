@@ -159,15 +159,16 @@
             .container {
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: space-between;
-                    
-                    
+                    justify-content: left; 
+                    margin-left: 10px;
+                    min-width: 100%;  
                 }
-                .box {
+
+            .box {
                     width: 20%; /* Adjust the width to make space for 3 boxes per row */
-                    height: 250px;
+                    height: 300px;
                     background-color: white;
-                    margin:50px;
+                    margin: 30px;
                     border-radius: 20px;
                     display: flex;
                     flex-direction: column;
@@ -182,7 +183,7 @@
                     border-radius: 5px; /* Optional: round the image corners */
                 }
                 .item-placeholder {
-                    width: 100%;
+                    width: fit-content;
                     max-width: 350px;
                     background-color: #fff;
                     border-radius: 10px;
@@ -191,14 +192,20 @@
                     align-items: center; /* Center content horizontally */
                     justify-content: flex-start; /* Align content to the top */
                     font-size: 18px;
-                    border: 5px solid black;
                     color: #888;
                     padding: 10px;
                  }
                  .item-name {
                     margin-top: 10px; /* Add spacing between image and product name */
-                    font-size: 16px;
+                    font-size: 18px;
                     color: #333; /* Darker text for better readability */
+                    font-weight: bold;
+                    text-align: center; /* Center-align the product name */
+                }
+                .item-price {
+                    margin-top: 10px; /* Add spacing between image and product name */
+                    font-size: 17px;
+                    color: #03b42f; /* Darker text for better readability */
                     text-align: center; /* Center-align the product name */
                 }
                 .add-button button {
@@ -243,22 +250,23 @@
                 display:inline;
                 margin-left: 10px;
             }
-            .delete-button button {
-                padding: 12px 25px;
-                background: linear-gradient(90deg, #d8aad2, #f1c1d1); /* Gradient button */
+            button.delete-button  {
+                padding: 10px 20px;
+                background: linear-gradient(90deg, #ff0000, #b10000); /* Gradient button */
                 color: white;
                 border: none;
                 cursor: pointer;
                 border-radius: 30px; /* Rounded corners for a smoother look */
+                margin-top: 10px;
                 font-size: 20px;
                 font-weight: bold;
                 transition: all 0.3s ease; /* Smooth transition */
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             }
-            .delete-button button:hover {
+            button.delete-button:hover {
                 transform: scale(1.1); /* Make the button slightly larger */
                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-                background: linear-gradient(90deg, #f1c1d1, #d8aad2); /* Inverted gradient */
+                background: linear-gradient(90deg, #b10000, #ff0000); /* Inverted gradient */
             }  
 
             
@@ -279,9 +287,6 @@
             <div class="header-buttons">
                 <form action="">
                     <button>User</button>
-                </form>
-                <form action="cart-summary-member.html">
-                    <button>Cart</button>
                 </form>
                 <form action="php/logout.php" method="POST">
                     <button type="submit">Logout</button>
@@ -354,8 +359,11 @@
                         <div class="item-name">${product.name}</div>
                         <div class="item-price">RM ${isNaN(parseFloat(product.price)) ? "0.00" : parseFloat(product.price).toFixed(2)}</div>
                         <a href="item-retail-view.html?product_id=${product.product_id}" class="view-item-button">
-                        View item
+                            View
                         </a>
+                        <button class="delete-button" onclick="deleteProduct(${product.product_id})">
+                            Delete
+                        </button>
                     `;
                     container.appendChild(box);
                 });
@@ -365,7 +373,37 @@
                 const container = document.getElementById('product-container');
                 container.innerHTML = '<p style="text-align:center; font-size:18px; color:red;">Failed to load products. Please try again later.</p>';
             });
-    </script>
 
+            // Function to delete a product
+    function deleteProduct(productId) {
+        // Show confirmation popup
+        if (!confirm('Are you sure you want to delete this product?')) {
+        return;
+    }
+
+    // Make a POST request to delete-product.php
+    fetch('php/delete-product.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ product_id: productId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                // Reload the page or re-fetch products to reflect changes
+                location.reload();
+            } else {
+                alert(`Error: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to delete the product. Please try again later.');
+        });
+    }
+    </script>
     </body>
 </html>
