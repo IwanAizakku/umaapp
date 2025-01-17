@@ -93,7 +93,7 @@
   --bs-link-color: #D8BFD8;
   --bs-link-color-rgb: 249, 115, 22;
   --bs-link-decoration: none;
-  --bs-link-hover-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
+  --bs-link-hover-color: rgba(219,173,210,255);
   --bs-link-hover-color-rgb: 190, 81, 5;
   --bs-link-hover-decoration: none;
   --bs-code-color: #ec4899;
@@ -4165,9 +4165,9 @@ fieldset:disabled .btn {
   --bs-btn-color: #f97316;
   --bs-btn-bg: transparent;
   --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
+  --bs-btn-hover-color: rgba(219,173,210,255);
   --bs-btn-hover-border-color: transparent;
-  --bs-btn-active-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
+  --bs-btn-active-color: rgba(219,173,210,255);
   --bs-btn-active-border-color: transparent;
   --bs-btn-disabled-color: #52525b;
   --bs-btn-disabled-border-color: transparent;
@@ -5773,10 +5773,10 @@ fieldset:disabled .btn {
   --bs-pagination-border-width: 1px;
   --bs-pagination-border-color: #d4d4d8;
   --bs-pagination-border-radius: 0.5rem;
-  --bs-pagination-hover-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
+  --bs-pagination-hover-color: rgba(219,173,210,255);
   --bs-pagination-hover-bg: #e3e3e7;
   --bs-pagination-hover-border-color: #d4d4d8;
-  --bs-pagination-focus-color: rgb(189.6171548117, 80.5669456067, 4.8828451883);
+  --bs-pagination-focus-color: rgba(219,173,210,255);
   --bs-pagination-focus-bg: #e3e3e7;
   --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(249, 115, 22, 0.25);
   --bs-pagination-active-color: #fff;
