@@ -33,14 +33,15 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
           </div>
-          <ul class="navbar-nav  justify-content-end">
+          <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="index-member.html" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign Out</span>
-              </a>
+              <form action="php/logout.php" method="POST" class="m-0">
+                <button type="submit" class="btn nav-link text-body font-weight-bold px-0 d-flex align-items-center">
+                  <i class="fa fa-user me-sm-1"></i>
+                  <span class="d-sm-inline d-none">Sign Out</span>
+                </button>
+              </form>
             </li>
-            
           </ul>
         </div>
       </div>
