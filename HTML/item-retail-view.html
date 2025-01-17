@@ -227,7 +227,7 @@
                 <label for="search">Search:</label>
                 <input type="text" id="search" placeholder="Search...">
             </div>
-            <a href="index-member.html">
+            <a href="index-retail.html">
                 <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
             </a>
             <div class="header-buttons">
@@ -256,7 +256,7 @@
                     </div>
                     <div class="item-action-buttons">
                         <div class="blue-buttons">
-                            <button>Edit item info</button>
+                            <button id="edit-item-button">Edit item info</button>
                         </div>
                         <div class="red-buttons">
                             <button>Remove item</button>
@@ -346,6 +346,13 @@
                     document.body.innerHTML = `<h1>Unable to load product details. Please try again later.</h1>`;
                 }
             });
+
+            // Redirect to item-retail-edit based on product_id
+            document.getElementById("edit-item-button").addEventListener("click", () => {
+                const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
+                window.location.href = `item-retail-edit.html?product_id=${productId}`;
+            });
+            
         </script>
     </body>
 </html>
