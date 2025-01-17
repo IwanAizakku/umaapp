@@ -85,7 +85,6 @@
             }
 
             .item-placeholder {
-                width: 100%;
                 max-width: 350px;
                 height: 350px;
                 background-color: #fff;
@@ -95,6 +94,11 @@
                 justify-content: center;
                 font-size: 18px;
                 color: #888;
+            }
+
+            .item-placeholder img {
+                max-width: 100%;
+                border-radius: 8px;
             }
 
             /* Item Info */
@@ -109,8 +113,8 @@
 
             .item-price {
                 font-size: 20px;
-                color: #333;
-                font-weight: 600;
+                color: #03b42f;
+                font-weight: 300;
                 margin-top: 10px;
                 text-align: center; /* Center the price */
             }
@@ -181,6 +185,7 @@
             .item-reviews-box {
                 display: flex;
                 margin-bottom: 20px;
+                background-color: #ffffff;
                 gap: 15px;
                 align-items: center;
             }
@@ -215,7 +220,6 @@
             }
         </style>
     </head>
-
     <body>
         <!-- Header -->
         <header>
@@ -223,15 +227,12 @@
                 <label for="search">Search:</label>
                 <input type="text" id="search" placeholder="Search...">
             </div>
-            <a href="index-member.html">
-                <img src="/Images/logo design gradient.png" alt="Logo" class="logo">
+            <a href="index-retail.html">
+                <img src="../Images/logo design gradient.png" alt="Logo" class="logo">
             </a>
             <div class="header-buttons">
                 <form action="">
                     <button>User</button>
-                </form>
-                <form action="HTML/cart-summary.html">
-                    <button>Cart</button>
                 </form>
             </div>
         </header>
@@ -250,15 +251,12 @@
                 <section class="item-info">
                     <h1>Item Name</h1>
                     <p class="item-price">RM00.00</p>
-                    <div class="rating">
-                        <span>★★★★☆</span> 4.5/5.0
-                    </div>
                     <div class="item-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...
                     </div>
                     <div class="item-action-buttons">
                         <div class="blue-buttons">
-                            <button>Edit item info</button>
+                            <button id="edit-item-button">Edit item info</button>
                         </div>
                         <div class="red-buttons">
                             <button>Remove item</button>
@@ -267,14 +265,11 @@
                 </section>
             </div>
 
-            <!-- Reviews Section -->
+            <!-- Statistics Section -->
             <section class="item-statistics">
                 <h2>Statistics</h2>
                 <div class="item-statistics-box">
-                    <div class="statistics-info">
-                        <p>Views: [123]</p>
-                        <p>Added to cart: [123]</p>
-                    </div>
+                    <div class="statistics-info"></div>
                     <div class="statistics-info-buttons">
                         <div class="blue-buttons">
                             <button>[12h]</button>
@@ -284,45 +279,80 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Reviews Section -->
             <section class="item-reviews">
                 <h2>Reviews for: Item Name</h2>
-                <div class="item-reviews-box">
-                    <div class="item-placeholder-mini">
-                        <img src="../images/user-placeholder.png" alt="User" class="user-icon">
-                    </div>
-                    <div class="review-content">
-                        <span class="rating">★★★★☆</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...</p>
-                        <div class="review-extend-buttons">
-                            <button>Read more</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-reviews-box">
-                    <div class="item-placeholder-mini">
-                        <img src="../images/user-placeholder.png" alt="User" class="user-icon">
-                    </div>
-                    <div class="review-content">
-                        <span class="rating">★★★★☆</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...</p>
-                        <div class="review-extend-buttons">
-                            <button>Read more</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-reviews-box">
-                    <div class="item-placeholder-mini">
-                        <img src="../images/user-placeholder.png" alt="User" class="user-icon">
-                    </div>
-                    <div class="review-content">
-                        <span class="rating">★★★★☆</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim...</p>
-                        <div class="review-extend-buttons">
-                            <button>Read more</button>
-                        </div>
-                    </div>
-                </div>
             </section>
         </main>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
+                const apiUrl = `php/get-product-data.php?product_id=${productId}`;
+                
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch product data.");
+                    }
+                    const data = await response.json();
+    
+                    if (data.error) {
+                        document.body.innerHTML = `<h1>Error: ${data.error}</h1>`;
+                        return;
+                    }
+    
+                    // Populate product details
+                    const product = data.product;
+                    if (product) {
+                        document.querySelector(".item-info h1").textContent = product.name;
+                        document.querySelector(".item-price").textContent = `RM${parseFloat(product.price).toFixed(2)}`;
+                        document.querySelector(".item-description").textContent = product.description;
+                        document.querySelector(".item-image img").src = product.image_url || "../images/default-item.png";
+    
+                        // Populate statistics
+                        const statisticsHtml = `
+                            <p>Views: ${product.views}</p>
+                            <p>Added to cart: ${product.added_to_cart}</p>`;
+                        document.querySelector(".statistics-info").innerHTML = statisticsHtml;
+                    }
+    
+                    // Populate reviews
+                    const reviews = data.reviews;
+                    if (reviews.length > 0) {
+                        const reviewsContainer = document.querySelector(".item-reviews");
+                        reviewsContainer.innerHTML = `<h2>Reviews for: ${product.name}</h2>`;
+    
+                        reviews.forEach(review => {
+                            const reviewHtml = `
+                                <div class="item-reviews-box">
+                                    <div class="item-placeholder-mini">
+                                        <img src="${review.review_image_url || '../images/user-placeholder.png'}" alt="User" class="user-icon">
+                                    </div>
+                                    <div class="review-content">
+                                        <span class="rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</span>
+                                        <p>${review.review_text}</p>
+                                        <small>By ${review.username} on ${new Date(review.created_at).toLocaleDateString()}</small>
+                                    </div>
+                                </div>`;
+                            reviewsContainer.insertAdjacentHTML("beforeend", reviewHtml);
+                        });
+                    } else {
+                        document.querySelector(".item-reviews").innerHTML = `<h2>No reviews available for this item.</h2>`;
+                    }
+                } catch (error) {
+                    console.error("Error loading product data:", error);
+                    document.body.innerHTML = `<h1>Unable to load product details. Please try again later.</h1>`;
+                }
+            });
+
+            // Redirect to item-retail-edit based on product_id
+            document.getElementById("edit-item-button").addEventListener("click", () => {
+                const productId = new URLSearchParams(window.location.search).get("product_id") || 1; // Default to product 1
+                window.location.href = `item-retail-edit.html?product_id=${productId}`;
+            });
+            
+        </script>
     </body>
 </html>
