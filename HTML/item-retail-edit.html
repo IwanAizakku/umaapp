@@ -224,7 +224,16 @@
             <div class="item-placeholder" id="image-preview">No image uploaded</div>
         </section>
 
-        <form id="item-form">
+        <form id="edit-item-form" onsubmit="submitEditForm(event)" enctype="multipart/form-data">
+            <!-- Hidden input for product ID -->
+            <input type="hidden" id="product-id" name="product-id">
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="image-upload">Item Image:</label>
+                <input type="file" id="image-upload" name="image-upload" accept="image/*">
+            </div>
+
             <!-- Item Title -->
             <div class="form-group">
                 <label for="item-title">Item Title:</label>
@@ -275,50 +284,89 @@
     </main>
 
     <script>
+        // Prefill form data (AJAX fetch for product details)
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("product_id");
+
+            if (productId) {
+                fetch(`php/get-product-data.php?product_id=${productId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Error fetching product:", data.error);
+                        } else if (data.product) {
+                            const product = data.product;
+
+                            // Populate form fields with fetched product data
+                            document.getElementById("product-id").value = product.product_id;
+                            document.getElementById("item-title").value = product.name || "";
+                            document.getElementById("item-price").value = product.price || "";
+                            document.getElementById("item-description").value = product.description || "";
+                            document.getElementById("item-category").value = product.category_id || "";
+                            document.getElementById("shop").value = product.retailer_id || "";
+
+                            // Display image preview
+                            if (product.image_url) {
+                                const preview = document.getElementById("image-preview");
+                                preview.style.backgroundImage = `url(${product.image_url})`;
+                                preview.style.backgroundSize = "cover";
+                                preview.style.backgroundPosition = "center";
+                                preview.textContent = ""; // Remove placeholder text
+                            }
+                        } else {
+                            console.warn("No product data found.");
+                        }
+                    })
+                    .catch(error => console.error("Error fetching product data:", error));
+            } else {
+                console.warn("No product_id parameter provided in the URL.");
+            }
+        });
+
         // Cancel form
         function cancelForm() {
-            if (confirm("Are you sure you want to cancel?")) {
-                document.getElementById("item-form").reset();
-                document.getElementById("image-preview").textContent = "Current image uploaded";
+            if (confirm("Are you sure you want to go back?")) {
+                document.getElementById("edit-item-form").reset();
+                window.location.href = "index-retail.html";
             }
         }
 
-        // Show notification
-        function showNotification(message) {
-            const notification = document.getElementById("notification");
-            notification.textContent = message;
-            notification.style.display = "block";
-            setTimeout(() => {
-                notification.style.display = "none";
-            }, 3000);
+        // Submit form via AJAX
+        function submitEditForm(event) {
+            event.preventDefault(); // Prevent form's default submission behavior
+
+            const form = document.getElementById("edit-item-form");
+            const formData = new FormData(form);
+
+            // Send the AJAX request
+            fetch("php/edit-product.php", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Show success message
+                    alert("Product updated successfully!");
+
+                    // Redirect back to the previous page
+                    window.location.href = "index-retail.html";
+                } else {
+                    // Show error message
+                    alert(data.message || "An error occurred while updating the product.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while processing the request.");
+            });
         }
-
-        // Handle form submission
-        document.getElementById("item-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            showNotification("Item successfully updated!");
-            this.reset();
-            document.getElementById("image-preview").textContent = "Current image uploaded";
-        });
-
-        // Handle image upload
-        document.getElementById("image-upload").addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById("image-preview");
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.style.backgroundImage = `url(${e.target.result})`;
-                    preview.style.backgroundSize = "cover";
-                    preview.style.backgroundPosition = "center";
-                    preview.textContent = "";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.backgroundImage = "none";
-                preview.textContent = "Current image uploaded";
-            }
-        });
     </script>
 </body>
 </html>
